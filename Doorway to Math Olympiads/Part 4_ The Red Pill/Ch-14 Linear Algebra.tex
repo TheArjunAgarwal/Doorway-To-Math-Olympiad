@@ -1,0 +1,1137 @@
+\chapter{Ch-14 Linear Algebra}
+Let me address the fundamental question on the face of it: what is Linear Algebra, and why should we bother learning it? You see, mathematics is not just a set of abstract rules and theorems; it's a language that allows us to describe and understand the world around us. Linear Algebra is a crucial part of this mathematical language, and it serves as a bridge between various mathematical concepts and the real-world problems we aim to solve.\\
+Now, linear algebra may seem like a bit of a departure from your previous mathematical endeavors, and I want to assure you that it's quite different, yet fundamentally tied to the mathematics you've encountered before. You see, on the face of it linear algebra serves as a bridge between algebra and geometry, and at a greater depth it achives a lot more.\\
+At its core, Linear Algebra deals with matrices, which are essentially a different way of representing data than the vectors we'll explore later on. Think of a matrix as a structured arrangement of numbers, much like an Excel spreadsheet. You might remember incidence matrices from Power Overwhelming chapter. These numbers hold hidden patterns and relationships that we'll uncover throughout this chapter.\\
+Now, I must offer a small apology in advance. This chapter, and indeed much of Linear Algebra, may seem abstract at first. We'll delve into concepts that may not seem immediately applicable to the real world. But rest assured, as we progress, we'll unlock the practical applications of these abstract notions. \\
+Think of this abstract treatment as laying the groundwork, building a solid foundation for the magnificent mathematical structures we'll explore later. Much like constructing a sturdy building, we need a strong foundation to support the practical applications of Linear Algebra that we'll discuss in due time.\\
+I want to also extend my apologies once again, before we embark on this journey through Linear Algebra. While our goal is to explore the beauty and utility of matrices, determinants, and their applications, I must acknowledge that I have not provided the rigorous proofs for every statement and concept we encounter.\\
+You see, Linear Algebra can be quite intricate, and proving every assertion can often be a lengthy and intricate process, especially when we're dealing with general matrices. Consider, for instance, taking a random matrix, multiplying it by another, and then attempting to factorize the result. This task, though fundamental and basic algebra, can indeed become quite tedious. I however, encourage you to do so. You won't need any more knowledge than what we covered in basic algebric manipulations\\
+With that out of the way, I must remind you that Linear algebra is not just about abstract problems and equations. Linear Algebra is the muscle behind modern technology. It powers your smartphone apps and games, helps Netflix recommend your next binge-worthy series, and even guides spacecraft to explore the cosmos. Heck, it's even there when you make a simple Google search. So, if you ever wondered how your world works, this is a fantastic place to start.\\
+As for the how and why of these real-world applications, they'll come, I promise! You see, linear algebra is like a Swiss Army knife for scientists, engineers, and data scientists. We can use it to solve systems of equations, analyze networks, optimize processes, and even make sense of vast amounts of data in fields like machine learning and statistics. So, while we may start in the abstract, by the end of this journey, you'll understand why linear algebra is so essential in the modern world.\\
+\section{Determinants}
+Let's for now assume matrix to be a row and column of numbers. We'll talk more about them later.\\
+The determinant is only defined for a matrix with equal columns and rows, or a square matrix. The number of rows or columns is called the order. We'll define it as follows:\\
+\begin{definition}
+    Determinant of matrix of order $1$:\\
+    $|a| = a$
+\end{definition}
+\begin{definition}
+    Determinant of matrix of order $2$:\\
+    $\begin{vmatrix}
+        a_1 & b_1\\
+        a_2 & b_2
+    \end{vmatrix} = a_1\cdot b_2 - b_1\cdot a_2$
+\end{definition}
+We can remember this definition by looking at it as cross multiplying on then diagonals and then  subtracting.\\
+Here are a few examples of taking the determinant:\\
+\begin{example}
+[Motivating Example]
+    $\begin{vmatrix}
+        4 & 3\\
+        1 & -3
+    \end{vmatrix}$
+\end{example}
+\begin{proof}
+    [Solution]
+    This quite simple. \\
+    $4*(-3)-3*1\\
+    = -12 -3\\
+    = -15$
+\end{proof}
+\begin{example}
+    If $\begin{vmatrix}
+        e^x & \sin(x)\\
+        \cos(x) & \ln{1+x}
+    \end{vmatrix} = A + Bx + Cx^2+\dots$  What is the value of  $A$?
+\end{example}
+\begin{proof}
+    [Solution]
+    Before we pull out the expansions from calculus, notice that taking $x=0$ will make the determinant $A$ and that is what is asked from us.\\
+    $\therefore A= \begin{vmatrix}
+        e^0 & \sin(0)\\
+        \cos(0) & \ln{1+0}
+    \end{vmatrix}\\
+    = \begin{vmatrix}
+        1 & 0\\
+        1 & 0
+    \end{vmatrix}\\
+    = 0$
+\end{proof}
+Now we enter the actually confusing area.  For any general matrix we will here onward write the term at the intersection of the $i^{th}$ column and $j^{th}$ row as $a_{ij}$. Using this notation we define the determinant of order 3 as:\\
+\begin{definition}
+    Determinant of order 3
+    $\begin{vmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix} = a_{11} \begin{vmatrix}
+    a_{22} & a_{23}\\
+    a_{32} & a_{33}\\
+\end{vmatrix} - a_{12} \begin{vmatrix}
+    a_{21} & a_{23}\\
+    a_{31} & a_{33}\\
+\end{vmatrix} + a_{13} \begin{vmatrix}
+    a_{21} & a_{22}\\
+    a_{31} & a_{32}\\
+\end{vmatrix}\\
+= a_{11}(a_{22}\cdot a_{33} - a_{23}\cdot a_{32})-a_{12}(a_{21}\cdot a_{33} - a_{23}\cdot a_{31})+ a_{13}(a_{21}\cdot a_{32} - a_{22}\cdot a_{31})$ 
+\end{definition}
+We can remember this by basically removing the row and column of a number, taking the determinant of the rest of the matrix(now of order 2) and then multiply them. Then we take the next term in the column or row, repeat the process but alternating the sign. We can do this for any row or column to get the determinant(the definition is on the first row but we can choose the one which leads to the shortest calculations).\\
+Let's try an example:\\
+\begin{example}
+[Motivating example]
+    $\begin{vmatrix}
+    3 & 3 & 2 \\
+    5 & 4 & 7 \\
+    5 & 7 & 6 \\
+\end{vmatrix}$
+\end{example}
+\begin{proof}
+    [Solution]
+    Using the first row seems promising as it has relatively small numbers.\\
+    $\begin{vmatrix}
+    3 & 3 & 2 \\
+    5 & 4 & 7 \\
+    5 & 7 & 6 \\
+\end{vmatrix} = 3(4*6-7*7)-3(5*6-7*5)+2*(5*7-4*5)\\
+= 3*(-25)-3(-5)+2(15)\\
+= -75+15+30\\
+= 30$
+\end{proof}
+Now we'll define two new terms called minor and cofactor.\\
+\begin{definition}
+    The minor $M_{ij}$ of an element $a_{ij}$ in a matrix $\begin{bmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{bmatrix}$ is the determinant obtained by deleting the $i^{th}$ row and $j^{th}$ column.\\
+\end{definition}
+\begin{definition}
+    The co-factor $C_{ij}$ of an element $a_{ij}$ is given by:\\
+    $C_{ij}=(-1)^{i+j}M_{ij}$
+\end{definition}
+Let's do an example to get comfortable with the definition.\\
+\begin{example}
+    [Motivating example]
+    Find the co-factors of all the elements of : $\begin{bmatrix}
+        1 &-5 & -1\\
+        5 &0 &3\\
+        -3 &7 &9
+    \end{bmatrix}$ 
+\end{example}
+\begin{proof}
+    [Solution]
+    For $a_{11}=1$, the $C_{11}=(-1)^{1+1}M_{12}\\
+    = (-1)^{2}\begin{vmatrix}
+        0 & 3\\
+        7 & 9\\
+    \end{vmatrix}\\
+    = -21$\\
+    For $a_{12}=1$, the $C_{12}=(-1)^{1+2}M_{12}\\
+    = (-1)^{3}\begin{vmatrix}
+        5 & 3\\
+        -3 & 9\\
+    \end{vmatrix}\\
+    = -54$\\
+    For $a_{13}=1$, the $C_{13}=(-1)^{1+3}M_{13}\\
+    = (-1)^{4}\begin{vmatrix}
+        5 & 0\\
+        -3 & 7\\
+    \end{vmatrix}\\
+    = 38$\\
+And we can do the same with the rest of the matrix. I think, you will be able to do that by yourself.\\
+\end{proof}
+What we need to notice is that we will always have some matrix 
+\begin{definition}
+The adjacent of some matrix $A$
+$A= \begin{bmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{bmatrix} $ Is defined as $adj(A) = \begin{bmatrix}
+    C_{11} & C_{12} & C_{13} \\
+    C_{21} & C_{22} & C_{23} \\
+    C_{31} & C_{32} & C_{33} \\
+\end{bmatrix}$\\
+\end{definition}
+This leads us to another definition of the determinant:\\
+\begin{definition}
+    $\begin{vmatrix}
+        a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+    \end{vmatrix} = a_{11} \cdot C_{11}+a_{12} \cdot C_{12}+a_{13} \cdot C_{13}$
+    Or in words we can say: The sum of product of elements of any row or column of $A$ with the corresponding row or column of $adj(A)$ is equal to the determinant of A $det(A)$. 
+\end{definition}
+A classic matrix we should remember the determinant to is:\\
+\begin{example}
+    $\begin{vmatrix}
+        1 & z & -y\\
+        -z & 1 & x\\
+        y & -x & 1
+    \end{vmatrix}$
+\end{example}
+\begin{proof}
+    [Solution]
+    Expanding along the first row gives us:\\
+    $(1+x^2)-z(-z-xy)+(-y)(zx-y)\\
+    = 1+x^2+z^2+xyz-xyz+y^2\\
+    =1+x^2+y^2+z^2$
+\end{proof}
+Another thing which is quite interesting, although useless, is:\\
+\begin{theorem}
+    The sum of product of any row or column of matrix $A$ with the corresponding any other row or column(other than the corresponding) of $adj(A)$ is zero.
+\end{theorem}
+\section{Properties of Determinants}
+\begin{theorem}
+Value of determinant remains unchanged on interchanging rows and columns.\\
+    $\begin{vmatrix}
+         a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+    \end{vmatrix} = \begin{vmatrix}
+         a_{11} & a_{21} & a_{31} \\
+    a_{12} & a_{22} & a_{32} \\
+    a_{13} & a_{23} & a_{33} \\
+    \end{vmatrix}$
+    The flipping of rows and columns in called transposing.\\
+\end{theorem}
+\begin{theorem}
+If any two rows (columns) of a determinant are interchanged, the value of determinant changes sign.
+$\begin{vmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix} = - \begin{vmatrix}
+    a_{31} & a_{32} & a_{33} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{11} & a_{12} & a_{13} \\
+\end{vmatrix}$
+\end{theorem}
+\begin{theorem}
+If any two rows (columns) are identical then value
+of determinant is zero 
+\end{theorem}
+We can use this properties to solve problems which are otherwise harder to solve:\\
+\begin{example}
+    Find $x$ if\\
+    $\begin{vmatrix}
+        1  & 1 & 0\\
+        (x^2-5x+7) & 1 & 0\\
+        2 & 1 & 1\\
+    \end{vmatrix} = 0$
+\end{example}
+\begin{proof}
+    [Solution]
+    This is quite simple as we can notice that two terms of the first and second row are equal. Hence if the third are also equal, the determinant will become 0.\\
+    $\therefore x^2-5x+7=1\\
+    \therefore x^2-5x+6=0\\
+    \therefore x=2,3$
+\end{proof}
+Here is another theorem, this one is actually quite use full, in both questions and in real world.\\
+\begin{theorem}
+     If all the elements of any row or column be multiplied by a number $K$ then value of determinant is multiplied by $K$\\
+     $K \times \begin{vmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix} = \begin{vmatrix}
+    Ka_{11} & Ka_{12} & Ka_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix}= \begin{vmatrix}
+    Ka_{11} & a_{12} & a_{13} \\
+    Ka_{21} & a_{22} & a_{23} \\
+    Ka_{31} & a_{32} & a_{33} \\
+\end{vmatrix}$
+\end{theorem}
+Let's annihilate a JEE advance question to prove the power of this:\\
+\begin{example}
+     If $b_{ij} = 2^{i+j}a_{ij}$ where $a_{ij}$ and $b_{ij}$ are elements of $3 \times 3$ determinants $\Delta_1$ and $\Delta_2$ respectively, the find $\Delta_2$ if $\Delta_1= 2$
+\end{example}
+\begin{proof}
+    [Solution]
+    Let the determinant $\Delta_1$ be of the matrix:\\
+    $\begin{vmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix}$, therefore\\
+$\Delta_2= \begin{vmatrix}
+    2^2 a_{11} & 2^3 a_{12} & 2^4 a_{13} \\
+    2^3 a_{21} & 2^4 a_{22} 2^5 & a_{23} \\
+    2^4 a_{31} & 2^5 a_{32} & 2^6 a_{33} \\
+\end{vmatrix} \\
+= 2 \begin{vmatrix}
+    2^2 a_{11} & 2^3 a_{12} & 2^4 a_{13} \\
+    2^2 a_{21} & 2^3 a_{22} 2^4 & a_{23} \\
+    2^4 a_{31} & 2^5 a_{32} & 2^6 a_{33} \\
+\end{vmatrix}\\
+= 2*2^2 \begin{vmatrix}
+    2^2 a_{11} & 2^3 a_{12} & 2^4 a_{13} \\
+    2^2 a_{21} & 2^3 a_{22} 2^4 & a_{23} \\
+    2^2 a_{31} & 2^3 a_{32} & 2^4 a_{33} \\
+\end{vmatrix} \\
+= 2^3 * 2^2 *2^3 *2^4 \begin{vmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix}\\
+= 2^12 \cdot \Delta_1\\
+=2^13$
+\end{proof}
+\begin{theorem}
+If each element of any row (or column) is expressed as sum of two (or more) terms then the determinant can be expressed as the sum of two (or more) determinants.\\
+$\begin{vmatrix}
+    a_{11}+x & a_{12}+y & a_{13}+z \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix} = \begin{vmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix} + \begin{vmatrix}
+    x & y & z \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix}$
+\end{theorem}
+This theorem is more commonly used to combine matrices than to split them. Here is an example which will also brush up your sequence and series:\\
+\begin{example}
+    If $\Delta_r = \begin{vmatrix}
+    r+x & n(n+1) & n^2+n^3 \\
+    2^r & 4(2^n-1) & n^2+n+1 \\
+    3^r & 3(3^n-1) & 2n+1 \\
+\end{vmatrix}$ then $\sum^n_{r=1}\Delta_r=?$
+\end{example}
+\begin{proof}
+    [Solution]
+    We can notice that the second column and the third column are same in all the matrices. Therefore we can simply combine over the first column.\\
+    As $\sum^n_{r=1}r=\frac{r(r+1)}{2}\\
+    \sum^n_{r=1}2^r=\frac{2(2^n-1)}{2-1}\\
+    \sum^n_{r=1}3^r=\frac{3(3^n+1)}{3-1}$\\
+    Therefore, $\sum^n_{r=1}\Delta_r= \begin{vmatrix}
+    \frac{r(r+1)}{2} & n(n+1) & n^2+n^3 \\
+    \frac{2(2^n-1)}{2-1} & 4(2^n-1) & n^2+n+1 \\
+    \frac{3(3^n+1)}{3-1} & 3(3^n-1) & 2n+1 \\
+\end{vmatrix}\\
+= \frac{1}{2}\begin{vmatrix}
+    r(r+1) & n(n+1) & n^2+n^3 \\
+    4(2^n-1) & 4(2^n-1) & n^2+n+1 \\
+    3(3^n+1) & 3(3^n-1) & 2n+1 \\
+\end{vmatrix}\\
+= 0$\\
+As column 1 is equal to column 2.\\
+\end{proof}
+\begin{theorem}
+    The value of determinants is not altered by adding or subtracting the multiple of any row or column in other row or column. \\
+    $\begin{vmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix} = \begin{vmatrix}
+    a_{11} + Ka_{31} & a_{12} & a_{13} \\
+    a_{21} + Ka_{32} & a_{22} & a_{23} \\
+    a_{31}+Ka_{33} & a_{32} & a_{33} \\
+\end{vmatrix}$
+\end{theorem}
+What makes this theorem even more powerful is the fact we can do 2  operations at at a time.\\
+What I mean to say is that: $\begin{vmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{vmatrix} = \begin{vmatrix}
+    a_{11}-a_{12} & a_{12}-a_{13} & a_{13} \\
+    a_{21}-a_{22} & a_{22}-a_{23} & a_{23} \\
+    a_{31}-a_{32} & a_{32}-a_{33} & a_{33} \\
+\end{vmatrix}$
+This allows us to solve a lot of problems at extreme speeds as long as we can find the correct manipulation.\\
+For example: $\begin{vmatrix}
+    1 & a & b+c \\
+    1 & b & c+a \\
+    1 & c & a+b \\
+\end{vmatrix}$ can be calculated in an instant by simply summing up the second and third column and then taking $a+b+c$ as common.\\
+Let's do something a tad more difficult:\\
+\begin{example}
+    Evaluate: $\begin{vmatrix}
+    1 & 1 & 1 \\
+    a & b & c \\
+    a^2 & b^2 & c^2 \\
+\end{vmatrix}$
+\end{example}
+\begin{proof}
+    [Solution]
+    While expanding the determinant along the first row is quite trivial, let's use properties to make a joke of this.\\
+    Subtracting the first column from the second and third from the second:\\
+    $\begin{vmatrix}
+    0 & 0 & 1 \\
+    a-b & b-c & c \\
+    a^2-b^2 & b^2-c^2 & c^2 \\
+\end{vmatrix}$\\
+We could now expand with even greater ease, but wait there's more:\\
+$(a-b)(b-c)\begin{vmatrix}
+    0 & 0 & 1 \\
+    1 & 1 & c \\
+    a+b & b+c & c^2 \\
+\end{vmatrix}$\\
+Which simplifies to $(a-b)(b-c)(c-a)$ and we are done.\\
+\end{proof}
+I recommend remembering this result as a standard form.\\
+Here is an very similar example for you to try:\\
+\begin{example}
+    $\begin{vmatrix}
+    1 & a & bc \\
+    1 & b & ac \\
+    1 & c & ab \\
+\end{vmatrix}$
+\end{example}
+As simple way to hide the three ones looks like:\\
+\begin{example}
+    $\begin{vmatrix}
+    a & b & c \\
+    b & c & a \\
+    c & a & b \\
+\end{vmatrix}$
+\end{example}
+\begin{proof}
+    [Solution]
+    We notice that the sum of all three rows is equal.\\
+    Therefore, we add along the rows to get:\\
+    $\begin{vmatrix}
+    a+b+c & b & c \\
+    a+b+c & c & a \\
+    a+b+c & a & b \\
+\end{vmatrix}\\
+= (a+b+c) \begin{vmatrix}
+    1 & b & c \\
+    1 & c & a \\
+    1 & a & b \\
+\end{vmatrix}$\\
+And the three one's  present themselves.
+\end{proof}
+It's a common approach to try to get the three one's to simplify the determinant.\\
+\begin{example}
+    $\begin{vmatrix}
+    b^2c^2 & bc & b+c \\
+    c^2a^2 & ca & c+a \\
+    a^2b^2 & ab & a+b \\
+\end{vmatrix}$
+\end{example}
+\begin{proof}
+    [Solution]
+    We'll multiply the first row by $a$, second row by $b$ and the third row by $c$ to get:\\
+    $\frac{1}{abc}\begin{vmatrix}
+    ab^2c^2 & abc & a(b+c) \\
+    bc^2a^2 & bca & b(c+a) \\
+    ca^2b^2 & cab & c(a+b) \\
+\end{vmatrix}\\
+= \frac{(abc)^2}{abc}\begin{vmatrix}
+    bc & 1 & ab+ac \\
+    ca & 1 & bc+ab \\
+    ab & 1 & ac+bc \\
+\end{vmatrix}$\\
+This may seem good enough as we already have the three one's but we are gonna utterly humiliate the question by adding column $3$ to column $1$. \\
+$abc\begin{vmatrix}
+    ab+bc+ca & 1 & ab+ac \\
+    ab+bc+ca & 1 & bc+ab \\
+    ab+bc+ca & 1 & ac+bc \\
+\end{vmatrix}\\
+= abc(ab+bc+ca)\begin{vmatrix}
+    1 & 1 & ab+ac \\
+    1 & 1 & bc+ab \\
+    1 & 1 & ac+bc \\
+\end{vmatrix}\\
+= 0$\\
+And we are done.
+\end{proof}
+\section{Application of Determinants}
+We are now done with determinants. Before looking at Matrices, let's talk about some applications of them.\\
+\begin{theorem}
+    [Shoelace formula]
+    Area of a triangle with the vertices at coordinates $(x_1,y_1),(x_2,y_2),(x_3,y_3) =$ magnitude of $\frac{1}{2} \begin{vmatrix}
+        x_1 & y_1 & 1\\
+        x_2 & y_2 & 1\\
+        x_3 & y_3 & 1\\
+    \end{vmatrix}$
+\end{theorem}
+We'll see a more simplified and generalized form of this in coordinate geometry, from which this is derived. But the determinant form has its own use, specifically in the form:\\
+\begin{theorem}
+    [Condition of Colinearity]
+    If $\begin{vmatrix}
+        x_1 & y_1 & 1\\
+        x_2 & y_2 & 1\\
+        x_3 & y_3 & 1\\
+    \end{vmatrix}=0$ then the points $(x_1,y_1);(x_2,y_2);(x_3,y_3)$ are colinear.
+\end{theorem}
+This is true as the area of a line is zero.\\
+This tends to occur in questions in a very typical pattern:\\
+\begin{example}
+    If the points $(at^2_1, 2at_1), (at^2_2, 2at_2), (a, 0)$ are colinear. If $(t_1 \neq t_2)$, then find the minimum value of $t^2_1+9t^2_2$.
+\end{example}
+\begin{proof}
+[Solution]
+    Using the condition of Colinearity, $\begin{vmatrix}
+        at^2_1 & 2at_1 & 1\\
+        at^2_2 & 2at_2 & 1\\
+        a & 0 & 1\\
+    \end{vmatrix} = 0\\
+    \iff \begin{vmatrix}
+        at^2_1-a & 2at_1 & 0\\
+        at^2_2-a & 2at_2 & 0\\
+        a & 0 & 1\\
+    \end{vmatrix} = 0\\
+    \iff (at^2_1-a)(2at_2)=(2t^2_2-a)(2at_1)\\
+    \iff 2a^2t_2t^2_1-2a^2t_2=2a^2t_1t^2_2-2a^2t_1\\
+    $$\iff t_2t^2_1-t_2=t_1t^2_2-t_1\\
+    \iff t_2-t_1=t_2t_1(t_1-t_2)\\
+    \iff t_1t_2=-1$\\
+    At this point we can use AM-GM inequality to say that:\\
+    $\frac{t_1^2+9t_2^2}{2} \geq \sqrt{9t_1^2t_2^2}\\
+    \iff t_1^2+9t_2^2 \geq 2\sqrt{9}\\
+    \iff t_1^2+9t_2^2 \geq 6$\\
+    Hence, the minimum value of $t_1^2+9t_2^2$ is 6.
+\end{proof}
+Here is an example for you to try. This one uses the AM-HM inequality.\\
+\begin{example}
+If the points $(a, 0), (x, y), (0, b)$ are colinear where
+$a, b, x, y > 0$ then find the minimum value of $\frac{a}{x}+\frac{b}{y}$?
+\end{example}
+\begin{theorem}
+    [Concurrency of Lines]
+    Three lines $a_1x+b_1y+c_1=0; a_2x+b_2y+c_2=0; a_3x+b_3y+c_3=0$ are concurrent if and only if they are non-parallel and $\begin{vmatrix}
+        a_1 & b_1 & c_1\\
+        a_2 & b_2 & c_2\\
+        a_3 & b_3 & c_3\\
+    \end{vmatrix}=0$
+\end{theorem}
+This can also be proven using coordinate geometry.\\
+Let's use this to solve a pretty difficult question from JEE advance, which has appeared multiple times in mains as well:\\
+\begin{example}
+     If the lines $ax + y + 1 = 0$, $x + by + 1 = 0$ and $x + y + c = 0$
+where $a, b, c$ being distinct and different from unity, are
+concurrent, then the value of $\frac{1}{1-a}+\frac{1}{1-b}+\frac{1}{1-c}$ is
+\end{example}
+\begin{proof}
+    [Solution]
+    Using the concurrency of lines conditon:\\
+    $\begin{vmatrix}
+        a & 1 & 1\\
+        1 & b & 1\\
+        1 & 1 & c\\
+    \end{vmatrix} = 0\\
+    \iff \begin{vmatrix}
+        a-1 & 1-b & 0\\
+        0 & b-1 & 1-c\\
+        1 & 1 & c\\
+    \end{vmatrix}=0$
+Expanding along the first column,\\
+$(a-1)[(b-1)c-(1-c)]+(1-b)(1-c)=0\\
+\iff (a-1)(b-1)(c)-(a-1)(1-c)+(1-b)(1-c)=0$\\
+This seems like a good time to divide by $(a-1)(b-1)(c-1)$\\
+$\frac{c}{c-1}+\frac{1}{b-1}+\frac{1}{a-1}=0\\
+\iff \frac{c-1+1}{c-1}+\frac{1}{b-1}+\frac{1}{a-1}=0\\
+\iff \frac{1}{c-1}++\frac{1}{b-1}+\frac{1}{a-1}-1=0\\
+\iff \frac{1}{c-1}+\frac{1}{b-1}+\frac{1}{a-1}=1\\$
+\end{proof}
+\section{Crammer's Rule}
+Have you ever wondered how computers can solve 7-8 simultaneous linear equations in seconds. The answer I am not looking for is 'They are computers, duh!"\\
+The answer is using Matrices and Determinants. The matrix version of this is going to come up in a minute, but the determinant version is known as Crammer's Rule over Gabriel Crammer who generalized this for $n$ variables and $n$ equations. We will only get to use it for $2,3$ variables and $2,3$ equations as we don't want to compute determinents of order 4 by hand. Those versions were originally found by Colin Maclaurin  of the Taylor-Maclaurin Series. But he had already stuck his name elsewhere, so he let Crammer have it(also after all Crammer was the one who generalized it)\\
+\begin{theorem}
+    [Crammer's Rule]
+    For the system of liner equations: $a_1x+b_1y+c_1z=d_1;a_2x+b_2y+c_2z=d_2;a_3x+b_3y+c_3z=d_3$, the solution is: $x=\frac{\Delta_x}{\Delta}, y=\frac{\Delta_y}{\Delta}, z=\frac{\Delta_z}{\Delta}$\\
+    where $\Delta= \begin{vmatrix}
+        a_1 & b_1 & c_1 \\
+        a_2 & b_2 & c_2 \\
+        a_3 & b_3 & c_3 \\
+    \end{vmatrix}$, $\Delta_x = \begin{vmatrix}
+        d_1 & b_1 & c_1 \\
+        d_2 & b_2 & c_2 \\
+        d_3 & b_3 & c_3 \\
+    \end{vmatrix}$, $\Delta_y= \begin{vmatrix}
+        a_1 & d_1 & c_1 \\
+        a_2 & d_2 & c_2 \\
+        a_3 & d_3 & c_3 \\
+    \end{vmatrix}$, $\Delta_z= \begin{vmatrix}
+        a_1 & b_1 & d_1 \\
+        a_2 & b_2 & d_2 \\
+        a_3 & b_3 & d_3 \\
+    \end{vmatrix}$
+\end{theorem}
+The simplest proof follows from opening the determinants and comparing them to the equation's substitutions.\\
+I recommend you trying this out on random systems of equations. But before yo do that here is small life saver:\\
+\begin{definition}
+    If system has solution (unique or many) than it is called consistent, otherwise it is called inconsistent.\\
+    If while using the Crammer's rule $\Delta=\Delta_x=\Delta_y=\Delta_z=0$ then the system has infinite solutions, and if $\Delta=0$ but even one of the rest of the determinants is non-zero, then the system has no solutions.\\
+    If $\Delta\neq0$ then it has one unique solution. We need to make sure that all coefficients are not zero in any of the $\Delta=0$ cases.
+\end{definition}
+This definition may seem like the normal math speak for be careful, but we actually use it quite a lot in questions as well. Here is an example for us to nuke from IIT 2004.\\
+\begin{example}
+    (IIT 2004) Find k such that , $2x – y + 2z = 2, x – 2y + z = –4, x + y + kz = 4$ has no solution
+\end{example}
+\begin{proof}
+    [Solution]
+    For the equation to have no solution, $\Delta=0$\\
+    $\therefore \begin{vmatrix}
+        2 & -1 & 2\\
+        1 & -2 & 1\\
+        1 & 1 & k\\
+    \end{vmatrix}=0$\\
+    Opening the determinant along the third row,\\
+    $3-3k=0\\
+    \iff k=1$\\
+    Technically, we need to check if $\Delta_x, \Delta_y, \Delta_z$ are zero, but knowing that this is an exam with an answer, we can be assured that there is only one solution which is $k=1$
+\end{proof}
+However, we have yet to consider the case where the system is homogeneous.\\
+\begin{definition}
+    If the constant terms in the system of equations (i.e. $d_1,d_2,d_3$) are all zero, then system is called homogeneous system of equations
+\end{definition}
+Here are some more definitions pertaining to homogeneous systems:\\
+\begin{theorem}
+(1) Homogeneous system is always consistent (as $(0, 0, 0)$
+always satisfies it ). 
+(2) $(0, 0, 0)$ is also called trivial solution.
+(3) Homogeneous system has infinite non-trivial ( i.e. non-zero) solutions if and only if $\Delta = 0$
+\end{theorem}
+We can use this questions such as:\\
+\begin{example}
+(IIT 2000)
+    If the system of equations
+$x – Ky – z = 0\\
+Kx – y – z = 0 \\
+x + y – z = 0$
+Has a non zero solution then $K =$
+\end{example}
+\begin{proof}
+    [Solution]
+    We basically want $\begin{vmatrix}
+        1 & -k & -1\\
+        k & -1 & -1\\
+        1 & 1 & -1\\
+    \end{vmatrix} =0\\
+    \iff -(k+1)-(-1)(1+k)+(-1)(-1+k^2)=0\\
+    \iff -(k+1)+(1+k)+(1-k^2)=0\\
+    \iff -k-1+1+k+1-k^2=0\\
+    \iff k^2=1\\
+    \iff k=\pm 1$
+\end{proof}
+\section{Types Matrices}
+If you know determinants, you already know most of matrix.\\
+This section is just me telling you all the names you need to know in order to solve ahead.\\
+\begin{definition}
+    Matix an arrangement of m x n elements in ‘m’ rows and ‘n’ columns.
+    $\begin{bmatrix}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \dots & \vdots \\
+        a_{m1} & a_{m2} & \dots & a_{mn} \\
+    \end{bmatrix}$
+\end{definition}
+Unlike determinants, it is possible that $m \neq n$. \\
+Now let's discuss some special types of matrices.\\
+\begin{definition}
+    Row Matrix is a matrix having only one row.
+    $\begin{bmatrix}
+        a & b & c & \dots\\ 
+    \end{bmatrix}$
+\end{definition}
+\begin{definition}
+    Column Matrix is a matrix having only one column.\\
+    $\begin{bmatrix}
+        a\\
+        b\\
+        c\\
+        \vdots\\
+    \end{bmatrix}$
+\end{definition}
+\begin{definition}
+    Null matrix or zero is a matrix with all elements 0.\\
+    $\begin{bmatrix}
+        0 & 0 & \dots & 0 \\
+        0 & 0 & \dots & 0 \\
+        \vdots & \vdots & \dots & \vdots \\
+        0 & 0 & \dots & 0 \\
+    \end{bmatrix}$
+\end{definition}
+\begin{definition}
+    Square matrix is a matrix where $m=n$
+\end{definition}
+In a square matrix, we define the following as well:\\
+\begin{definition}
+    \begin{enumerate}
+        \item $a_{ii}$ are called the diagonal elements\\
+        \item $a_{ij}$ and $a_{ji}$ are the conjugate elements\\
+        \item $\sum^n_{i=1} a_{ii}$ is called the trace of the matrix\\
+    \end{enumerate}
+\end{definition}
+While the square matrix is in itself very spacial, we define some more special matrix within it as well.\\
+\begin{definition}
+    A Triangular Matrix is a square matrix with elements on only one side of the diagonal. For example:\\
+    $\begin{bmatrix}
+        a_{11} & 0 & 0\\
+        a_{21} & a_{22} & 0\\
+        a_{31} & a_{32} & a_{33}\\
+    \end{bmatrix}$
+    is an lower triangular matrix while:\\
+    $\begin{bmatrix}
+        a_{11} & a_{12} & a_{13}\\
+        0 & a_{22} & a_{23}\\
+        0 & 0 & 0\\
+    \end{bmatrix}$
+    is an upper triangular matrix.\\
+    We need to note that the determinant of a triangular matrix is the product of its diagonal elements. That is $a_{11} \cdot a_{22} \cdot a_{33}$ in the above examples.
+\end{definition}
+\begin{definition}
+    A diagonal matrix is a square matrix with all non-diagonal elements being 0. For example:\\
+    $\begin{bmatrix}
+        a_{11} & 0 & 0\\
+        0 & a_{22} & 0\\
+        0 & 0 & a_{33}\\
+    \end{bmatrix}$
+    is a diagonal matrix. Its determinant is also the product of the diagonal elements.
+\end{definition}
+\begin{definition}
+    A scalar matrix is a diagonal matrix with all elements on the diagonal equal. For example:\\
+    $\begin{bmatrix}
+        a & 0 & 0 \\
+        0 & a & 0\\
+        0 & 0 & a\\
+    \end{bmatrix}$
+    Is a scalar matrix. It's determinant is $a^3$
+\end{definition}
+\begin{definition}
+    The Identity matrix is a scalar matrix with $a=1$. The scaler matrix of order three is:\\
+    $\begin{bmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0\\
+        0 & 0 & 1\\
+    \end{bmatrix}$
+\end{definition}
+That concludes the first round of definitions.\\
+\section{Arithmetic of Matrices}
+Two matrices are said to be equal if they have the same number of rows and column(order of matrix) and the corresponding terms are equal in the rows and columns are equal.\\
+We can only add matrices of same order. The addition of matrix $A$ and $B$ is just creating a new matrix $C$ where: $c_{ij}=a_{ij}+b_{ij}$\\
+Let's solve an example to understand.
+\begin{example}
+[Motivating Example]
+    $\begin{bmatrix}
+        3 &9 &10 &3\\
+        4 &4 &7 &5\\
+    \end{bmatrix}+ \begin{bmatrix}
+        10 &6 &8 &10\\
+        3 &6 &2 &3\\
+    \end{bmatrix}$
+\end{example}
+\begin{proof}
+    [Solution]
+    The sum is $\begin{bmatrix}
+        3+10 & 9+6 & 10+8 & 3+10\\
+        3+4 & 4+6 & 7+2 & 5+3\\
+    \end{bmatrix}\\
+    = \begin{bmatrix}
+        13 & 15 & 18 & 13\\
+        7 & 10 & 9 & 8\\
+    \end{bmatrix}$
+\end{proof}
+The multiplication of a matrix by a constant follows as:\\
+\begin{definition}
+    $K \cdot \begin{bmatrix}
+        a_{11} & a_{12} & a_{13}\\
+        a_{21} & a_{22} & a_{23}\\
+        a_{31} & a_{32} & a_{33}\\
+    \end{bmatrix}\\
+    = \begin{bmatrix}
+        Ka_{11} & Ka_{12} & Ka_{13}\\
+        Ka_{21} & Ka_{22} & Ka_{23}\\
+        Ka_{31} & Ka_{32} & Ka_{33}\\
+    \end{bmatrix}$
+\end{definition}
+We need to realize that this is different from the determinant multiplication by scalar as that only was multiplied to one row or column, while here $K$ is multiplied to every element. We will now discuss the most important part of matrices, matrix multiplication to matrix.\\
+\begin{definition}
+    We define matrix multiplication as $A_{m \times n} \times B_{n \times p}= C_{m \times p}$ where $A,B$ and $C$ are matrices.\\
+    $A$ is called the pre-multiplier while $B$ is the post multiplier. two Matrices can only be multiplied  if number of columns of
+pre-multiplier is equal to number of rows of post multiplier.
+\end{definition}
+How do we actually do the multiplication? We multiply the rows of the pre multiplier to the columns of the post multiplier.\\
+For example $\begin{bmatrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22} \\
+    a_{31} & a_{32}\\
+\end{bmatrix} \times \begin{bmatrix}
+    b_{11} & b_{12} & b_{13}\\
+    b_{21} & b_{22} & b_{23}\\
+\end{bmatrix} =
+    $
+    $\begin{bmatrix}
+    a_{11} \cdot b_{11} + a_{12} \cdot b_{21} & a_{11} \cdot b_{12} + a_{12} \cdot b_{22} & a_{11} \cdot b_{13} + a_{12} \cdot b_{23} \\
+    a_{21} \cdot b_{11} + a_{22} \cdot b_{21} & a_{21} \cdot b_{12} + a_{22} \cdot b_{22} & a_{21} \cdot b_{13} + a_{22} \cdot b_{23} \\
+    a_{31} \cdot b_{11} + a_{32} \cdot b_{21} & a_{31} \cdot b_{12} + a_{32} \cdot b_{22} & a_{31} \cdot b_{13} + a_{32} \cdot b_{23} \\
+\end{bmatrix}$
+Not the prettiest thing, but I hope you can somewhat understand what's going on.  I have given two very simple examples for you to solve to check if you have understood the concept.\\
+\begin{example}
+    [Motivating Example]
+    $\begin{bmatrix}
+        2 & 3 & 4\\
+        1 & 2 & 3\\
+    \end{bmatrix} \times \begin{bmatrix}
+        1 & 0 & 1 & 2\\
+        2 & 1 & 1 & 2\\
+        0 & 1 & -1 & 3\\
+    \end{bmatrix}$
+\end{example}
+\begin{example}
+    [Motivating Example]
+    $\begin{bmatrix}
+         1 & 0 & 2 & 3\\
+    \end{bmatrix} \times \begin{bmatrix}
+        1 & 0& 1& 2\\
+        2 & 1& 1& 2\\
+        0 & 1& -1& 3\\
+    \end{bmatrix}$
+\end{example}
+Here are some properties of matrix multiplication:\\
+\begin{theorem}
+Here $A,B,C$ all represent Matrices whose product is defined
+\begin{enumerate}
+    \item It is not commutative. In general $AB \neq BA$.\\
+    This leads to a peculiar form of $(A+B)^2=A^2+AB+BA+B^2$
+    \item It is associative. $(A \times B) \times C= A \times (B \times C)$
+    \item It distributes over addition. $A \times (B + C) = A \times B + A \times C$ and $(B + C) \times A = B \times A + C \times A$
+    \item The identity matrix $I$ which can multiply $A$ will show the following $I \times A = A \times I = A$\\
+    \item Any matrix multiplied with null matrix gives a null matrix. However the the converse is not true. If $A \times B$ is null matrix then it is not necessary that either $A$ or $B$ will be null matrix.\\
+    \item Laws of exponents hold as the are:\\ 
+    $A^m \times A^n = A^{m+n}\\
+    A^n=A^{n-1} \times A\\
+    {A^m}^{n}=A^{mn}$
+\end{enumerate}
+\end{theorem}
+A very common question which comes using these properties is:\\
+\begin{example}
+    If $A = \begin{bmatrix}
+        1 & 0\\
+        1 & 1\\
+    \end{bmatrix}$ then $A^{2023}$ is equal to:
+\end{example}
+\begin{proof}
+    [Solution]
+    I'll first show you the solution which a lot of books have. Which while great for competitive speed papers, is not acceptable in written example.\\
+    Notice that:\\
+    $A= \begin{bmatrix}
+        1 & 0\\
+        1 & 1\\
+    \end{bmatrix}$\\
+    $A^2= \begin{bmatrix}
+        1 & 0\\
+        1 & 1\\
+    \end{bmatrix} \times \begin{bmatrix}
+        1 & 0\\
+        1 & 1\\
+    \end{bmatrix} = \begin{bmatrix}
+        1 & 0\\
+        2 & 1\\
+    \end{bmatrix}$\\
+    This establishes a pattern, which means $A^{2023}=\begin{bmatrix}
+        1 & 0\\
+        2023 & 1\\
+    \end{bmatrix}$\\
+    You can see that this is a very bad explanation. The actul way to do it is to prove that $A^n=\begin{bmatrix}
+        1 & 0\\
+        n & 1\\
+    \end{bmatrix}$ using Induction. The first one was engineers induction(see Power Overwhelming), explains quite well why such questions occur in engineering entrance exams the most.\\
+\end{proof}
+\section{The bridge}
+We will now start the process of connecting Matrices with determinants.\\
+We already know that we can  find determinant of a square matrix. Using that we can claim the following:\\
+\begin{theorem}
+     If A and B are two square matrices of same order then $|A \times B| =|A| \times |B|$
+\end{theorem}
+Also if we remember the multiplication of matrices and determinants by a constant and more specifically their one difference, we can also say:\\
+\begin{theorem}
+If $A_n$ is a square matrix of order $n$ and $K$ is a constant then:
+$|KA_n| = K^n|A_n|$
+\end{theorem}
+You may also remember the transposing of determinant. We'll define it formally here.
+\begin{definition}
+    Matrix obtained by interchanging rows and columns is called transpose of matrix, for some matrix $A$ it is denoted by $A^T$.
+    $A = \begin{bmatrix}
+        a_{11} &a_{12} &a_{13} \\
+        a_{21} &a_{22} &a_{23} \\
+        a_{31} &a_{32} &a_{33} \\
+    \end{bmatrix}$\\
+    $\therefore A^T= \begin{bmatrix}
+        a_{11} &a_{21} &a_{31} \\
+        a_{12} &a_{22} &a_{32} \\
+        a_{13} &a_{23} &a_{33}
+    \end{bmatrix}$
+\end{definition}
+Using the definition we can also notice the following facts:\\
+\begin{theorem}
+    \begin{enumerate}
+        \item ${(A^T)}^T=A$\\
+        \item $(A+B)=A^T + B^T\\$
+        \item ${(KA)}^T=K(A^T)$ where $K$ is a constant\\
+        \item ${(AB)}^T=B^TA^T$\\
+        \item ${(ABC)^T}=C^TB^TA^T$\\
+        \item ${(A^n)}^T={(A^T)}^n$
+    \end{enumerate}
+\end{theorem}
+\section{Some more special matrices}
+Now that we have defined transpose, we can define some more special matrices on the basis of it.\\
+\begin{definition}
+    Symmetric matrix: If ${(A_n)}^T=A_n$  for a square matrix $A_n$ then it is called a symmetric matrix. Basically, $a_{ij}=a_{ji}$
+\end{definition}
+\begin{definition}
+    Skew Symmetric Matrix: If ${(A_n)}^T=-A_n$  for a square matrix $A_n$ then it is called a skew symmetric matrix. Basically, $a_{ij}=-a_{ji}$
+\end{definition}
+With this much, we can start proving almost surprising facts:\\
+\begin{example}
+    Prove that for any square matrix $A$, $\frac{1}{2}(A+A^T)$ is symmetric matrix and $\frac{1}{2}(A-A^T)$ is skew symmetric matrix.
+\end{example}
+\begin{proof}
+    We just take the transpose.\\
+    ${(\frac{1}{2}(A+A^T))}^T\\
+    = \frac{1}{2}(A^T+A)$ which makes it symmetric.\\
+    ${(\frac{1}{2}(A-A^T))}^T\\
+    = \frac{1}{2}(A-A^T)\\
+    = \frac{-1}{2}(A^T-A)$ which makes it skew-symmetric.\\
+\end{proof}
+This also leads to a surprising fact: Every square matrix A can be represented as a sum of symmetric and skew symmetric matrix. Here is an example for you to solve\\
+\begin{example}
+ If $A$ and $B$ are symmetric matrices of same order then prove that $AB- BA$ is skew symmetric matrix.
+\end{example}
+\begin{definition}
+    A square matrix is orthogonal if $AA^T=I$\\
+    We can note that the determinant of $A$ must be $\pm 1$\\
+    Expanding the multiplication gives us:  the sum of squares of elements in any row or column is one and the pairwise product and sum of two rows or columns is zero.\\
+\end{definition}
+The last one allows us to detect Orthogonal matrices in the wild. For example in this Question from IIT.\\
+\begin{example}
+    (IIT 2005) Find $P^TQ^{2005}P$, where $P=\begin{bmatrix}
+        \frac{\sqrt{3}}{2} & \frac{1}{2} \\
+        \frac{-1}{2} & \frac{\sqrt{3}}{2}\\
+    \end{bmatrix}, A= \begin{bmatrix}
+        1 & 1\\
+        0 & 1\\
+    \end{bmatrix}$ and $Q=PAP^T$
+\end{example}
+We need to only notice that $P$ is an orthogonal matrix. After that, the question basically solves itself.\\
+\begin{definition}
+    A square matrix is called idempotent if $A^2= A$. Clearly, $A^n$ will also be equal to $A$ for all $n \geq 2$
+\end{definition}
+At this time I think it is also important for you to know that $(A+I)^n$ can be opened like a binomial expansion. This can only be done for $(A+I)$ not for $(A+B)$. This is because $A \times I = I \times A = A$\\
+And here I ask you to ponder before reading the solution:\\
+\begin{example}
+If A is an idempotent matrix then $(I+A)^n=$
+\end{example}
+\begin{proof}
+    [Solution]
+    Expanding using binomial theorem, $I^n+\binom{n}{1}I^{n-1}A+\dots + A^n\\
+    = I+(2^n-1)A$
+    Using the fact that $I^n=I$ and $A \times I=A$ and $\sum^n_{n=1}\binom{n}{0}=2^n-1$. The last one as you may recall comes from combinitorics.\\
+\end{proof}
+And we end this section with a few miscellaneous definitions.
+\begin{definition}
+    A square matrix is called involutory if $A^2= I$
+\end{definition}
+\begin{definition}
+    A square matrix is called nilpotent matrix of order
+m if:\\
+$A^m=0$ and $A^{m-1} \neq 0$\\
+Currently, there is no way to check whether matrix is nilpotent or not, other than checking the powers manually.
+\end{definition}
+\begin{definition}
+    A matrix is called singular if its determinant is zero, otherwise it is called non-singular.\\
+\end{definition}
+\section{Adjoint and Inverse of Matrices}
+Remember the co-factor matrix we had studied earlier? We'll use it in a minute to find inverse of a matrix, the one thing for which we have literally studied matrix for.\\
+But first let's talk about adjoint of a matrix.\\
+\begin{definition}
+    For any square matrix, its adjoint is defined as transpose of its cofactor matrix.
+\end{definition}
+Using whatever we know about the co-factor matrix and about transpositions, we'll get at the following properties of adjoint matrices:\\
+\begin{theorem}
+    For square matrices $A$ and $B$ of order $n$, we have:\\
+    \begin{enumerate}
+        \item $|adj A|= |A|^{n-1}$\\
+        \item $adj(adj A)= |A|^{n-2}A$\\
+        \item $adj(A^T)= (adj A)^T$\\
+        \item $adj(KA)= K^{n-1}(adj A)$\\
+        \item $adj(A^n)=(adj A)^n$\\
+        \item $adj(AB)=(adj B)(adj A)$
+    \end{enumerate}
+\end{theorem}
+Here is the reason why we learnt about the adjoint:\\
+\begin{definition}
+Square matrix $B_n$ is called inverse matrix of $A_n$ if:
+$AB = BA = I$\\
+Clearly, if $B$ is inverse of $A$ then $A$ is also inverse of $B$.
+Formula for $A^{-1}= \frac{1}{|A|} \times adj(A)$\\
+Clearly, this makes singuler matrices have no inverses.\\
+\end{definition}
+At this point I recommend you taking the inverse of a random $3 \times 3$ matrix. While, we have done all the operations and transformations previously, doing it only once will give you some amount of confidence in what to do.\\
+Here are some properties of the inverse:\\
+\begin{theorem}
+    \begin{enumerate}
+        \item $|A^{-1}|=\frac{1}{|A|}$\\
+        \item ${(A^T)}^{-1}={(A^{-1})}^T$
+        \item $adj(A^{-1})={(adj A)}^{-1}=\frac{A}{|A|}$\\
+        \item $(AB)^{-1}=B^{-1}A^{-1}$
+    \end{enumerate}
+\end{theorem}
+These properties wreck questions such as:\\
+\begin{example}
+    (JEE Mains 2014) If $A$ is a $3\times3$ non-singular matrix such that $AA^T = A^TA$ and $B = A^{–1} A^T$ then $BB^T=$
+\end{example}
+\begin{proof}
+    [Solution]
+    This question is perfect as it uses a good number of the properties we discussed.\\
+    $BB^T\\
+    = (A^{-1}A^T){(A^{-1}A^T)}^T\\
+    = A^{-1}A^T{(A^T)}^T{(A^{-1})}^T\\
+    = A^{-1}(A^T{(A^T)}^T){(A^{-1})}^T\\
+    = A^{-1}(A^TA){(A^T)}^{-1}\\
+    = A^{-1}I{(A^T)}^{-1}\\
+    = IA^{-1}{(A^T)}^{-1}\\
+    = I^2\\
+    = I$
+\end{proof}
+\section{System of linear Equations using Matrices}
+Now we finally see the back end of Crammer's Rule.\\
+But before that let's go on a little tangent.\\
+Suppose we have three matrices $A,X,B$ where $A$ and $X$ are multiply-able and $A$ is inveritible(has an inverse, or is non-singular)\\
+If $AX=B$ then can we just divide both sides by $A$? Obviously not. We can't truly divide matrices. But we can instead premultiply both the sides by $A^{-1}$ to get $A^{-1}AX=A^{-1}B$ which simplifies to $IX=A^{-1}B \iff X=A^{-1}B$\\
+We need to note this is not the same as dividing as the order of the multiplication matters. If we, in confusion, take $X=BA^{-1}$, we will get a wrong answer. But how is all this related?
+We need to notice that for a system of equations:\\
+$a_1x+b_1y+c_1z=d_1\\
+a_2x+b_2y+c_2z=d_2\\
+a_3x+b_3y+c_3z=d_3$\\
+Is in all ways and forms equivalent to $\begin{bmatrix}
+    a_1 & b_1 & c_1\\
+    a_2 & b_2 & c_2\\
+    a_3 & b_3 & c_3\\
+\end{bmatrix} \times \begin{bmatrix}
+    x\\
+    y\\
+    z\\
+\end{bmatrix} = \begin{bmatrix}
+    d_1\\
+    d_2\\
+    d_3\\
+\end{bmatrix}$\\
+This is exactly the case we just discussed above. While we can use inverse to find the system of solutions and in school exams you have to do that(Don't for the love of god use Crammer's rule here, you will lose marks). However, competitively, Crammer's rule is much quicker form of doing the same.\\
+Also to be complete here are the solution conditions for the inverse matrix form.\\
+\begin{theorem}
+Let's denote $\begin{bmatrix}
+    a_1 & b_1 & c_1\\
+    a_2 & b_2 & c_2\\
+    a_3 & b_3 & c_3\\
+\end{bmatrix}$ as $A$ and $\begin{bmatrix}
+    d_1\\
+    d_2\\
+    d_3\\
+\end{bmatrix}$ as $B$
+    If $|A|\neq 0$, we have one unique solution.\\
+    If $|A|=0$ and $(adj A) \times B=0$ then infinitely many solutions provided that all coefficients are not $0$\\
+    If $|A|=0$ and $(adj A) \times B \neq 0$ then no solutions exist.
+\end{theorem}
+\section{Characteristic Equation and Cayley Hamilton Theorem}
+\begin{definition}
+ If A is any square matrix, then $|A –xI| = 0$ is called its characteristic equation. Roots of Characteristic Equation are called as Eigen values or Characteristic roots
+\end{definition}
+For example the characteristic equation $A=\begin{bmatrix}
+    8 &6\\
+    5 &9
+\end{bmatrix}$ is:\\
+$|A-xI|=0\\
+\iff \begin{vmatrix}
+    8-x &6\\
+    5 & 9-x
+\end{vmatrix} =0\\
+\iff (8-x)(9-x)-30=0\\
+\iff (72-17x+x^2)-30=0\\
+\iff x^2-17x+42=0$
+is the characteristic equation of A. \\
+Like recursion, this is called the characteristic equation as it is satisfied by only and only $A$. In this case it means,  $A^2-17A+42I=0$\\
+The fact that every matrix satisfies it's characteristic equation is known as Cayley-Hamiltonian theorem. We can observe from our solving and using vieta, the sum of its eigen values is equal to the trace and the product of the eigen values is equal to the determinant.\\
+Also using the properties of $A^{-1}$ we can say that if $\lambda$ is an eigen value of $A$ then $\frac{1}{\lambda}$ is an eigan value of $A^{-1}$\\
+All this is interesting, but what is the use?\\
+Glad you asked:\\
+\begin{example}
+    If $A= \begin{bmatrix}
+        1 &0 &2\\
+        1 &2 &1\\
+        2 &0 &3\\
+    \end{bmatrix}$ then find $k$ such that $A^3 - kA^2 + 7A +2I=0$\\
+\end{example}
+\begin{proof}
+    [Solution]
+    Let's find the characteristic equation. \\
+    $\begin{bmatrix}
+        1-x &0 &2\\
+        0 &2-x &1\\
+        2 &0 &3-x\\
+        \end{bmatrix}=0\\
+        \iff (2-x)(3-x)(1-x)-4(2-x)=0\\
+        \iff -x^3+6x^2-7x-2=0\\
+        \implies A^3-6A^2+7A+2I=0$\\
+        Thus, $k=6$
+\end{proof}
+\section{Netflix and Spotify and Matrices...}
+Okay, so you know when Netflix is like, 'Hey, watch this show!' or when Spotify suggests your next favorite jam? Well, behind the scenes, there's some linear algebra happening. Netflix has a huge matrix where rows are people and columns are movies or shows. Each cell is like a 'how much they like it' score. \\
+Using inverses and multiplication, They break this table into two smaller tables tables – one for people's taste (call it 'U' for users. One is linked with every account) and one for awesomeness of a show (we'll call it 'V' for value, one is linked with every movie). \\
+If Netflix wants to find the right show for the right user so they multiply your $U$ with the shows $V$ and takes the determinant. The higher the value, the better the fit is. This might seem simple in speaking but under the hood this is a very complicated algorithm which whose nitty and gritty are better suited for a computing book. Also a lot of it is proprietary, or top secret, so it's not possible for us to know everything but this is the gist of it.\\
+This is exactly how websites are ranked by assigning a matrix to the search quarry and a matrix to the site and then multiplying and taking determinant. We also use it in geometry and physics as we'll see later\\
+\begin{xcb}{Exercises}
+\begin{enumerate}
+    \item $\begin{vmatrix}
+    \sin(2x) & 1-\cos(2x) & 2\sin(x) \\
+    \cos(x) & \sin(x) & 1 \\
+    \sin(x) & \cos(x) & 1 \\
+\end{vmatrix}$\\
+\item (JEE Mains 2020)  Let $A = [a_{ij}]$ and $B = [b_{ij}]$ be two $3 \times 3$ real matrices such that $b_{ij} = 3^{i + j -2}a_{ji}$, where $i, j = 1, 2, 3$. If the determinant of B is $81$, then the determinant of A is: \\
+\item If $\Delta_r=\begin{vmatrix}
+    4 & 612 & 915\\
+    101r^2 & 2r & 3r\\
+    r & \frac{1}{r}& \frac{1}{r^2}
+\end{vmatrix}$ then the value of $\lim_{n \to \infty} \frac{1}{n^3} \sum^{n}_{r=1}\Delta_r$\\
+\item If $s=(a+b+c)$, then the value of $\begin{vmatrix}
+    s+c & a & b \\
+    c & s+a & b \\
+    c & a & s+b \\
+\end{vmatrix}$ is(in terms of $s$):\\
+\item (IIT 2011) The Real roots of $\begin{vmatrix}
+    \sin(x) & \cos(x) & \cos(x) \\
+    \cos(x) & \sin(x) & \cos(x) \\
+    \cos(x) & \cos(x) & \sin(x) \\
+\end{vmatrix}$ in the interval $\frac{-\pi}{4}\leq x \leq \frac{\pi}{4}$ is(are):
+\item (JEE Mains 2020) Let $a-2b+c=1$, If $f(x)=\begin{vmatrix}
+    x+a & x+2 & x+1 \\
+    x+b & x+3 & x+2 \\
+    x+c & x+4 & x+3 \\
+\end{vmatrix},$ then find the algebraic form of $f(x)$ \\
+\item Find values of $p,q$ such that $x + y + z = 6; 2x + 5y + pz = q; x + 2y + 3z = 14$\\
+(a) has unique solution\\
+(b) has infinitely many solutions
+\item If ‘t’ is real and $\lambda = \frac{t^2-3t+4}{t^2+3t+4}$ then find number of solution of
+$3x – y + 4z = 3\\
+x + 2y – 3z = – 2\\
+6x + 5y + \lambda z = – 3$ 
+\item (JEE Mains 2020) The system of equation $3x + 4y + 5z = \mu, x + 2y + 3z = 1,
+4x + 4y + 4z = \delta$ is inconsistent, then $(\delta, \mu)$ can be 
+\item For matrices $A,B$, If $AB = A$ and $BA = B$ then $B^2=$\\
+\item If $A$ and $B$ are square matrices of order $3$ such that $|A| = -1, |B| = 3$, then the determinant of $2A^3B^2$ is equal to:
+\item If P is a $3\times3$ matrix such that $P^T = 2P + I$ then prove that $P + I = 0$
+\item Let $A$ be the set of all $3 \times 3$ matrices which are symmetric with entries $0$ or $1$. If there are five $1$’s and
+four $0$’s, then number of matrices in $A$ is:\\
+\item If $A= \begin{bmatrix}
+    1 & 2 & 3\\
+    3 & -2 & 1\\
+    4 & 2 & 1\\
+\end{bmatrix}$, then find $K$ such that $A^3-kA-40I=0$
+\item (Poh-Shen Loh) Calculate the determinant of $\begin{vmatrix}
+    1 & 2& 3& 4& 5& 6& 7\\
+    2 & 3& 4& 5& 6& 7& 8\\
+    1 & 1& 1& 1& 1& 1& 1\\
+    1 &5 &3 &8 &1 &9 &9\\6 &5 &1 &1 &6 &6 &4\\1 &1 &3 &3 &8 &5 &6\\3 &2 &7 &8 &9 &9 &8
+\end{vmatrix}$
+\end{enumerate}
+\end{xcb}
