@@ -8,7 +8,8 @@ However, life is not that simple. Sometimes it is easier to count what we are no
 \end{example}
 \begin{proof}
     [Solution]
-    Making a few observations we can see that: 
+We need to notice that carry over happens if the sum of two digits at a place are above 10. This means we can easily limit out the numbers which are like $1a85$ or $1a89$ as there successor has a $9$ right below the $8$.  
+    Keeping our observations in mind, we can see that: 
     $1999$ meets the criteria\\
     $1a99$ meets the criteria if and only if $a=0,1,2,3,4$\\
     $1ab9$ meets the criteria if and only if $a,b=0,1,2,3,4$\\
@@ -16,7 +17,7 @@ However, life is not that simple. Sometimes it is easier to count what we are no
     That will lead to $1+5+5^2+5^3=156$ such pairs existing.
 \end{proof}
 When we break a question down into multiple cases and then solve them and add it, it is called casework.\\
-This technique is the messiest of the four and I try to avoid it as far as a possible. Much of our further study in PnC will be about developing stronger techniques to avoid casework.
+This technique is the messiest of the bunch and PnC as branch has developed to try to avoid it. Much of our further chapters will be about developing stronger techniques to avoid casework.
 \section{Complementary Counting}
 \begin{example}
     [Motivating Example] How many three digit numbers exist such that the number contains at least one 0 or 5?
@@ -97,8 +98,10 @@ This also extends to union of 4 or more sets. While we can't draw such Venn Diag
     But for this proof, we can use it to break the present sum.\\
 \begin{align*}
 \binom{l+1}{1}-\binom{l+1}{2}+\binom{l+1}{3}-\dots & \\
-&= \left(\binom{l}{1}+\binom{l}{0}\right)-\left(\binom{l}{2}+\binom{l}{1}\right)+\left(\binom{l}{3}+\binom{l}{2}\right)\dots\\
-&= \binom{l}{0}+\left( \binom{l}{1}-\binom{l}{2}+\dots \right)-\left( \binom{l}{1}-\binom{l}{2}+\dots \right)\\
+&= \left(\binom{l}{1}+\binom{l}{0}\right)-\left(\binom{l}{2}+\binom{l}{1}\right)\\
++\left(\binom{l}{3}+\binom{l}{2}\right)\dots\\
+&= \binom{l}{0}+\left( \binom{l}{1}-\binom{l}{2}+\dots \right)\\
+-\left( \binom{l}{1}-\binom{l}{2}+\dots \right)\\
 &= 1+1-1=1
 \end{align*}
 Thus, by induction, the above is true.
@@ -156,7 +159,7 @@ Solve at least questions worth \points{50}. This exercise has a total of \points
     \addhint{Complimentary counting seems quite fine}
     \addhint{You'll also need to do some casework on the number of red squares}
 \end{hint}
-\item     \points{9} (2015 ARML) Six people of different heights are getting in line to buy donuts. Compute the number of ways they can arrange themselves in line such that no three consecutive people are in increasing order of height, from front to back.[The rare specimin I promised!]
+\item      (2015 ARML) \points{9} Six people of different heights are getting in line to buy donuts. Compute the number of ways they can arrange themselves in line such that no three consecutive people are in increasing order of height, from front to back.[The rare specimen I promised!]
 \begin{hint}
 \addhint{Use Complementary counting and the PIE}
 \end{hint}
