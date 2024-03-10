@@ -1,0 +1,36 @@
+\chapter{Constructions}
+We have dealt with some constructions already. But this time we deal with them formally.\\
+Construction refers to showing that infinite solutions of an equation exist by finding one solution and then using it to generate a family of solutions.\\
+It is somewhat like infinite descent but in reverse.\\
+Sometimes a question is of the form "Does there exist..." these problems become impossible if we assume from the get go that no such answer exists as more often then not there exists. If all constructions fail, then we can assume non existence and then prove the same.\\
+All this will become more clear as we solve some questions.\\
+\section{Chinese Remainder Theorem}
+We have already seen this theorem and will now use it for more powerful purposes.\\
+\begin{example}
+(IMO 1989) Prove that for each positive integer $n$ there exist $n$ consecutive positive integers none of which is an integral power of a prime number.
+\end{example}
+\begin{proof}
+    We are basically looking to prove that there are $n$ consecutive positive integers which all have two prime factors or more.\\
+    Using the CRT there exists some $x$ such that:\\
+    $x+1 \equiv 0 \pmod{p_1q_1} \iff x \equiv -1 \pmod{p_1q_1}$\\
+    $x+2 \equiv 0 \pmod{p_2q_2} \iff x \equiv -2 \pmod{p_2q_2}$\\
+    $\vdots$
+    $x+n \equiv 0 \pmod{p_nq_n} \iff x \equiv -n \pmod{p_nq_n}$\\
+    For two series of different primes $p_1,\dots,p_n$ and $q_1, \dots, q_n$. This means $x+1, x+2, x+3 \dots x+n$ are $n$ such integers where none are integral power of any prime.\\ 
+\end{proof}
+Here is another way to use CRT:\\
+\begin{example}
+    (Math Prize 2010) Prove that for every positive integer $n$, there exists integers a and b such that $4a^2 + 9b^2 - 1$ is divisible by $n$.  
+\end{example}
+\begin{proof}
+    We can prove this by simply showing $4a^2+9b^2-1$ is divisible by $p^k$ for some $a$ and $b$.\\
+    $\therefore 4a^2+9b^2 \equiv 1 \pmod{p^k}\\
+    \therefore 4a^2=1\pmod{p^k} \iff a \equiv \frac{1}{2} \pmod{p^k}$ and $b \equiv 0 \pmod{}$
+\end{proof}
+\begin{xcb}{Exercises}
+\begin{enumerate}
+    \item (USAMO/1 2008) Prove that for each positive integer $n$, there are pairwise relatively prime integers
+$k_0,\dots, k_n$, all strictly greater than $1$, such that $k_0k_1 \cdots k_n - 1$ is the product of two
+consecutive integers.
+\end{enumerate}
+\end{xcb}

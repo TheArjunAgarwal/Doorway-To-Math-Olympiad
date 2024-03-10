@@ -1,0 +1,391 @@
+\chapter{Bazooka!}
+This chapter talks about some more interesting and complicated concepts of Number Theory. We start with simpler concepts and then move towards more complicated concepts. The chapter will start with extensions of older concepts like Modulo and primes. We'll then explore the nature of functions related to number theory like Euler Totient and then define some more functions. We'll extend on the topic of Diophantine by talking about Pell's equations ($x^2-dy^2=1$ where $d \in \mathbb{Z^+}$). We will then finally talk about some black boxes which like Fermat's Last theorem are very difficult to prove but can be cited to solve problems.\\
+We'll also get to meet some more friendly theorems which couldn't be included elsewhere.\\
+\section{Surprisingly, not complex!}
+Not long ago we had learnt that $\sqrt{-1}=i$ where $i$ is imaginary. What if I tell you that we can take some modulo and get not only a real but an integer value for $i$? Even better what if I claim, $i \equiv 2,3 \pmod{5}$?\\
+This all seems rather strange. The upper claim is true as $i^2=-1 \equiv 3^2= 9 \equiv 2^2=4 \pmod{5}$. This however, doesn't occur with all numbers. The next one where we can seem something like this is $13$, and then $17$ and then $29$. What is the pattern?\\
+All the numbers are primes, but so are many which don't satisfy the given condition like $7,11,23$. What about the fact that they are $1 \pmod{4}$. That seems to separate all of them. But is it true? If yes, how do we go about proving it?\\
+\begin{theorem}
+    [Fermat Christmas Theorem]
+    There exists an $x$ with $x^2 \equiv -1 \pmod{p}$ if and only if $p$ is a prime and $p \equiv 1 \pmod{4}$
+\end{theorem}
+\begin{proof}
+    Whenever their is an frankly unbelievable result, Fermat is standing by.\\
+    Let's prove this in two parts, first that $x^2\equiv -1 \pmod{p} \implies p \equiv 1 \pmod{4}$ for primes $p$ and  second that $x^2\equiv -1 \pmod{p} \impliedby p \equiv 1 \pmod{4}$ for primes $p$.\\
+    For the first part, $x^2 \equiv -1 \pmod{p}\\
+    \iff (x^2)^{\frac{p-1}{2}} \equiv -1^{\frac{p-1}{2}} \pmod{p}\\
+    \iff x^{p-1} \equiv -1^{\frac{p-1}{2}} \pmod{p}\\
+    \iff 1 \equiv -1^{\frac{p-1}{2}} \pmod{p}\\
+    \implies \frac{p-1}{2}$ is even or $p-1=4k \iff p \equiv 1 \pmod{4}$.\\
+    The $x^{p-1}$ was from Fermat's little theorem.\\
+    We'll now prove the second part. We will prove the existence using basic construction.\\
+    $x = (\frac{p-1}{2})!\\
+    \therefore x^2 = (\frac{p-1}{2} \cdot \frac{p-3}{2} \dots 1)\cdot (\frac{p-1}{2} \cdot \frac{p-3}{2} \dots 1)\\
+    \equiv (\frac{p-1}{2} \cdot \frac{p-3}{2} \dots 1)\cdot (-\frac{p+1}{2} \cdot -\frac{p+3}{2} \dots -(p-1)) \pmod{p}\\
+    \equiv -1^{\frac{p-1}{2}} ((p-1) \cdot (p-2)\dots 2 \cdot 1) \pmod{p}\\
+    \equiv -1^{\frac{p-1}{2}} (p-1)! \pmod{p}$\\
+    Which will be equal to one as $p=4k+1$ and $(p-1)! = 1 \pmod{p}$ from Wilson's theorem.\\
+    Thus, $x^2\equiv -1 \pmod{p} \iff p \equiv 1 \pmod{4}$ for primes $p$. Hence, proved.\\ 
+\end{proof}
+Surly we'll use it for a question now? NO. The most surprising fact is that almost no question ever ends up using this and I have still included it.(Don't worry, we'll use it later, It was a joke)\\
+However, here is a token example.\\
+\begin{example}
+     Prove that there are no positive integers $x$, $k$ and $n \geq 2$ such that $x^2 + 1 = k(2^n - 1)$
+\end{example}
+\begin{proof}
+    We need to notice that $2^n-1 \equiv 3 \pmod{4}$. Which means some prime $p \equiv 3 \pmod{4}$ divides it.\\
+    Hence, $x^2+1 \equiv 0 \pmod{p}$ which is false by Fermat's Christmas Theorem.\\
+\end{proof}
+\section{Orders}
+Now here is a much more simple and useful topic. \\
+\begin{definition}
+Let $p$ be a prime and $a$ not divisible by $p$. Then the order of $a$ modulo $p$ is defined to be the smallest positive integer $n$ such that $a^n \equiv 1 \pmod{p}$. We denote it as $\text{ord}_p{a}$.
+\end{definition}
+Here are somethings we need to notice, and prove.\\
+\begin{theorem}
+   For any $a,p \in \mathbb{N}$ where $p$ is prime and $a \not\equiv 0 \pmod{p}$, we have $\text{ord}_p{a}=n|(p-1)$.
+\end{theorem}
+\begin{proof}
+    We know from Fermat's little theorem that $a^{p-1} \equiv 1 \pmod{p}$ which means that if $a^n \equiv 1 \pmod{p}$ and $n$ is smallest possible value to do so.  This means $a^n-1|a^{p-1}-1$ which we can also write as $\frac{a^{p-1}-1}{a^n-1}=k$, this looks extremely like an GP, doesn't it?\\
+    $1+a^n+a^{2n}+\dots+a^{p-1-n}=k$, also to note is the fact that all exponents are of the type $an$ and therefore the next term of GP is $p-1$ which is equal to $an$ for some $a$. This means,  $n|(p-1)$ which means $\text{ord}_p{a}=n|(p-1)$.\\
+\end{proof}
+This also implies that the value of order of $a$ modulo $p$ is less than or equal to $p-1$. The equal to $p-1$ has a special name.\\
+\begin{definition}
+    Let $p$ be a prime. Then there exists an integer $g$, called a primitive root, such that $\text{ord}_p{g}=p-1$.
+\end{definition}
+We also need to note that:\\
+\begin{theorem}
+    $g^{\frac{p-1}{2}} \equiv -1 \pmod{p}$ for $g$ being the primitive root of $p$ and $p>2$
+\end{theorem}
+\begin{proof}
+$g^{p-1}\equiv1\pmod{p} \iff g^{\frac{p-1}{2}} \equiv \pm 1 \pmod{p}$,\\
+but since $\frac{p-1}{2}<p-1$, If $g^{\frac{p-1}{2}} \equiv 1 \pmod{p}$ than it will be the primitive root, which is not contradictory. Hence, $g^{\frac{p-1}{2}} \equiv -1 \pmod{p}$
+\end{proof}
+With this out of the way, we can finally solve some questions:\\
+\begin{example}
+    Find all $n$ such that $n|2^n-1$
+\end{example}
+\begin{proof}
+    We can let $p$ be the smallest prime factor of $n$. Which means $2^n \equiv 1 \pmod{p} \iff \text{ord}_p{2}|n$. This means $\text{ord}_p{2}|p-1$.\\
+    This means $\text{ord}_p{2}|\gcd{p-1,n}$. As $p$ is the smallest factor of $n$, it clearly means that $\gcd{p-1,n}=1$. This means $1 \geq \text{ord}_p{2}$ which forces $\text{ord}_p{2}=1$.\\
+    As no natural number is less than $1$, we know that $n=\text{ord}_p{2}=1$ which means the only $n$ satisfying the following is $1$.
+\end{proof}
+Another similar thing to try is:\\
+\begin{example}
+    Prove that every prime divisor of $2^p - 1$ is greater than $p$
+\end{example}
+\begin{proof}
+    This is somewhat easier to do. Let $q$ be the smallest prime factor of $2^p-1$.\\
+    That means $2^p \equiv 1 \pmod{q}$. This means $\text{ord}_q{2}|p$.\\
+    This means that $\text{ord}_q{2} = 1$ or $p$. If it is equal to $1$, $2^1-1 \equiv 0\pmod{q}$ which is absurd as no prime is less than equal to $1$. Then $\text{ord}_q{2}=p$ which means $p|q-1$ which allows us to say $p\leq q-1 < q$. Hence, the smallest prime factor is greater than $p$.
+\end{proof}
+\section{Chicken Mcnugget Theorem}
+After all these heavy topics, let's talk about a rather light one.\\
+Famous problem writer, Henri Picciotto was dining at McDonalds with his son when he noticed that nuggets were sold in packs of $6,9$ and $20$. He taught about what is the largest number of nuggets he could order which could not be packed in these boxes. It is said that he worked it all out on a napkin.\\
+The problem then appeared in Games Magazine in 1987.\\
+Let's see if we can find the solution.\\
+We are looking for the largest $N$ such that $6x+9y+20z=N$ has no solution. Let's first find all elements $M \in m$ which can't be written as $6x+9y=M$ and then get rid of all such that $M-20k \notin m$.\\
+What we need to notice that all multiples of $3$ are $\notin m$. What we need to notice is that we can subtract $20$ to make anything a multiple.\\
+So what we are looking for are numbers from which when we subtract either $20$ if they are $1$ modulo $3$ and $40$ if they are $2$ modulo $3$. The subtracted number is a multiple of $3$ and we need to prove that it can't be partitioned into $6,9$.\\
+We can see(and will formally prove in a minute) that all multiples of $3$ can be partitioned into $6,9$ other than $3$ itself. Hence, the answer is $3+40=43$.\\
+\begin{theorem}
+    [Chicken McNugget Theorem]
+    For any two relatively prime positive integers $m,n$, the greatest integer that cannot be written in the form $am + bn$ for nonnegative integers $a, b$ is $mn-m-n$. \\
+    A consequence of the theorem is that there are exactly $\frac{(m - 1)(n - 1)}{2}$ positive integers which cannot be expressed in the form $am + bn$
+\end{theorem}
+\begin{proof}
+We know from Bezout's that infinite integer solutions to $am+bn=N$ exist every time we have $\gcd(m,n)|N$. This is true for all $N$ as $\gcd(m,n)=1$ as they are coprime.\\
+So we always have integer solutions. But the condition of never having positive integer solution is true if and only if either one of the coefficients is all way negative.\\
+Using linear Diophantine, let a solution be $(x,y)$ and then the set of solutions is $(x-kn,y+km)$. Let $x$ be positive and $y$ be negative, and $(x,y)$ be the case where $y$ is the greatest(ie closest to zero). In this case $|y|\geq n$ Adding to $y$ to make it positive should lead to $x$ becoming negative.\\
+For maximum value of $N$ we can let $y=-1$ and $x=n-1$ as it will follow the above condition.\\
+$N=m(n-1)-n\\
+\iff N=mn-m-n$
+Hence, proved.
+\end{proof}
+Now you may feel that $6,9$ are not co-prime, but we can take $3$ common. Then we are left with $2,3$ which are coprime. Using the Chicken Mcnugget theorem we can say that $6-3-2=1$ is the largest number not partition-able. This means all other multiple of $3$ other than $3$ can be made by adding $6,9$.\\
+Hence, $43$ is the answer.\\
+Let's look at a very basic question:\\
+\begin{example}
+    (AMC 10B 2015)The town of Hamlet has $3$ people for each horse, $4$ sheep for each cow, and $3$ ducks for each person. What is the largest number which could not possibly be the total number of people, horses, sheep, cows, and ducks in Hamlet?
+\end{example}
+\begin{proof}
+    [Solution]
+    $P=3H$, $S=4C$, $D=3P$ from the question.\\
+    Thus the total number of living organisms is $P+H+S+C+D=3H+H+4C+C+9H=13H+5C$\\
+    which has no solution for $13*5-5-13=47$ living organisms.
+\end{proof}
+So far so good, let's do something better\\
+\begin{example}
+    [AIME II 2019] Find the sum of all positive integers $n$ such that, given an unlimited supply of stamps of denominations $5,n,$ and $n+1$ cents, $91$ cents is the greatest postage that cannot be formed.
+\end{example}
+\begin{proof}
+[Solution]
+By the Chicken McNugget theorem, the least possible value of $n$ such that $91$ cents cannot be formed satisfies $5n - (5 + n) = 91 \implies n = 24$, so $n$ must be at least $24$.\\
+For a value of $n$ to work, we must not only be unable to form the value $91$, but we must also be able to form the values $92$ through $96$, as with these five values, we can form any value greater than $96$ by using additional $5$ cent stamps.\\
+Notice that we must form the value $96$ without forming the value $91$. If we use any $5$ cent stamps when forming $96$, we could simply remove one to get $91$. This means that we must obtain the value $96$ using only stamps of denominations $n$ and $n+1$.\\
+Recalling that $n \geq 24$, we can easily figure out the working $(n,n+1)$ pairs that can used to obtain $96$, as we can use at most $\frac{96}{24}=4$ stamps without going over. The potential sets are $(24, 25), (31, 32), (32, 33), (47, 48), (48, 49), (95, 96)$, and $(96, 97)$.\\
+The last two obviously do not work, since they are too large to form the values $92$ through $94$, and by a little testing, only $(24, 25)$ and $(47, 48)$ can form the necessary values, so $n \in \{24, 47\}$. $24 + 47 = 071$.\\
+\end{proof}
+And finally a question from Indian TST\\
+\begin{example}
+(India) On the real number line, paint red all points that correspond to integers of the form $81x+100y$, where $x$ and $y$ are positive integers. Paint the remaining integer points blue. Find a point $P$ on the line such that, for every integer point $T$, the reflection of $T$ with respect to $P$ is an integer point of a different colour than $T$.
+\end{example}
+\begin{proof}
+    [Solution]
+    It is easy to notice that the answer is $P=\frac{81*100-81-100}{2}$. Let's prove it.\\
+    Let's assume that this is not the correct answer. Let's assume, to the cotrary, that there exists a $k$ such that both are red, that is:\\
+    $81x+100y=P-k\\
+    81a+100b=P+k$\\
+    Adding the equations and letting $x+a=k$ and $y+b=l$, we get:\\
+    $81k+100l=2P=81*100-81-100$ which is false from Chicken McNugget Theorem.\\
+    Hence, Contradiction.\\
+    Thus, no such $k$ exists. Hence, $P=\frac{81*100-81-100}{2}=\frac{7919}{2}=3959.5$ is the required point.
+\end{proof}
+\section{Pell's Equations}
+I didn't want to include this, it had only been seen in TST's and that too in very rare cases. But then some examiner decided to ask it in AMC(It's the example at the end of the section) and here we are.\\
+\begin{definition}
+    An equation of the form $x^2-dy^2=1$ where $d$ is square free is called Pell's Equation.
+\end{definition}
+$d$ needs to be square free as otherwise there will be no integer solutions by difference of squares.\\
+Another thing to note is:\\
+\begin{theorem}
+    If a Pell’s equation has one solution, then it has infinitely many.
+\end{theorem}
+We will prove this by actually generating the infinite solutions.\\
+We begin by defining some terms.\\
+\begin{definition}
+    Characteristic complex($z$) of a Pell's equation is $x+y\sqrt{d}$ and it's conjugate is $\Tilde{z}$ which is $x-y\sqrt{d}$.\\
+    The norm is defined as $N(z)=z\Tilde{z}=x^2-dy^2$\\
+\end{definition}
+This is quite similar to complex numbers we dealt with in algebra. This is because Pell's equation is studied in a field of maths aptly named Algebraic Number Theory where algebraic structures are used to study the properties of numbers.\\
+We'll however not talk about it much.\\
+We can notice that $N(ab)=N(a)N(b)$ which is trivial to prove using basic algebra(and also follows from the complex plane), therfore we can say that if $N(z)=1$ then $N(z^k)=1$\\
+Which means that if we can find a single solution of a pell's equation, then we can find the characteristic complex of that solution and hence the rest of the infinite solutions.\\
+Let me illustrate with an example:\\
+\begin{example}
+    (AMC 12A 2022)A $\emph{triangular number}$ is a positive integer that can be expressed in the form $t_n = 1+2+3+\cdots+n$, for some positive integer $n$. The three smallest triangular numbers that are also perfect squares are $t_1 = 1 = 1^2$, $t_8 = 36 = 6^2$, and $t_{49} = 1225 = 35^2$. What is the sum of the digits of the fourth smallest triangular number that is also a perfect square?
+\end{example}
+\begin{proof}
+    [Solution]
+    The question is looking for solutions to:\\
+    $\frac{n(n+1)}{2}=k^2\\
+    \iff n^2+n=2k^2\\
+    \iff 4n^2+4n=8k^2\\
+    \iff 4n^2+4n+1-8k^2=1\\
+    \iff (2n+1)^2-2(2k)^2=1$\\
+    This is a Pell's equation we already know a solution to which is $(k,n)=(1,1)$. Which means $z=3+2\sqrt{2}$\\
+    $z^2=9+8+12\sqrt{2}=17+12\sqrt{2} \implies (k,n)=(8,6)$\\
+    $z^4=289+288+408\sqrt{2}=577+408\sqrt{2} \implies (k,n)=(288, 204)$\\
+    $204^2=41616$\\
+    Thus, the answer is $4+1+6+1+6=18$\\
+\end{proof}
+\section{Floor, Ceiling and fractional function}
+Before we talk about the black boxes, let's explore the final topic which we would reasonably understand.\\
+\begin{definition}
+    The greatest integer function(GIF) function represents greatest integer less than or equal to $x$ where $x \in \mathbb{R}$. We represent it using $\lfloor x \rfloor$. It is also called the floor function.\\
+    The ceiling function represents the smallest integer more than or equal to $x$ where $x \in \mathbb{R}$. We represent it using $\lceil x \rceil$.\\
+    The fractional function represents the part of $x$ which cannot be represented as integer. That is $x-\lfloor x \rfloor$. It is represented as $\{x\}$\\
+\end{definition}
+The ceiling function is simply the GIF function plus $1$. Hence, we don't use it normally. In this chapter, $[x]$ represents the greatest integer function.\\
+With the formal introduction out of the way, let's have some fun now.\\
+\begin{example}
+    (PRMO 2017 , edited)Find the maximum value of $x$ such that $\{x\}, [x] , x$ form a geometric progression.
+\end{example}
+\begin{proof}
+    [Solution]
+    We can simply use the fact $x=[x]+{x}$ to solve this question.\\
+    $\iff [x]^2=[x]\{x\}+\{x\}^2$\\
+    $\iff \{x\}^2+[x]\{x\}-[x]^2$\\
+    $\iff 0\leq \{x\} = \frac{-[x]+\sqrt{[x]^2+4[x]^2}}{2} <1$\\
+    $\iff 0\leq [x](-1+\sqrt{5}) < 2$\\
+    $\iff 0 \leq [x] < \frac{2}{\sqrt{5}-1} =\frac{(\sqrt{5}+1)}{2}=1.61 \dots$\\
+    $\therefore [x]=1$\\
+    $\therefore \{x\}=\frac{\sqrt{5}-1}{2}$\\
+    $\therefore x= \frac{\sqrt{5}+1}{2}$\\
+\end{proof}
+This was good but let's take it a notch higher\\
+\begin{example}
+Find all $x$ such that $\frac{1}{[x]}+\frac{1}{[2x]}=\{x\}+\frac{1}{3}$
+\end{example}
+\begin{proof}
+Here the key fact to note is that $[2x]=2x$ or $[2x]=2x+1$ depending on the fractional part.\\
+Hence, we can divide the question into two cases.\\
+$\frac{1}{3}\leq \{x\}+\frac{1}{3}=\frac{3}{2[x]} < \frac{5}{6}$\\
+The RHL is due to the fact that if the fractional part is $0.5$ or more than we cant have $[2x]=2[x]$.\\
+$3\geq \frac{2[x]}{3} > \frac{6}{5}$\\
+$\iff 4.5 \geq [x] > 1.8$\\
+$\therefore [x]={2,3,4}$\\
+Now onto the second case.\\
+$\frac{5}{6}\leq \{x\}+\frac{1}{3}=\frac{1}{[x]}+\frac{1}{2[x]+1} < \frac{4}{3}$\\
+$\iff \frac{5}{6}\leq \frac{3[x]+1}{2[x]^2+[x]} < \frac{4}{3}$\\
+$\iff 5 \leq \frac{18[x]+6}{2[x]^2+[x]} < 8$\\
+$\iff 10[x]^2+5[x] \leq 18[x]+6 < 16[x]^2+8[x]$\\
+$\iff 10[x]^2-13[x] \leq 6 < 16[x]^2-10[x]$\\
+$\iff 1 < [x] \leq 1.6\dots$\\
+Which means there is no possible $[x]$.\\
+Thus, we only have three values of $x$ which occur at $[x]=2,3,4$\\
+\end{proof}
+\section{Black Boxes}
+We are finally in the section where I'll state some very powerful results without proof. More times then not, they can be cited in a math contest without much worry. This section can also be skipped as you are just memorizing a theorem without proof. The choice is yours. We'll follow every theorem by an example and use the theorem to solve it.\\
+\begin{theorem}
+[Schur's Theorem]
+    If a polynomial $P(x)$ with integer coefficients is non constant, then the set of prime factors of $P(x)$ for all $P(x) \in \mathbb{N}$ is infinite.
+\end{theorem}
+Another contribution by the great Issai Schur. We'll use it on this USAMO 3\\
+\begin{example}
+    (USAMO/3 2006)
+    For integral $m$, let $p(m)$ be the greatest prime divisor of $m$. By convention, we set $p(\pm1)=1$ and $p(0)=\infty$. Find all polynomials $f$ with integer coefficients such that the sequence $\lbrace p(f(n^2))-2n\rbrace_{n\ge0}$ is bounded above. (In particular, this requires $f(n^2)\neq0$ for $n\ge0$.)
+\end{example}
+\begin{proof}
+     Suppose that $f$ satisfies the condition. We suppose that $f$ is irreducible, otherwise look at all irreducible factors.Let $g(x)=f(n^2)$\\
+     Assume that $p|g(k)$. We can asume $0\leq k \leq \frac p2$, since obviously $g(p\pm k)\equiv g(k)$ $(mod$ $p)$.\\
+     Then, $p \leq 2k+r$, for some $r$. So we have either $k=\frac p2, k=\frac{p-1}2, \ldots,k=\frac{p-r}2$. We know that infinitely many prime number divide the series of  $g(n)$ due to Schur. Therefore for some $0\leq j \leq r$ there are infinitely many primes $p$ for which $p|g(\frac{p-j}2)$. This implies that $p|g(-\frac j2)$ for infinitely many $p$, so $g(-\frac j2)=0$, thus $2x+j|g(x^2)$, and also $2x-j|g(x^2)$, so $4x^2-j^2|g(x)$, so $4x-j^2|f(x)$. As $f$ is irreducible, $f=4x-j^2$.\\
+\end{proof}
+While Schur only played a minor role in this example, Our next theorem will destroy it's following example.\\
+\begin{theorem}
+    [Anti-Schur]
+    If a polynomial $P(x)$ with integer coefficients is non-constant and non-reducible, then there exists a prime $p$ such that $P(x)$ has no roots modulo $p$.
+\end{theorem}
+Now let's hunt down an IMO 6.\\
+\begin{example}
+    (IMO/6 2003) Let $p$ be a prime number. Prove that there exists a prime number $q$ such that for every integer $n$, the number $n^p - p$ is not divisible by $q$.
+\end{example}
+\begin{proof}
+    The given polynomial is integer and irreducible. Which means by anti-schur, there exists some prime $q$ which gives us $n^p-p \not\equiv 0 \pmod{q}$ which means it is not divisible.\\
+    And we are done.\\
+\end{proof}
+This felt almost like cheating, didn't it?\\
+\begin{theorem}
+[Kobayashi’s theorem]
+    Let $t \in \mathbb{Z}$ and a set of number $a_1,a_2,\dots$\\
+    If the set of prime factors of $a_1,a_2,\dots$ is finite; then the set of prime factors of $a_1+t,a_2+t,\dots$ is infinite.
+\end{theorem}
+I find this theorem quite unsettling.\\
+The unsettling part is who really proved it. It says a high school student named Hiroshi Kobayashi from Ebina Highschool. But that school doesn't exist. No other work by that person either. Just one citation to some Olympiad handout. Makes you wonder...who really did prove this result?\\
+\begin{example}
+    (STEMS 2021) Determine all non-constant monic polynomials $P(x)$ with integer coefficients such that no prime $p>10^{100}$ divides any number of the form $P(2^n)$
+\end{example}
+\begin{proof}
+    For $P(x)=x^d$, Let $P'(x)=x^d+a$ where $a$ represents rest of the equation.\\
+    From Kobayashi, $P'(x)$ has infinite prime factors and hence for some $n$, $P'(2^n)$ will have a factor greater than $10^100$.\\
+    Therefore, $P(x)=x^d$ are the only solutions.\\
+\end{proof}
+The next theorem is very useful, especially if you want to date a math lover. Pronounce the name right, and they'll love you forever.\\
+\begin{definition}
+    Zsigmondy Set refers to the set of $n$ such that for $a_n$ of the series $a_1, a_2, \dots $ all prime $p$ such that $p|a_n$, $p|a_k$ for some $k<n$. It is denoted as $\mathcal{Z}\{a_n\}$\\
+\end{definition}
+Read the definition twice to actually internalize what it means.\\
+\begin{theorem}
+    [Zsigmondy Theorem]
+    If $a$ and $b$ are relatively prime, then $\mathcal{Z}\{a^n-b^n\} \subseteq \{1,2,6\}$. In particular:
+    \begin{itemize}
+        \item $1 \in \mathcal{Z}\{a^n-b^n\} \iff a-b=1$\\
+        \item $2 \in \mathcal{Z}\{a^n-b^n\} \iff a+b=2^n, n \in \mathbb{N}$\\
+        \item $6 \in \mathcal{Z}\{a^n-b^n\} \iff a=2, b=1$
+    \end{itemize}
+Similarly, $\mathcal{Z}\{a^n+b^n\}=\varnothing$, with the exception of $2^3 + 1^3$
+\end{theorem}
+The last line in itself is a weaker form of Zsigmondy which is used a lot in Olympiads.\\
+Also an elementary proof to the last part of Zsigmondy exists, I however leave finding it out to you.\\
+\begin{example}
+    Find all triplets $(a, n, k)$ of positive integers such that\\
+$$a^n-1=\frac{a^k-1}{2^k}.$$
+\end{example}
+\begin{proof}
+    [Solution]
+    Using Zsigmondy, there is some prime $p$ which divides $a^k-1$ but doesn't divide $a^n-1$\\
+    This means $p|2^k(a^n-1)$ which means $p=2$\\
+    This is obviously not true as if the RHS is divisible by $2$ which means $a$ is odd which makes LHS even which contradicts the initial assumption.\\
+Hence, we'll have to look at the exception case of Zsigmondy. First we'll note that $a=1$ which trivially works.\\
+The second is $k$ being in $\mathcal{Z}$. We'll check it on a case by case basis.\\
+Let $k=1$, then $n<k$ but that is not possible so this doesn't work.\\
+Let $k=2$, then $n=1$ which means:\\
+$a-1=\frac{a^2-1}{4}\\
+\iff 4=a+1\\
+\iff a=3$\\
+Then another solution is $a=3, n=1, k=2$\\
+Finally, $k=6$ for which $a=2$ by Zsigmondy. But that violates $\frac{a^k-1}{2^k}$ and hence no such solution exists.\\
+Thus, the only solutions are $(a,n,k)=(1,n,k)$ and $(3,1,2)$
+\end{proof}
+Another very useful theorem is:\\
+\begin{theorem}
+    [Bertrand’s postulate]
+    If $n > 3$, then there’s some prime $p$ such that $n < p < 2n$.
+\end{theorem}
+This has an elementary proof, which was found by the great Paul Erdos, it's just tedious. I have decided to not include the proof but greatly encourage you to explore it with the help of internet. Now let's use the theorem.\\
+\begin{example}
+    Find all $n$ such that\\
+    \[n!+(n+1)!+(n+2)!\]
+    is a square number.
+\end{example}
+\begin{proof}
+    [Solution]
+    $n!+(n+1)!+(n+2)!\\
+    = n!(1+n+1+(n+1)(n+2))\\
+    = n!(n+2)(n+2)\\
+    =n!(n+2)^2$\\
+    This means we are looking for $n!$ which is a square number.\\
+    There is some $p$ such that $\frac{n}{2}<p<n$ from Bertrand's theorem.\\
+    For $n!$ to be a square number, we need to have $2p<n$, but:\\
+    $n<2p<2n$\\
+    This is a contradiction. This means no such $n$ exist.\\
+    But as we have used Bertrand, hence we need to check for $n<3$\\
+    As $0!=1!=1^2=1$ and $2!=2 \neq k^2, k \in \mathbb{N}$, it means which means that the only solution are $n=0,1$.
+\end{proof}
+Let's look at another question\\
+\begin{example}
+    Prove that $1, \dots , 2n$ can be partitioned into $n$ pairs such that the sum of the numbers in each pair is prime
+\end{example}
+\begin{proof}
+    We need to note that $2n < p <4n$ from Bertrand.\\
+    This means $p=2n+m$ for some $m$. This means $\{m, \dots, 2n\}$ will recursively all get paired as $m+1+2n-1=m+2n=p$\\
+    We can now repeat the same for $m-1$ and so on recursively.\\
+    Hence, proved.
+\end{proof}
+Finally a theorem which is a glimpse of the next chapter.
+\begin{theorem}
+    [Dirichlet's Theorem]
+    There are infinite primes of the form $a+nd$ given $\gcd(a,d)=1$.
+\end{theorem}
+This may either seen obvious or surprising, in any case it is a black box which requires a lot of advanced math to prove. But let's have some fun.\\
+\begin{example}
+    Show that there are infinitely many positive numbers $n$ that cannot be written as $3ab + a + b$ for any $a, b \in \mathbb{N}$.
+\end{example}
+\begin{proof}
+We need to prove that there are infinite such $n$ that $3ab+a+b=n$\\
+This means $3n+1=9ab+3a+3b+1$ has no solutions
+This means $3n+1=(3a+1)(3b+1)$ has no solutions.\\
+This will be true if $3n+1$ is prime. There are infinite such $n$ due to Dirichlet's Theorem.
+\end{proof}
+And as we end the chapter, I'll revisit the first black box we saw:\\
+\begin{theorem}
+    [Prime Number Theorem]
+    Number of primes less than $n \approx \frac{n}{\ln{n}}$ \\
+    and consequently, the $n^{th}$ prime $ \approx n \ln{n}$
+\end{theorem}
+But this form is less fun. A little transformation will give us a much stronger form.\\
+\begin{theorem}
+    [Prime Number Theorem's Bertrand's form]
+    For every $\varepsilon > 0$ we have some natural number $n_{\varepsilon} \in \mathbb{N}$ such that for all $n>n_{\varepsilon}$, we have some prime $p$ such that $n<p<(\varepsilon + 1)n$
+\end{theorem}
+The proof, while not elementary, can be done using limits(the approx sign is just limit of $n$ tending to $\infty$).\\
+\begin{example}
+    Prove that exist infinity prime number which began (from left to right ) with $9$.
+\end{example}
+\begin{proof}
+    From the prime number theorem, it follows that for every $\varepsilon > 0$, there exists a natural number $N_\varepsilon$ such that for all $n > N_\varepsilon$, there is a prime between $n$ and $(1 + \varepsilon) n$. Applying this to $\varepsilon = \frac{1}{9}$ and $n = 9 \cdot 10^k$ for $k > \log_{10} \frac{N_{\frac{1}{9}}}{9}$, we are done.
+\end{proof}
+\begin{xcb}{Exercises}
+\begin{enumerate}
+\item (IMO 2005, 4) Determine all positive integers relatively prime to all the terms of the infinite sequence\[a_n=2^n+3^n+6^n -1,\ n\geq 1.\]
+\item (HMMT 2014) Determine all positive integers $1 \leq m \leq 50$ for which there exists an integer $n$ for which $m$ divides $n^{n+1} + 1$.
+\item (IMOSL 1991) Find the largest integer $k$ for which $1991^k$ divides:\\
+\[1990^{1991^{1992}}+1992^{1991^{1990}}\]
+\item (AIME 1994) Ninety-four bricks, each measuring $4''\times10''\times19'',$ are to stacked one on top of another to form a tower 94 bricks tall. Each brick can be oriented so it contributes $4''\,$ or $10''\,$ or $19''\,$ to the total height of the tower. How many different tower heights can be achieved using all ninety-four of the bricks?\\
+\item (AIME II 2019) Find the sum of all positive integers $n$ such that, given an unlimited supply of stamps of denominations $5,n,$ and $n+1$ cents, $91$ cents is the greatest postage that cannot be formed.\\
+\item (RMO 2018) Find all natural numbers $n$ such that $1+[\sqrt{2n}]~$ divides $2n$.
+\item Find $n\in \mathbb{N}$ satisfied: $n^2+3^n$ is a square number
+\item (Brazil 2018) Let $a_0=a>1$ and $a_{n+1}=2^{a_n}+1$. So that the set of prime divisors of $\{a\}_{n\geq 0}$ is infiinite.
+\item (Hong Kong TST 2018)Find infinitely many positive integers $m$ such that for each $m$, the number $\dfrac{2^{m-1}-1}{8191m}$ is an integer.
+\end{enumerate}
+\end{xcb}

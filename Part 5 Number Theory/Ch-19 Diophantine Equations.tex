@@ -1,0 +1,334 @@
+\chapter{Diophantine Equations}
+Equations in which we are looking for only integer solutions are called Diophantine equations.\\
+While this books deals with the most elementary cases of Diophantine, remember that some of the most difficult unsolved problems are Diophantine equations. There have been many advanced techniques developed in modern number theory to solve such equations, for instance elliptic curves. These are normally part of \textbf{graduate courses}, which I am not and nether claim to be an expert on.\\
+Unlike most of the chapters, We'll explicitly look at it from an Olympiad perspective to make sure that we don't go too ahead of ourselves. Also, Diophantine equations is best learnt through problems.\\
+\section{Linear Diophantine Equations}
+\begin{example}
+    [Motivating Example]
+    Find all integer solutions to $5x+6y=12$
+\end{example}
+This question is quite simple. We can obviously see that one solution is $(0,2)$, we can now find rest of the solutions by adding $6$ to the $0$ and subtracting $5$ the same number of times from $2$. We can also subtract $6$ and add $5$.\\
+This gives us that all solutions are of the form $6k, 2-5k$ where $k \in \mathbb{Z}$.  We can check this is true by plugging this in the equation $5(6k)+6(2-5k) = 30k+12-30k=12$.\\
+Let's now generalize, \\
+\begin{theorem}
+    [Linear Diophantine]
+    Given $ax+by=c$ over integers, if $\gcd(a,b)|c$, and if one solution is $(x',y')$ than all the solutions are in the form $(x'-bk, y'+ak)$ where $k \in \mathbb{Z}$
+\end{theorem}
+\begin{proof}
+    The GCD condition comes from Bezout's identity(remember?). The rest of it can simply be shown to be true using substitution.\\
+    $a(x'-bk)+b(y'+ak) = ax'+by'-abk+abk=ax'+by'=c$\\
+    This is the entirety of solutions as a linear equation always has only one solution, so the minute we set $y$, $x$ is defined by default. We are basically setting one of the variables and the other just follows.\\
+\end{proof}
+This theorem, while use full still requires us to provide the initial solution. While in simpler equations like the one above, it is easy to do so, what about something more complex like:\\
+\begin{example}
+    $125x+8y=279$
+\end{example}
+While this one is still somewhat doable with hit and trial, the fastest way out is taking modulus $8$\\
+$5x=7 \pmod{8}$\\
+We now need to only check $7$ one digit values for $x$, where in this case it is obviously $3$. This gives us a solution $(3, 12)$. And that generalizes to $(3-8k, 12+125k)$.\\
+This method is especially use full while working with Diophantine equations arising from CRT(like this one which was a CRT on $1000$).\\
+\section{Parity Arguments}
+Sometimes we can negate the need to solve a Diophantine by showing that no solution actually exists. Mathematicians don't like to lose, so when they can't do something they just prove it's impossible to do it. Some may call that stubbornness or pride. Mathematicians may call it “certainty.\\
+One way of doing so is through parity arguments.
+\begin{example}
+[Motivating Example]
+    Can one form a "magic square" out of the first 36 prime numbers? A "magic square" here means a 6 x 6 array of boxes, with a number in each box, and such that the sum of the numbers along any row, column, or diagonal is constant. 
+\end{example}
+Notice that the question doesn't ask us to find the square. Just to prove if it exists or not.\\
+We notice that The only even prime is $2$ and it cannot be part of only three lines(row, column or diagonal).\\
+This means that the sum of those lines is odd as they have $5$ odd numbers and $1$ even number. However, the sum of the other lines is even as they have $6$ odd numbers.\\
+As an odd number can't be equal to an even number, no such magic square exists.\\
+Here is another such question for you to try.
+\begin{example}
+Let $k$ be an even number. Is it possible to write $1$ as the sum of the reciprocals of $k$ odd integers?
+\end{example}
+\section{Algebraic methods}
+We can use algebraic tricks to break Diophantine equations by either factorization or using inequalities. This is mainly the reason why we study number theory after algebra.\\
+\begin{example}
+[Motivating Example]
+    (AIME 2000)A point whose coordinates are both integers is called a lattice point. How many lattice points lie on the hyperbola $x^2 - y^2 = 2000^2$?
+\end{example}
+\begin{proof}
+    [Solution]
+    We first need to notice that both $x$ and $y$ are even. We can do this by either taking $\pmod{4}$ or by using parity. Thus, we can let $x=2m, y=2n$\\
+Now we factorize, $x^2-y^2=2000^2 \iff 4m^2-4n^2=2000^2 \iff m^2-n^2=1000^2 \\
+\iff (m-n)(m+n)=2^6 5^6$\\
+It is obvious that for different ways of splitting the factors will lead to different solutions. We will double this number as we also need to consider negative values of $m,n$. Thus, there are $7*7*2=98$ lattice points.\\
+\end{proof}
+\begin{example}
+(BMO 2005)
+    The integer $n$ is positive. There are exactly $2005$ ordered pairs $(x, y)$ of positive integers satisfying:\\
+    $\frac{1}{x}+\frac{1}{y}=\frac{1}{n}$\\
+    Prove that $n$ is a perfect square.
+\end{example}
+\begin{proof}
+    We can convert the equation to $nx+ny=xy$ which looks an awful lot like SFFT.\\
+    $xy-nx-nx+n^2=n^2\\
+    (x-n)(y-n)=n^2$\\
+    This has $2005$ solutions. This means $n^2$ has $2005$ factors. If the prime factorization of $n=p_1^{e_1}p_2^{e_2}\dots$, then:\\
+    $(2e_1+1)(2e_2+1)\dots=2005=5*401$\\
+    Therefore, without loss of generality $e_1=2$ and $e_2=200$. This makes $n$ have $(2+1)(200+1)=3*201=603$ factors. As $603$ is odd, we know that $n$ is square is an odd numbers.
+\end{proof}
+Finally here is an INMO question for you to solve.
+\begin{example}
+(INMO ??)
+Determine all non negative integral pairs $(x, y)$ for which $(xy - 7)^2 = x^2 + y^2$
+\end{example}
+Now let's try some questions which will use inequalities to solve the Diophantine equation.\\
+\begin{example}
+(Russia )
+    Find all $(x, y)$ such that $x,y \in \mathbb{N}$ $x^3 - y^3 = xy + 61$.
+\end{example}
+\begin{proof}
+[Solution]
+    We need to notice that $x^3-y^3=(x-y)(x^2+xy+y^2)=xy+61$ means that $x-y>0 \iff x>y$.\\
+    This means $(x^2+xy+y^2) \leq xy+61 \iff x^2+y^2 \leq 61$.\\
+    This inequality can be solved by plugging in values of $x$ and then checking for $y$. This gives us the following possible solutions $(x,y)=(7,3)(7,2)(7,1)(6,5)(6,4)(6,3)(6,2)(6,1)$\\
+    We can plug in all the cases to notice that only solution is $(6,5)$\\ 
+\end{proof}
+\begin{example}
+    Find all pairs $(x, y)$ of integers such that $x^3 + y^3 = (x + y)^2$ and $x \neq |y|$
+\end{example}
+\begin{proof}
+    [Solution]
+    This is slightly more involved than the last one.\\
+    $(x+y)(x^2-xy+y^2)-(x+y)^2=0\\
+    \iff (x+y)(x^2+y^2-xy-x-y)=0$\\
+    As $x \neq |y|$, $x+y \neq 0$\\
+    $\therefore x^2+y^2-xy-x-y=0\\
+    \iff x^2+y^2-2xy=x+y-xy\\
+    \iff 1-(x-y)^2=xy-x-y+1\\
+    \iff 1-(x-y)^2=(x-1)(y-1)\\
+    \iff 1 = (x-1)(y-1)+(x-y)^2\\
+    \iff 1 \geq (x-1)(y-1)$\\
+    This limits our values of $(x,y)=(0,0)(1,n)(n,1)(2,2)$ where $n \in \mathbb{N}$. As, $(0,0)$ and $(2,2)$ are rejected, We'll resolve for $n$ now.\\
+    $1=(1-1)(n-1)+(n-1)^2\\
+    \iff \pm 1 = n-1\\
+    \iff n=0,2$\\
+    This gives us the four solutions $(1,2)(2,1)(0,1)(1,0)$. 
+\end{proof}
+We can also use other inequalities in this process. Here is one which will use AM-HM or SEBACS.\\
+\begin{example}
+    (Putnam 2005, B2) 
+    Find all series $k_1, k_2, \dots k_n$ such that:\\
+    $k_1+\dots+k_n = 5n-4$ and $\frac{1}{k_1}+\dots+\frac{1}{k_n}=1$
+\end{example}
+\section{Modular Contradiction Method}
+As I discussed before, mathematicians really hate equations they can't solve.\\
+Here is another way to flat out with certainty declare that an equation is not solvable.\\
+\begin{example}
+[Motivating Example]
+(RMO 2017)
+Show that the equation\\
+    \[a^3 + (a + 1)^3 + \dots + (a + 6)^3 = b^4 + (b + 1)^4\]\\
+has no solution in integers $a,b$
+\end{example}
+This question makes it rather obvious that taking $\pmod{7}$ is a good idea by literally giving us $7$ consecutive digits.\\
+We make a table:\\
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \(a\) & \(a^3 \mod 7\) & \(a^4 \mod 7\) \\
+        \hline
+        0 & 0 & 0 \\
+        1 & 1 & 1 \\
+        2 & 1 & 2 \\
+        3 & -1 & 4 \\
+        4 & 1 & 4 \\
+        5 & -1 & 2 \\
+        6 & -1 & 1 \\
+        \hline
+    \end{tabular}
+\end{table}
+This makes it clear that the LHS is $\equiv 0 \pmod{7}$ while the RHS can only be $1,3,6 \pmod{7}$ and hence, by contradiction, the given equation has no solutions.\\
+While making such a table is not much hassle, most questions don't make it obvious which modulus to take. So here is a small list of modulo to consider:\\
+\begin{theorem}
+\begin{enumerate}
+    \item $a^2 \equiv 0,1 \pmod{3}$
+    \item  $a^2 \equiv 0,1 \pmod{4}$
+    \item  $a^2 \equiv 0,\pm 1 \pmod{5}$
+    \item $(\text{Odd integer})^2 \equiv 1 \pmod{8}$
+    \item  $a^3 \equiv 0,\pm 1 \pmod{7}$
+    \item  $a^3 \equiv 0,\pm 1 \pmod{9}$
+\end{enumerate}
+\end{theorem}
+We can also use FLT here in the following form:\\
+\begin{theorem}
+    $a^{\frac{p-1}{2}} \equiv 0,\pm 1 \pmod{p}$ for some prime $p$. Basically for an exponent, if its double plus $1$ is prime, we should consider that as a choice the base of our modulo.
+\end{theorem}
+We will see another example before we end this section:\\
+\begin{example}
+(USAJMO 2013)
+Are there integers $a$ and $b$ such that $a^5b+3$ and $ab^5+3$ are both perfect cubes of integers?
+\end{example}
+\begin{proof}
+    Either one of $a,b$ is divisible by $3$ or not. If $a$ is, we'll have $a^5b+3 \equiv 6 \pmod{9}$ which is not possible for a cube. If $b$ is then, $ab^5+3 \equiv 6 \pmod{9}$ and we run into the same issue.\\
+    If they are not, then let's to the contrary assume, $a^5b+3 \equiv \pm 1 \pmod{9} \iff a^5b \equiv 5, 7 \pmod{9}$ and similarly $ab^5+3 \equiv \pm 1 \pmod{9} \iff ab^5 \equiv 5, 7 \pmod{9}$ but as $a^5b \cdot ab^5 = (ab)^6 \equiv 4,7,8 \pmod{9}$ which is a contradiction as $x^6 \equiv 0,1 \pmod{9}$.
+\end{proof}
+\section{Pythagorean Triplets}
+A Pythagorean triplet is refers to a possible sets of sides of a right angle triangle using the Pythagoras theorem. A primitive Pythagorean triplet is defined as follows.\\
+\begin{definition}
+    The solution to \[a^2+b^2=c^2\] where $a,b,c \in \mathbb{N}$ and $\gcd(a,b,c) = 1$ is called a primitive Pythagorean triplet.
+\end{definition}
+We define all primitive Pythagorean triplets using algebra as follows:\\
+\begin{theorem}
+[Triplet Formula]
+    For a primitive Pythagorean triplet where $a,b<c$ and $a,b,c, m,n \in \mathbb{N}$:\\
+    $a=2mn\\
+    b = m^2-n^2\\
+    c=m^2+n^2$
+\end{theorem}
+Here is a very simple use of this:\\
+\begin{example}
+    Prove that for any three primes $a,b,c$, $a^2+b^2 \neq c^2$
+\end{example}
+\begin{proof}
+    While the actual proof in not that hard(parity), the Pythagorean triplets make it an embarrassment.\\
+    Without loss of generality, let $a=2mn$, which if $a=2$ if $a$ is prime which means $mn=1 \iff m=1$ and $n=1$\\
+    Thus, $b=c=0$ which is not prime.\\
+    Hence, $a^2+b^2 \neq c^2$ for $a,b,c$ being primes.
+\end{proof}
+Here is much better example.\\
+\begin{example}
+(Korea 1993)
+    An integer which is the area of a right-angled triangle with integer sides is called Pythagorean. Prove that for every positive integer $k > 12$ there exists a Pythagorean number $p$ such that $k <  p < 2k$.
+\end{example}|
+\begin{proof}
+    By the triplet formula, we can say that the area is $\frac{2mn(m^2-n^2)}{2}=mn(m^2-n^2)=mn(m-n)(m+n)$\\
+    This is especially great as we can let $n=1$. We can now notice that for $m=3$ we have the Pythagorean number $24$ which is satisfying for $k$ from $13-23$. We can take $m=4$ which is satisfying for $k$ form $31-59$ using the Pythagorean number $60$. $m=5$ satisfies $61-119$ and so on. Note $60,120 \dots$ are yet to be satisfied.\\
+    However, the gap remains for $24-29$. We'll look at $30$ in a minute. Here we can take $n=2$ and then see that for $m=3$, we'll have it satisfied for $23-29$.\\
+    The only un-satisfied values are at the edges like $30,60,120 \dots$. We will solve all of them by a simple maneuver. If we scale a primitive Pythagorean triplet by $n$(increase every term $n$ times), the area increases by $n^2$.  We have a Pythagorean number $6$ where $m=2$ and $n=1$. We can now simply scale it by first $3$ to get $54$ for $30$. Then by $4$ for $60$ and so on.\\
+    We can algebraically prove every step, but that's left as some work for you to do.
+\end{proof}
+Remember Fermat's Last Theorem? While we can't understand the proof of the same, we can still use it.\\
+\begin{theorem}
+    [Fermat's Last Theorem]
+    $a^n+b^n \neq c^n$ for $n>2$
+\end{theorem}
+Here is an embarrassment of a question.\\
+\begin{example}
+(India)
+    If $x,y,z$ and $n>1$ are all natural numbers with $x^n+y^n=z^n$. Prove that $x,y,z>n$
+\end{example}
+The question is so bad that whoever wrote it should lose marks for making it.\\
+Anyways, using Fermat's last theorem we know that $n=2$. After which, this question is burned using simple Pythagoras.\\
+A slightly better use would be:\\
+\begin{example}
+    Prove that $\sqrt[n]{2}$ is irrational for natural numbers $n>1$.
+\end{example}
+\begin{proof}
+    We had proven it for $n=2$ previously and will not do it here.\\
+    For $n>2$, Let's to the contrary assume that $\sqrt[n]{2}=\frac{p}{q}$ where $p,q \in \mathbb{Z}$.\\
+    $\therefore 2=\frac{p^n}{q^n}\\
+    \iff q^n + q^n = p^n$\\
+    Which is untrue using Fermat's last theorem. Hence, contradiction. Thus, $\sqrt[n]{2}$ is irrational for natural numbers $n>1$.
+\end{proof}
+Another use, which is not straightaway bad is:\\
+\begin{example}
+(Romania)
+Prove that if $n$ is odd, $a,b,c$ are non-zero integers and $a^{3n}+b^{3n}+3(abc)^{n}=c^{3n}$, then $a=b=-c$
+\end{example}
+\begin{proof}
+    We can rewrite the equation as: $(a^n)^3+(b^n)^3+((-c)^n)^3+3a^nb^n(-c)^n=0$\\
+    We can now use $x^3+y^3+z^3-3xyz= \frac{1}{2}(x+y+z)((x-y)^2+(y-z)^2+(z-x)^2)$,\\
+    $\therefore \frac{1}{2}(a^n+b^n-c^n)((a^n-b^n)^2+(b^n+c^n)^2+(a^n+c^n)^2)=0\\
+    \therefore a^n+b^n-c^n=0 \iff a^n+b^n=c^n$ or $(a^n-b^n)^2+(b^n+c^n)^2+(a^n+c^n)^2=0$\\
+    We reject the first one using Fermat's last theorem. The second one is destroyed using the fact $x^2+y^2+z^2=0 \iff x=y=z=0$\\
+    $a^n=b^2; b^n=-c^n; c^n=-a^n\\
+    \therefore a=b=-c$
+\end{proof}
+\section{Infinite Descent}
+\begin{example}
+    [Motivating Example]
+    Find all the solutions to $x^2+y^2=3z^2$
+\end{example}
+\begin{proof}
+    Trying to put things seems like we have no solution other than $(0,0,0)$.\\
+    We can try to solve it by taking modulus $3$.\\
+    $\{0,1\}+\{0,1\} \equiv 0 \pmod{3}$\\
+    Hence, $x,y \equiv 0\pmod{3}$. This also forces $z \equiv 0 \pmod{3}$. Let $x=3a, y=3b, z=3c$\\
+    $\therefore (3a)^2+(3b)^2=3(3c)^2\\
+    \iff 9a^2+9b^2=27c^2\\
+    \iff a^2+b^2=3c^2$\\
+    This is exactly the equation we have. So for any answer $(x,y,z)$ then $(\frac{x}{3^n},\frac{y}{3^n},\frac{z}{3^n})$ are solutions for $n \in \mathbb{Z}$. \\
+    Let for some solution $(k,l,m)$ be the solution which $k+l+m$ is minimized. But $\frac{k}{3}+\frac{l}{3}+\frac{m}{3}$ is smaller. This means that the only possible value is $k+l+m=0$\\
+    This forces the solution $x=0, y=0, z=0$.
+\end{proof}
+This is called proof by infinite descent, as the solution keeps on descending to infinity. This method was another contribution of Fermat. He claimed, in a letter to Carcavi, that he had a proof using infinite descent to 10 propositions. Only $1$ of them has been found yet. All others can be proven using modern techniques, but it really forces us to ask what did Fermat know that we don't?\\
+The most interesting thing is that Fermat claimed that Fermat's Last Theorem could be solved using infinite descent. We are yet to find out how.\\
+\begin{example}
+    Prove that no non-zero solution exists for $x^4+y^4=z^4$ without using Fermat's last theorem.
+\end{example}
+\begin{proof}
+    This is obviously the $n=4$ case of Fermat's last theorem. We want to prove it.\\
+   We will rewrite the equation as $(x^2)^2+(y^2)^2={z'}^2$ here $z'=z^2$\\
+   Using Pythagorean triplets,  $x^2=2pq, y^2=p^2-q^2; z'=p^2+q^2$\\
+   Using Pythagorean triplets, $q=2ab; y=a^2-b^2; p=a^2+b^2$\\
+   This means $x^2=2pq=4ab(a^2+b^2)$\\
+   This means that if $p|a$ or $p|b$ then $p\not{|}(a^2+b^2)$. This means $ab, (a^2+b^2)$ are co-prime. Which due to it all being equal to $x^2$ means, $ab$ and $a^2+b^2$ are square numbers.\\
+   But as $a,b$ are co-prime as they are Pythagorean triplets, therefore $a,b$ are both square numbers.\\
+   Let a=$A^2$, $b=B^2$ and $a^2+b^2=P^2$\\
+   Hence, $P^2=(A^2)^2+(B^2)^2 \iff P^2=A^4+B^4$\\
+   And we are done by infinite descent.
+\end{proof}
+This may seem inconsequential but we just proved Fermat's last theorem for all $n$ in the form $n=4k$ with $k \in \mathbb{N}$.  If there exists a simple proof to Fermat, it probably uses infinite descent.\\
+Here is an example for you to solve before we move ahead,\\
+\begin{example}
+    Solve over integers $x^4+y^4+z^4+t^4=2020xyzt$
+\end{example}
+\section{Vieta Jumping}
+As we close this chapter, we'll talk about the legendary IMO 1998, problem 6.\\
+\begin{example}
+    Let $a$ and $b$ be positive integers such that $ab + 1$ divides $a^{2} + b^{2}$. Show that $\frac {a^{2} + b^{2}}{ab + 1}$ is the square of an integer.
+\end{example}
+We will finally solve it.\\
+\begin{proof}
+    Lets assume to the contrary that $\frac{a^2+b^2}{ab+1}=k$ where $\sqrt{k} \notin \mathbb{Z}$. Also without loss of generality, assume that $a\geq b$ \\
+    $\therefore a^2+b^2=kab+k \iff a^2-kba+(b^2-k)=0$\\
+    This is a quadratic with a root $a$. Let another root be $x$. We need to note a few things about $x$. Using Vieta, $x=kb-a$ which is an positive integer. Also $ax=b^2-k$ which, as $k$ is not a square means that $x\neq0$. We will also show that $x \neq a$. As if that was true, $k^2b^2=4(b^2-k)$ and $a=\frac{kb}{2}$ which would mean\\
+    $\frac{\frac{k^2b^2}{4}+b^2}{\frac{kb^2}{2}+1}=k \\
+    \iff \frac{k^2b^2}{4}+b^2=\frac{k^2b^2}{2}+k \\
+    \iff b^2-k=\frac{k^2b^2}{2}$\\
+    Which contradicts the first point. Which means $k=b^2$ which contradicts the fact that $k$ in not a square.\\
+    With this, lets without loss of generality assume that $a<x$\\
+    As $a \geq b\\
+    \iff a^2 \geq b^2\\
+    \iff a^2 > b^2-k\\
+    \iff a > \frac{b^2-k}{a}\\
+    \iff a > x$\\
+    Which is a contradiction. This contradiction remains even is $a>x$ as we can do the same with $x$ as $x$ satisfies the original equation. If $b\geq a$ then we can do the whole process for $b$. This leaves only one assumption, that $\sqrt{k} \notin \mathbb{Z}$ which is false. Which means $k$ is perfect square.\\
+    Hence, proved.\\
+\end{proof}
+This method is called Vieta jumping. We basically converted the equation to a quadratic and then used Vieta to jump from one root to the next. This method is best understood by more exploration so here is an example for you before you head into the exercises.\\
+\begin{example}
+    Let $a$ and $b$ be positive integers such that $ab$ divides $a^2 + b^2 + 1$. Show that:\\
+    \[\frac{a^2 + b^2 + 1}{ab} = 3\]
+\end{example}
+\begin{xcb}{Exercises}
+\begin{enumerate}
+\item (AMC 12 2005) Let $A, M,$ and $C$ be digits with\\
+\[(100A + 10M + C)(A + M + C) = 2005.\]\\
+What is $A$?
+\item (Purple Comet MS 2011)  Find the prime number $p$ such that $71p + 1$ is a perfect square
+\item (PUMAC 2013) If $p, q,$ and $r$ are primes with $pqr = 7(p + q + r)$, find $p + q + r$
+\item (AMC 10 2008) How many right triangles have integer leg lengths $a$ and $b$ and a hypotenuse of length $b + 1$, where $b < 100$?
+\item  (Purple Comet HS 2004) Find $n$ such that $n - 76$ and $n + 76$ are both cubes of positive integers.
+\item (AIME 2013) Positive integers $a$ and $b$ satisfy the condition\[\log_2(\log_{2^a}(\log_{2^b}(2^{1000}))) = 0.\]Find the sum of all possible values of $a+b$.
+\item . (AwesomeMath Test A) Find all pairs of integers $(x, y)$ that satisfy the equation 
+\[2(x^2 + y^2) + x + y = 5xy.\]
+\item Find all pairs of integers $(x, y)$ that satisfy the equation\\
+\[x^2 - y! = 2001.\]
+\item (Hong Kong TST 2002) Prove that if $a, b, c, d$ are integers such that\\
+\[(3a + 5b)(7b + 11c)(13c + 17d)(19d + 23a) = 2001^{2001}\]\\
+then $a$ is even.
+\item (APMO 2017) 	We call a $5$-tuple of integers arrangeable if its elements can be labeled $a, b, c, d, e$ in some order so that $a-b+c-d+e=29$. Determine all $2017$-tuples of integers $n_1, n_2, . . . , n_{2017}$ such that if we place them in a circle in clockwise order, then any $5$-tuple of numbers in consecutive positions on the circle is arrangeable.
+\item (IMO 2003, P2)Find all $(a,b)\in \mathbb{N}^2$, such that $\frac{a^2}{2ab^2-b^3+1}$ is a positive integer.\\
+\item (IMO 2007, P5) Let $a$ and $b$ be positive integers. Show that if $4ab-1$ divides $(4a^2 - 1)^2$, then $a = b$.
+\item Find all positive integers $m$ and $n$ for which $1! + 2! + 3! + · · · + n! = m^2$
+\item (INMO 1988)Find all $(x, y, n) \in \mathbb{N}$
+such that $\gcd(x, n + 1) = 1$ and $x^n+1=y^{n+1}$
+\item Find the number of triples of $(x,y,z)$ of positive integers satisfying
+\[(x+y+z)^2=2018xyz\]
+\end{enumerate}
+\end{xcb}

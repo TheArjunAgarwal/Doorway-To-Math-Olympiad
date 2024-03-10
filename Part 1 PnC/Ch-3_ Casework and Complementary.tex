@@ -1,0 +1,167 @@
+\chapter{Some methods of counting}
+The last chapter dealt with mostly constructive counting. There we directly using permutations and combinations try to count exactly what we are asked to count. Straightforward, right?.\\
+However, life is not that simple. Sometimes it is easier to count what we are not asked to count and simply subtract(complimentary counting) or divide our problem into smaller cases and add them(casework). Let me illustrate:
+\section{Casework}
+\begin{example}
+    [Motivating Example]
+    For how many pairs of consecutive integers lying in {$1000, 1001, 1002, \dots 1998, 1999, 2000$}, does their addition happen without any carry over?
+\end{example}
+\begin{proof}
+    [Solution]
+We need to notice that carry over happens if the sum of two digits at a place are above 10. This means we can easily limit out the numbers which are like $1a85$ or $1a89$ as there successor has a $9$ right below the $8$.  
+    Keeping our observations in mind, we can see that: 
+    $1999$ meets the criteria\\
+    $1a99$ meets the criteria if and only if $a=0,1,2,3,4$\\
+    $1ab9$ meets the criteria if and only if $a,b=0,1,2,3,4$\\
+    $1abc$ meets the criteria if and only if $a,b,c=0,1,2,3,4$\\
+    That will lead to $1+5+5^2+5^3=156$ such pairs existing.
+\end{proof}
+When we break a question down into multiple cases and then solve them and add it, it is called casework.\\
+This technique is the messiest of the bunch and PnC as branch has developed to try to avoid it. Much of our further chapters will be about developing stronger techniques to avoid casework.
+\section{Complementary Counting}
+\begin{example}
+    [Motivating Example] How many three digit numbers exist such that the number contains at least one 0 or 5?
+\end{example}
+\begin{proof}
+    [Solution]
+    Instead of looking for the digits which with the condition, it is easier in this case to look for digits which don't. If a three digit number doesn't have 0 or 5, we have 8 choices for every digit. Thus, we have $8^3=512$ such digits.\\
+    Thus, as their are 900 total three digit numbers and 512 are not suitable so we have $900-512=388$
+\end{proof}
+This concept in known as complementary counting, counting the thing opposite to asked and then subtracting from the total. \\
+It is the hardest to spot in the wild but also the most versatile. I normally encourage you to at least give it a thought if the phrase 'at least' makes an appearance.
+\section{Principle of Inclusion and Exclusion}
+\begin{example}
+    [Motivating Example]
+    (AIME) Many states use a sequence of three letters followed by a sequence of three digits as their standard license-plate pattern. Given that each three-letter three-digit arrangement is equally likely, the probability that such a license plate will contain at least one palindrome (a three-letter arrangement or a three-digit arrangement that reads the same left-to-right as it does right-to-left) is $m/n$, where m and n are relatively prime positive integers. Find $m + n$.
+\end{example}
+\begin{proof}
+    [Solution]
+    A three character palindrome is of the form "$\spadesuit \heartsuit \spadesuit$". Note that $\heartsuit = \spadesuit$ is also valid.\\
+    This means that the number of letter palindromes is $26*26=26^2$ and number of number palindromes is $10*10=10^2$. So total plates with at least one palindrome is the sum of plates where number is the palindrome and the plates where letter is the palindrome. However, we'll subtract number of plates where both are palindrome as they were counted twice. So we can hence get the total plates with at least one palindrome as $26^2*10^3+10^2*26^3-26^2*10^2$. As the question asks probability, lets divide this by total number of plates which is $26^3*10^3$\\ 
+    $\frac{26^2*10^3+10^2*26^3-26^2*10^2}{26^3*10^3} \\
+    = \frac{26^2*10^2(10+26-1)}{26^2*10^2(26*10)} \\
+    =\frac{35}{260}=\frac{7}{52}$\\
+    Hence the answer is $7+52=59$
+\end{proof}
+This is called the principal of inclusion and exclusion or PIE for short. This is used in questions where two or more conditions are to be satisfied. Here, we would like introduce a general theorem for the same but will revise two definitions before doing the same:\\
+\begin{definition}
+$A \cup B$ refers to the set of all elements which occur in A and B, with duplicates(elements common to both sets) are only written once. This is known as union and read as A union B.    
+\end{definition}
+\begin{definition}
+    $A \cap B$ refers to the set of the common elements which occur in both A and B. This is known as intersection and read as A intersection B.    
+\end{definition}
+Now you are ready for the PIE theorem:
+\begin{theorem}
+    $A \cup B = A + B - A \cap B$
+\end{theorem}
+Which is what we just intuitively used in the above example.\\
+We also have PIE for three sets which is as follows:
+\begin{theorem}
+    \begin{multline*}
+        A \cup B \cup C = A + B + C \\
+        - A \cap B - B \cap C - C \cap A \\
+        + A \cap B \cap C
+    \end{multline*}    
+\end{theorem}
+This is easier to understand using a Venn diagram. If you draw it and label each circle as a set, you'll intuitively get why this is true.\\
+This also extends to union of 4 or more sets. While we can't draw such Venn Diagrams easily, we can prove that the pattern holds true for larger number of sets using induction.
+\begin{theorem}
+    If $(A_i)_{1\leq i\leq n}$ are finite sets, then:
+\begin{multline*}
+    \left|\bigcup_{i=1}^n A_i\right|=\sum_{i=1}^n\left|A_i\right| \\
+    -\sum_{i < j}\left|A_i\cap A_j\right|\\
+    +\sum_{i<j<k}\left|A_i\cap A_j\cap A_k\right|\\
+    -\cdots\ \\
+    +(-1)^{n-1} \left|A_1\cap\cdots\cap A_n\right|{}
+\end{multline*}
+\end{theorem}
+\begin{proof}
+    (B) We can see this obviously works if we have a single set $A$.\\
+    (S) Let's assume this is true for some $n$ number of sets. We will prove that then it will be true for $n+1$ number of sets as well.\\
+    Let's consider an element $k \subset A_{n+1}$ which is also part of $A_1 \cup A_2 \cup \dots \cup A_n$.\\
+    This means we need to prove that we still count it only once.\\
+    Without loss of generality, assume that $k$ is a part of $A_1, A_2, A_3 \dots A_l$.\\
+    This means the number of times we count $k$ is originally:\\
+    $\binom{l}{1}-\binom{l}{2}+\binom{l}{3}-\dots=1$\\
+    This will be $1$ as we have assumed the statement true for $n$.\\
+    This number of times we will count $k$ when $A_{n+1}$ is present is:\\
+    $\binom{l+1}{1}-\binom{l+1}{2}+\binom{l+1}{3}-\dots$\\
+    Here we make the observation:\\
+    \begin{align*}
+        \binom{n}{k}+\binom{n}{k-1} & = \frac{n!}{k!(n-k)!}+ \frac{n!}{(k-1)!(n-k+1)!}\\
+        & = \frac{n!}{(k-1)!(n-k)!}\left( \frac{1}{k}+\frac{1}{n-k+1} \right)\\
+        & = \frac{n!}{(k-1)!(n-k)!}\left( \frac{n+1}{(k)(n-k+1)} \right)\\
+        & = \frac{(n+1)!}{k!(n-k+1)!}\\
+        & = \binom{n+1}{k}\\
+    \end{align*}
+    This is known as Pascal's identity. We will discuss it in detail later.\\
+    But for this proof, we can use it to break the present sum.\\
+\begin{align*}
+\binom{l+1}{1}-\binom{l+1}{2}+\binom{l+1}{3}-\dots & \\
+&= \left(\binom{l}{1}+\binom{l}{0}\right)-\left(\binom{l}{2}+\binom{l}{1}\right)\\
++\left(\binom{l}{3}+\binom{l}{2}\right)\dots\\
+&= \binom{l}{0}+\left( \binom{l}{1}-\binom{l}{2}+\dots \right)\\
+-\left( \binom{l}{1}-\binom{l}{2}+\dots \right)\\
+&= 1+1-1=1
+\end{align*}
+Thus, by induction, the above is true.
+\end{proof}
+Please feel free to forget this proof as more than $3$ subsets is rare in math contests. Programming although does often walk into larger cases. But anyways, A rare specimen of more than $3$ subsets from ARML is included in the problems.\\
+This brings us at the end of fundamental principles of counting. Here are the arithmetic rules we used:\\
+\begin{theorem}
+        \textbf{Multiplication rule}: If two choices are independent, we can multiply them.\\
+    \textbf{Addition rule:} If we can break a problem into multiple sub problems after a certain choice, we can add the results.\\
+    \textbf{Subtraction Rule:} If we can count the complement of what we are asked, then we can subtract it from the total.\\
+    \textbf{Division Rule}: We can divide to account for multiple countings of repeated objects.\\
+\end{theorem}
+\section{Exercises}
+Solve at least questions worth \points{50}. This exercise has a total of \points{71}.
+\begin{xcb}{Exercises}
+\begin{enumerate}
+\item (AMC 12 2014) \points{2} A fancy bed and breakfast inn has $5$ rooms, each with a distinctive color-coded decor. One day $5$ friends arrive to spend the night. There are no other guests that night. The friends can room in any combination they wish, but with no more than $2$ friends per room. In how many ways can the innkeeper assign the guests to the rooms?
+\begin{hint}
+    \addhint{In how many ways can the friends be put into rooms? Like we can have one friend per room, $2$ in one room and rest in single room, $2$ sharing a room, another $2$ sharing a room and one person living in a single room}.
+\end{hint}
+\item (AMC 10 2021) \points{3} A farmer’s rectangular field is partitioned into $2$ by $2$ grid of $4$ rectangles. In each section the farmer will plant one crop: corn, wheat, soybeans, or potatoes. The farmer does not want to grow corn and wheat in any two sections that share a border, and the farmer does not want to grow soybeans and potatoes in any two sections that share a border. Given these restrictions, in how many ways can the farmer choose crops to plant in each of the four sections of the field?
+\item (AMC 12 2021) \points{3} Azar and Carl play a game of tic-tac-toe. Suppose the players make their moves at random, rather than trying to follow a rational strategy, and that Carl wins the game when he places his third O. How many ways can the board look after the game is over?
+\begin{hint}
+    \addhint{Make the winning combinations and then try to arrange the 3 X's in any non winning way.}
+\end{hint}
+\item (AMC 10 2004) \points{2} Coin A is flipped three times and coin B is flipped four times. What is the probability that the number of heads obtained from flipping the two fair coins is the same?
+\item (AMC 10 2014) \points{3} Three fair six-sided dice are rolled. What is the probability that the values shown on two of the dice sum to the value shown on the remaining die?
+\item(AMC 10 2015) \points{2} How many rearrangements of $abcd$ are there in which no two adjacent letters are also adjacent letters in the alphabet? For example, no such rearrangements could include either $ab$ or $ba$.
+\begin{hint}
+    \addhint{With such a strict condition and only $4!$ maximum cases, writing by hand seems quite promising.}
+\end{hint}
+\item \points{3} How many three-digit numbers are composed of three distinct digits such the tens digit is the average of the other two?
+\begin{hint}
+    \addhint{Write by hand, the condition is quite stringent}
+    \addhint{We can notice that if $abc$ is such a number then $cba$ is also such number}
+\end{hint}
+\item (AMC 10 2020) \points{9} There are 10 people standing equally spaced around a circle. Each person knows exactly 3 of the other 9 people: the 2 people standing next to her or him, as well as the person directly across the circle. How many ways are there for the 10 people to split up into 5 pairs so that the members of each pair know each other?
+\begin{hint}
+    \addhint{Experiment with smaller cases. Maybe you'll notice something}
+    \addhint{Try casework about the number of diameters used}
+\end{hint}
+\item (AMC 10 2020) \points{9} Jason rolls three fair standard six-sided dice. Then he looks at the rolls and chooses a subset of the dice (possibly empty, possibly all three dice) to reroll. After rerolling, he wins if and only if the sum of the numbers face up on the three dice is exactly 7. Jason always plays to optimize his chances of winning. What is the probability that he chooses to reroll exactly two of the dice?
+\begin{hint}
+    \addhint{Think about the cases when he'll roll $0,1,2$ or $3$ dice}
+\end{hint}
+\item(AMC 12 2021) \points{9} Each of the 12 edges of a cube is labeled 0 or 1. Two labeling are considered different even if one can be obtained from the other by a sequence of one or more rotations and/or reflections. For how many such labeling is the sum of the labels on the edges of each of the 6 faces of the cube equal to 2?
+\begin{hint}
+    \addhint{Try using casework on the fact that the opposite edges have same number or not.}
+\end{hint}
+\item(AMC 10 2018) \points{2} How many subsets of ${2, 3, 4, 5, 6, 7, 8, 9}$ contain at least one prime number?
+\item \points{3} Let $(a, b, c, d)$ be an ordered quadruple of not necessarily distinct integers, each one of them in the set $0, 1, 2, 3$ For how many such quadruples is it true that $a*d -b*c$ is odd?
+\item (AMC 10) \points{3} In how many ways can the sequence $1, 2, 3, 4, 5$ be rearranged so that no three consecutive terms are increasing and no three consecutive terms are decreasing?
+\item \points{9} Each unit square of a 3-by-3 unit-square grid is to be colored either blue or red. For each square, either color is equally likely to be used. The probability of obtaining a grid that does not have a 2-by-2 red square is $m/n$ , where m and n are relatively prime positive. Find $m+n$
+\begin{hint}
+    \addhint{Complimentary counting seems quite fine}
+    \addhint{You'll also need to do some casework on the number of red squares}
+\end{hint}
+\item      (2015 ARML) \points{9} Six people of different heights are getting in line to buy donuts. Compute the number of ways they can arrange themselves in line such that no three consecutive people are in increasing order of height, from front to back.[The rare specimen I promised!]
+\begin{hint}
+\addhint{Use Complementary counting and the PIE}
+\end{hint}
+\end{enumerate}
+\end{xcb}

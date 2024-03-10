@@ -1,0 +1,289 @@
+\chapter{Permutations and Combinations and a pinch of Probability}
+I'll begin this book with what we first learnt math as, counting.\\
+\begin{example}
+Cricket t-shirts have 2-digit numbers on them using six possible digits: $0, 1, 2, 3, 4, 5$ How many different t-shirts can be formed ?
+\end{example}
+While we can write down all the possible t-shirt numbers and count them, we can do something faster and more beautiful. The first digit can be any of the $6$ given digits, and so can the second. As they are completely independent, we can simply multiply them right?\\
+So we have $6 \times 6=36$ such T-Shirts.\\
+\begin{example}
+How many $4$ digit numbers can be formed using the digits $1, 2, 3$ and $4$ (Without repetition).
+\end{example}
+This question is similar as while we can simply try to write all the numbers and then just count, but it is smarter to do something else.\\
+This means we have $4$ choices for the thousands digit. As one number is now used, we only have $3$ choices for the hundreds digit. As two numbers are now used, we have only $2$ choices for the tens digit. With all other numbers used, the last digit will be used as the one's digit, leaving us with only $1$ choice. As all these choices are independent, we say that we can make $4 \times 3 \times 2 \times 1 = 24$\\
+Let's explore this new type of counting a bit more.\\
+\section{Fundamental Principle of Counting}
+\begin{example}
+A person can travel from city $A$ to city $B$ via Road (Car/Bus/Bike), Train (Express/Mail) or Flight (Economy/Business).
+In how many ways can a person go from city A to city B?
+\end{example}
+Pretty standard, right? We can simply count the ways as $\text{Number of Road ways}+\text{Number of trains}+\text{Number of Flights}=3+2+2=7$. Note that we decided to add here.\\
+\begin{example}
+    A person can travel from city A to city B via Road (Car/Bus/Bike), Train (Express/Mail) or Flight (Economy/Business). He can further travel form city B to city C via Road (Car/Bus/Bike) and Train (Shatabdi/Express/Mail). In how many ways can a person go from city A to city C via city B?
+\end{example}
+Number of Ways to travel from City A to City B are $7$. The ways to travel from City B to City C are $6$ by similar logic.\\
+But as which way we choose after reaching City B doesn't depends on which way we used to actually get there, we can multiply them to get the total ways as $6 \times 7=42$.\\
+The main idea I want you to take here is when do we add and when do we multiply. Here is an exercise for you to check if you got the concept\\
+\begin{example}
+The Hermetian alphabet consists of only three letters: A, B, and C. A word in this language is an arbitrary sequence of no more than four letters. How many words does the Hermetian language contain?
+\end{example}
+\section{Equivalence}
+The definition of what it means to be equal is at heart of counting. For example, lets say I ask a 7 year old how many apples do I have if my mother gave me 2 apples and my father gave me 3 apples and I already had 2 apples to begin with.\\
+We expect the child to count on their fingers and report the answer as 7 apples. But here is my point, I asked the child to count apples, why did the child count their fingers?\\
+The answer is simple, because apples and fingers are equivalent. But that makes no sense.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.45\linewidth}|p{0.45\linewidth}|}
+        \hline
+        \textbf{Apples} & \textbf{Fingers} \\
+        \hline
+        Apples are a product of the \textit{Malus domestica} genus, characterized by a spherical or slightly oblate shape. The smooth, hydrophobic epidermis is rich in cutin and epicuticular waxes, forming a protective shield for the succulent parenchyma. The parenchyma contains water-soluble polysaccharides like pectin, providing a balance of tartness from malic acid and sweetness from saccharose and fructose. & The finger is a manual digit with bilateral symmetry and flexible articulation. It comprises metacarpal and phalangeal elements, with a keratinocyte-rich epidermis forming a protective barrier. Precision grip is facilitated by a complex musculature network, and distal phalanges house the nail apparatus. Vascularization sustains metabolic demands, and mechanoreceptors enable tactile perception crucial for haptic interaction. \\
+        \hline
+    \end{tabular}
+\end{table}
+or as a less rigorous individual would put it, apple and fingers are different, bruh!\\
+So how did we draw an equivalence?\\
+We said that, mathematically, the additive property of both of them is the same. This means, with respect to this property, sheep and apple and pear are all equal because their addition follows the same set of rules. Although, we don't compare apple to pizza as while we can cleanly give someone $\frac{3}{8}$ of a pizza, doing so with the apple is much harder. So if two problems are mathematically equivalent, we can take advantage and do the calculations on the easier to solve the easier problem. Here is an example:\\
+\begin{example}
+There are $10$ lamps in a hall. Each one of them can be switched on independently.The number of ways in which the hall can be illuminated is:    
+\end{example}
+\begin{example}
+    Ramin language is a very unique language which has 10 symbols and words are a set of more than one symbol. One word has no repetitions of a symbol and the order of symbols doesn't matter. How many words are in Ramin?
+\end{example}
+These both questions ask us the number of way we can choose some subset of $10$ objects with the size(also called cardinality) of the subset is not $0$. However, the first question is much easier to understand as the lamp question as its obvious there that each lamp is either on or off, so we have $2^{10}$ configurations. As the hall is illuminated, all lamps are off condition is to be removed, so our answer to both the questions is $2^{10}-1$.\\
+We'll explore this idea further in this chapter as well as in a lot more detail as double counting(in chapter 5) and bijections(in chapter 7). Let's now formalize what we learnt till here.
+\section{The special sign!}
+Normally when you see a ! sign in a book, it refers to the author trying to be funny. But if it comes after a number it means as follows:\\
+\begin{definition}
+    [Factorial]
+    $n!=$ Number of way to arrange $n$ distinct objects in a straight line.
+\end{definition}
+This means that by the definition of factorial the example about number of $4$ digit numbers which can be made with $1,2,3,4$ without repetition can be answered simply as $4!=24$.\\
+\begin{theorem}
+    $n!=n\times (n-1)\times \dots 3\times 2 \times 1 \implies n!=n \times (n-1)!$
+\end{theorem}
+\begin{theorem}
+    [Vacuous Truth]
+    $0!=1$
+\end{theorem}
+What is vacuous truth? A truth which is true as it being false would make life difficult. This is not the actual definition of the word, but I am avoiding the glaring landmine called mathematical philosophy. The reason for including this is you'll find a lot of bad proofs of the same which challenge the definition of factorial. Any proof of this is ill motivated and wrong despite what it may seem.\\
+The most common one is $1!=1=1*0! \implies 0!=1$ which is false as $0!=0*(-1)!=0$ is contradictory. This is defined much better by the real analysis definition of this, aka the famous $\Gamma$(Gamma) function. We'll come to it in the real analysis section of this book.\\
+Let's now come back to the topic at hand.
+\begin{example}
+For a three digit number $\overline{ABC} = A!+B!+C!$. Find $A+B+c$.
+\end{example}
+\begin{proof}
+    [Solution]
+    I had asked this question to Aparna ma'am when I was in 8th grade. After trying to solve it algebraically, I gave up. Ma'am solved it very quickly by trial and error. It felt like cheating for a long time, till I realized that a lot of math, especially at research level, is reducing the noise and then doing trial and error. I like to call it 'The art of TnE'.\\
+    For this question, we need to remember the values of first $7-8$ factorials. That will happen with practice and repetition.
+    \begin{table}
+        \centering
+        \begin{tabular}{cc}
+            0!= & 1\\
+            1!=& 1 \\
+            2!=& 2\\
+             3!=& 6\\
+             4! & 24\\
+             5! & 120\\
+             6! & 720\\
+             7! & 5040\\
+             8!= & 40320\\
+             9!= & 362880\\
+    \end{tabular}
+    \end{table}
+    We need to note that our number can obviously not have any number greater than $6$ as it is a three digit number. Better yet, we can remove $6$ from the pool as adding anything to $720$ will automatically give us a $7,8,9$ in the number which is not possible.\\
+    This forces us to have a $5$ in the number as if we don't have a $5!=120$, we can't have a three digit number. This is true as $4!+4!+4!=72$ which is not a three digit number.\\
+    Here, we will try to determine the number of $5$'s in $\overline{ABC}$. If all three are $5$, we have $555=360$ which is false.\\
+    If we have 2 $5$'s, the number will also have a $2$ as $5!+5!=240$. This implies $5!+5!+2!=242=255$ which is false.\\
+    This means we have only one $5$. This also means we have a $1$ in $\overline{ABC}$. Next, we can do trial error on $0,4$.\\
+    \begin{align*}
+        1!+5!+0! & = 122 & \false\\
+        1!+5!+1! & = 122 & \false\\
+        1!+5!+2! & = 123 & \false\\
+        1!+5!+3! & = 127 & \false\\
+        1!+5!+4! & = 145 & \true\\
+    \end{align*}
+    Thus, the $\overline{ABC}=145$. Thus, $A+B+C=1+4+5=10$.
+\end{proof}
+\section{Criminal Lineups}
+If we have $5$ suspects lined up, we can arrange them in $5!=120$ ways. But if $2$ of them are wearing squid game masks them? Now they are identical and hence interchangeable. The ways to arrange them now will be halved as they both being switched doesn't create a new permutation.\\
+Now what if the reaming three of them wear Joker masks. We'll have to divide the permutations by $3!=6$ as all of them are identical. This can obviously be generalized to:
+\begin{theorem}
+When arranging a total of $a$ objects, where there are groups of identical objects denoted by $k, l, m, n$, etc., the number of distinct arrangements is given by dividing the factorial of the total number of objects ($a!$) by the product of the factorials of the counts of each group of identical objects ($k!, l!, m!, n!$, etc.).
+\end{theorem}
+Let's try to understand this more clearly through an example.
+\begin{example}
+    How many ways can the letters of the word '$AGARWAL$' be arranged?
+\end{example}
+\begin{proof}
+    [Solution]
+    My surname has $3$ A's and $4$ distinct letters. Let's consider the A's distinct as $A_1,A_2,A_3$. Then we have, $7!$ arrangements. However, the A' s are not distinct. Thus, the arrangement of A's doesn't matter. We have $3!$ arrangement of A's. Thus, we can divide it from the total to get the actual number of total arrangements.\\
+    Thus, the answer is $\frac{7!}{3!}$
+\end{proof}
+The above question comes regularly in collage entrance exams. A better question type which also can be found on collage entrances is:
+\begin{example}
+    Using all the letters $M, O, P, R,$ and $X$, we can form five-letter ”words”. If these ”words” are arranged in alphabetical order, then what position does the ”word” $PRMOX$ occupy?
+\end{example}
+\begin{proof}
+    [Solution]
+    We can first look at all words starting with letter $M$ which is alphabetically the first.\\
+    There are $4!$ such words. Similarly for $O$ brigs the total to $48$\\
+    In words staring with $P$ we first look at words which start with $PM$ which we have $3!$ of. Then $PO$.\\
+    This brings the total count to $48+12=60$\\
+    $PRMOx$ is the $61$st word as after $PR$ the rest of the letters are in alphabetically order and hence, it is the very next word.\\
+\end{proof}
+We can, without much avail, try to make these questions harder by having repeat letters. As you'll find, the question is still trivial.\\
+\begin{example}
+    If letters of the word 'JUGNU' are arrranged to form all possible words, what is the rank of 'JUGNU' in the list alphabetically?
+\end{example}
+\section{Circles}
+\begin{example}
+A stadium is to have the flags of $12$ different teams arranged around the ground in a circle. In how many ways can it be done?  
+\end{example}
+\begin{proof}
+    [Solution]
+    We need to notice that the arrangements need to be unique upto rotation but not to flipping. This means that if two arrangements are such that we can rotate them to obtain the other, they are the same. Flipping means that if we move the flags about the diagonal. Obviously, once the flags are put, we can rotate them by changing our viewpoint, but we can realistically not flip them.\\
+    Let's now move to the solving. If rotation was not possible, we would have $12!$ arrangements. But as rotation is possible, in all the 12 arrangements, only $1$ will be unique.\\
+    This means we have $\frac{12!}{12}=11!$ arrangements.
+\end{proof}
+What would happen if we could flip the stadium as well? For the sake of imagination, let's say you have $12$ gemstones. You want to string them into a necklace. What is the number of ways to do so?\\
+We obviously would have only $11!$ ways if flipping was not possible. But as it is possible, the two flipped permutations are now considered the same.\\
+This means we have $\frac{11!}{2}$ ways to make the necklace.\\
+Let's generalize the two problems we just solved:
+\begin{theorem}
+The number of ways of arranging $n$ objects in a circle where rotations of the same arrangement are not considered distinct is $(n - 1)!$ \\
+\end{theorem}
+\begin{theorem}
+The number of ways of arranging $n$ objects in a circle where rotations of the same arrangement are not considered distinct and reflections of the same arrangement are not considered distinct is $\frac{(n-1)!}{2}$
+\end{theorem}
+Circular counting happens to be much more complicated than normal once we start having repeated elements. We will solve such questions using casework in the next chapter and then generalize a formula using group actions later.\\
+\section{Team selection}
+Your school is having an inter-class cricket tournament. From every class of $30$ we need to choose $11$ players. How many ways can we do it?\\
+For the first players we have $30$ choices, then $29$ and so on. But that's not all. The order in which players are chosen doesn't matter as they are a team in the end. So we need to divide it in the end by $11!$. So the number of possible teams will be $\frac{30*29*28 \dots 22*21 *20}{11!}=54,627,300$. Generalizing:\\
+\begin{theorem}
+    Number of ways of choosing $k$ objects from $n$, where order doesn't matter is $\binom{n}{k}=\frac{n!}{k!*(n-k)!}$
+\end{theorem}
+You might remember that we have already reached this theorem in the examples we solved right at the start. We are just happening to formalize this here.\\
+Also notice that $\binom{n}{k}=\binom{n}{k-n}$ as ways of choosing k things to be selected is the same as choosing $n-k$ things to not be selected.\\
+We will also add, subtract and do a bunch of things with it later.\\
+\section{Subsets}
+A set is a collection of things. A subset is a smaller collection of things all of which are part of the set it is subset of.\\
+\begin{example}
+    If a set has $n$ distinct elements in it, How many subsets of that set exist?
+\end{example}
+\begin{proof}
+    [Solution]
+    Every element is either in the subset or not in it. Hence we have two possibilities for every element. Hence we can say $2^n$ subsets exist.
+\end{proof}
+\begin{theorem}
+[Subset Theorem]
+    The number of subsets of a set of size n is $2^n$.
+\end{theorem}
+Another theorem which we happened to derive in the introduction itself.\\
+But here is a much cooler property we can prove using this:\\
+\begin{example}
+    Prove that:\\
+    \[
+    \binom{n}{0}+\binom{n}{1}+\dots+\binom{n}{n}=2^n
+    \]
+\end{example}
+It will be much more instructive if you find the proof yourself. As a hint, this is equivalent to the subset theorem.\\
+Finally, note that we have considered the empty set(the one with zero elements) and the full set(the set with all the elements) to be a subset of the set. Please check if the question is considering the same. If not subtract them from $2^n$. A lot of times the empty or full set are not included but the same is not explicitly mentioned, always keep in mind:\textbf{Reading the question explains the question.}\\
+
+Also note that no formula exists for sets with some repeating elements. We'll solve such questions using beggars theorem(aka Stars and Bars), you'll learn more about it later.
+\begin{example}
+    (AMC 10 2008) Two subsets of the set $S = {a, b, c, d, e}$ are to be chosen so that their union is S and their intersection contains exactly two elements. In how many ways can this be done, assuming that the order in which the subsets are chosen does not matter?
+\end{example}
+\begin{proof}
+    [Solution]
+    Let the subsets be $A$ and $B$, hence $A \cup B = S$.\\
+    We are basically looking to divide $S$ into three sets. The elements which only lie in $A$, the elements which only lie in $B$ and the elements which lie in $A \cap B$\\
+    As $2$ elements lie in $A \cap B$, we have $\binom{5}{2}$ ways to determine them.\\
+    The other three elements need to divided to $A$ and $B$, therefore by using the subset theorem we have $2^3$ ways to do so.\\
+    Thus, the total ways to do so are $2^3 \cdot \binom{5}{2}=80$. But, wait, we are not done yet. We need to divide by $2$ as we have over counted the case where $A$ and $B$ have just interchanged. So the answer is $\frac{80}{2}=\boxed{40}$
+\end{proof}
+\section{Probability}
+Probability is basically the chance of something occurring. While probability and its theories are their own branch, which we will explore later in more detail, with a more focused perspective, The only thing we need to know(which you probably already do) is
+\begin{theorem}
+    $\text{Probablity} = \frac{\text{Number of desired outcomes}}{\text{Total number of outcomes}}$
+\end{theorem}
+Let's try to understand that with an example:
+\begin{example}
+    (AIME 2000) A deck of forty cards consists of four $1$’s, four $2$’s,..., and four $10$’s. A matching pair (two cards with the same number) is removed from the deck. Given that these cards are not returned to the deck, let $\frac{m}{n}$ be the probability that two randomly selected cards also form a pair, where $m$ and $n$ are relatively prime positive integers. Find $m + n$
+\end{example}
+\begin{proof}
+    [Solution]
+    Without loss of generality, Let the removed pair be of $1$.\\
+    The first card can either be $1$ or not be $1$ (obviously). Based on this the probability second card forming a pair is either $\frac{1}{37}$ or $\frac{3}{37}$.\\
+    The probability of first card being $1$ is $\frac{2}{38}$ and that of it not being $1$ is obviously $\frac{36}{38}$\\
+    Hence, the probability of getting a pair is $\frac{2}{38}\cdot\frac{1}{37}+\frac{36}{38}*\frac{3}{37}=\frac{2+108}{38*37}=\frac{55}{19*37}=\frac{55}{703}$\\
+    Thus, $m+n=55+703=758$
+\end{proof}
+And we shall end this chapter here. This chapter dealt with the common definitions and techniques in counting. We also explored equivalence. We worked on when to multiply and divide in great detail as well as bookmarked things we shall explore more later. Now let's solve some problems.
+\section{Exercise}
+Solve at least questions worth \points{52}. This exercise has a total of \points{68}.
+\begin{xcb}{Exercises}
+\begin{enumerate}
+\item(AMC 10 2019) \points{2} A child builds towers using identically shaped cubes of different colors. How many different towers with a height of $8$ cubes can the child build with $2$ red cubes, $3$ blue cubes, and $4$ green cubes? (One cube will be left out.)?
+\begin{hint}
+    \addhint {Just build a $9$ cube tower and ignore the last block.}
+\end{hint}
+\item (AMC 10 2006) \points{2} A license plate in a certain state consists of 4 digits, not necessarily distinct, and 2 letters, also not necessarily distinct. These six characters may appear in any order, except that the two letters must appear next to each other. How many distinct license plates are possible?
+\begin{hint}
+    \addhint {First choose the numbers and letters and then simply permute them.}
+\end{hint}
+\item (AMC 10 2017) \points{2} At a gathering of 30 people, there are 20 people who all know each other and 10 people who know no one. People who know each other hug, and people who do not know each other shake hands. How many handshakes occur within the group?
+\item (AMC 10 2004) \points{2} Henry’s Hamburger Haven serves its hamburgers with the following condiments: ketchup, mustard, mayonnaise, tomato, lettuce, pickles, cheese, and onions. A customer can choose one, two, or three meat patties and any collection of condiments. How many different kinds of hamburgers can be ordered?
+\item (AMC 12 2022) \points{5} What is the number of ways the numbers from 1 to 14 can be split into 7 pairs such that for each pair, the greater number is at least 2 times the smaller number?
+\begin{hint}
+    \addhint {The integers from $8$ through $14$ must be in different pairs, and $7$ must pair with $14.$. Why is this true? And why does this solve this question?}
+\end{hint}
+\item(AMC 12 2003) \points{5} How many 15-letter arrangements of 5 A’s, 5 B’s, and 5 C’s have no A’s in the first 5 letters, no B’s in the next 5 letters, and no C’s in the last 5 letters?
+\begin{hint}
+    \addhint {If we have $x$ B's in the first $5$ letters and $5-x$ C's, what will happen? Does this solve the question?}
+\end{hint}
+\item(AMC 10 2021) \points{2} A deck of cards has only red cards and black cards. The probability of a randomly chosen card being red is $1/3$ . When 4 black cards are added to the deck, the probability of choosing red becomes $1/4$ . How many cards were in the deck originally?
+\item(AMC 10 2006) \points{2} Bob and Alice each have a bag that contains one ball of each of the colors blue, green, orange, red, and violet. Alice randomly selects one ball from her bag and puts it into Bob’s bag. Bob then randomly selects one ball from his bag and puts it into Alice’s bag. What is the probability that after this process the contents of the two bags are the same?
+\item(AMC 10 2020) \points{5} Ms. Carr asks her students to read any 5 of the 10 books on a reading list. Harold randomly selects 5 books from this list, and Betty does the same. What is the probability that there are exactly 2 books that they both select?
+\begin{hint}
+    \addhint {Think about why we really don't care which books Harold selects.}
+\end{hint}
+\item (AMC 12 2021) \points{9} Two fair dice, each with at least 6 faces are rolled. On each face of each dice is printed a distinct integer from 1 to the number of faces on that die, inclusive. The probability of rolling a sum of 7 is $3/4$ of the probability of rolling a sum of 10, and the probability of rolling a sum of 12 is $1/12$ . What is the least possible number of faces on the two dice combined?
+\begin{hint}
+    \addhint {In how many ways can we add up to $7$? What does that tell us about ways to add up to $10$? What does that tell us about one of the dice faces?}
+    \addhint {Let $n$ be the ways to get $12$ and then try solving the equation.}
+\end{hint}
+\item (AMC 10 2009) \points{3} Two cubical dice each have removable numbers 1 through 6. The twelve numbers on the two dice are removed, put into a bag, then drawn one at a time and randomly reattached to the faces of the cubes, one number to each face. The dice are then rolled and the numbers on the two top faces are added. What is the probability that the sum is 7?
+\begin{hint}
+    \addhint {Is rolling in anyway different from just pulling two numbers from the bag?}
+\end{hint}
+\item (AMC 12 2019) \points{3} The numbers $1,2 \dots ,9$ are randomly placed into the 9 squares of a 3 by 3 grid. Each square gets one number, and each of the numbers is used once. What is the probability that the sum of the numbers in each row and each column is odd?\\
+\begin{hint}
+    \addhint {In what ways can we get an odd sum? Can you arrange $E$ and $O$ in such a way that this is true? How many rearangments does your arrangement have?}
+\end{hint}
+\item (AMC 12 2003) \points{2} Let $S$ be the set of permutations of the sequence $1, 2, 3, 4, 5$ for which the first term is not $1$. A permutation is chosen randomly from $S$. The probability that the second term is $2$, in lowest terms, is $a/b$. What is $a + b$?
+\item (AMC 10 2018) \points{2} A box contains $5$ chips, numbered $1, 2, 3, 4,$ and $5$. Chips are drawn randomly one at a time without replacement until the sum of the values drawn exceeds $4$. What is the probability that $3$ draws are required?
+\begin{hint}
+    \addhint {Just write all the possible draws till we exceed $4$ and you'll be done in no time.}
+\end{hint}
+\item (AMC 10 2021) \points{3} Each of the $20$ balls is tossed independently and at random into one of the $5$ bins. Let $p$ be the probability that some bin ends up with $3$ balls, another with $5$ balls, and the other three with $4$ balls each. Let $q$ be the probability that every bin ends up with 4 balls. What is $p/q$ ?
+\begin{hint}
+    \addhint {Assume that the balls and bins are both distinguishable and then this is just question 2, but a bit more involved.}
+\end{hint}
+\item (ISRO Interview) \points{3} A bag contains $2007$ red balls and $2007$ black balls. We remove two balls
+at a time repeatedly and\\
+(i) discard them if they are of the same color,\\
+(ii) discard the black ball and return to the bag the red ball if they are of different
+colors.\\
+What is the probability that this process will terminate with one red ball in the bag?
+\begin{hint}
+    \addhint {We can draw BB, BR, RB or RR. What happens in each case?}
+\end{hint}
+\item \points{5} Two evenly matched teams play in the world series, a best of seven competition in which the competition stops as soon as one team has won four games. Is the world series more likely to end in six or seven games?
+\item You toss $n$ coins, and you win if you turn up an even number of heads. Otherwise, Bob Hough takes your lunch money.\\
+(a) \points{5} Show that your odds of winning are $50\%$ if all the coins are fair coins.\\
+(b) \points{3} Better yet, show that your odds of winning are $50\%$ if at least one of the coins is
+fair.\\
+\item(AMC 10 2018) \points{3} Three young brother-sister pairs from different families need to take a trip in a van. These six children will occupy the second and third rows in the van, each of which has three seats. To avoid disruptions, siblings may not sit right next to each other in the same row, and no child may sit directly in front of his or her sibling. How many seating arrangements are possible for this trip?
+\item Slips of paper with the numbers from 1 to 99 are placed in a hat. Five numbers are randomly drawn out of the hat one at a time (without replacement). What is the probability that the numbers are chosen in increasing order?
+\end{enumerate}
+\end{xcb}
