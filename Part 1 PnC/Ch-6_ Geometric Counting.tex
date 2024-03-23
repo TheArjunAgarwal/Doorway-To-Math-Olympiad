@@ -1,7 +1,8 @@
 \chapter{Geometrical Combinatorics}
-I will not write an introduction here as my thoughts differ on both the sections.\\
-While geometrical counting is a sticker to make simple questions feel difficult, geometrical probability is a very powerful technique which is used in research as well.\\
-However, I have decided to cover them in the same chapter as they both start with the prefix 'geometric'.\\
+I will not write an introduction here as my thoughts differ on both the sections.\par
+While geometrical counting is a sticker to make simple questions feel difficult, geometrical probability 
+is a very powerful technique which is used in research as well.\par
+However, I have decided to cover them in the same chapter as they both start with the prefix 'geometric'.
 \section{Geometric Counting}
 \begin{example}
     [Motivating Example]
@@ -9,54 +10,77 @@ However, I have decided to cover them in the same chapter as they both start wit
 \end{example}
 \begin{proof}
     [Solution]
-    This can simply be solved by saying that a rectangle is formed when we choose two vertical and two horizontal lines.\\
-    In an $m*n$ grid, we have $m+1$ verticals and $n+1$ horizontals. \\
+    This can simply be solved by saying that a rectangle is formed when we choose two vertical and 
+    two horizontal lines.\par
+    In an $m*n$ grid, we have $m+1$ verticals and $n+1$ horizontals. \par
     Hence, we can say the number of rectangles is: $\binom{m+1}{2}*\binom{n+1}{2}$
 \end{proof}
-This is all geometric counting is. We have a geometric figure and have to count something about it. It is the cheapest trick in the question writers tool box, if a question seems too simple, stick it on the top of a geometric figure and suddenly half the test takers will not attempt it.\\
-We don't want to be those people.\\
+This is all geometric counting is. We have a geometric 
+figure and have to count something about it. It is the 
+cheapest trick in the question writers tool box, if a question 
+seems too simple, stick it on the top of a geometric figure and 
+suddenly half the test takers will not attempt it.\par
+We don't want to be those people.
 \section{Geometric Probability}
-Geometric probability is a way to calculate probability by measuring the number of outcomes geometrically, in terms of length, area, or volume. Why would we do that? Because sometimes, it is easier to solve for the area than the actual probability. We have a chocolate in India called 'Melody' which has a distinct chocolaty and addictive taste. Its tagline was: "Khud khao, khud jaan jao(Try it yourself to find it for yourself)" The same applies to geometric probability. Let's try it out: \\
+Geometric probability is a way to calculate probability by measuring 
+the number of outcomes geometrically, in terms of length, area, or volume. 
+Why would we do that? Because sometimes, it is easier to solve for the area than 
+the actual probability. We have a chocolate in India called 'Melody' which 
+has a distinct chocolaty and addictive taste. Its tagline was: 
+"Khud khao, khud jaan jao(Try it yourself to find it for yourself)" The same 
+applies to geometric probability. Let's try it out:
 \begin{example}
     [Motivating Example]
-    (AMC 10 2017)Chloe chooses a real number uniformly at random from the interval $[0, 2017]$. Independently, Laurent chooses a real number uniformly at random from the interval $[0, 4034]$. What is the probability that Laurent’s number is greater than Chloe’s number? (Assume they cannot be equal)
+    (AMC 10 2017)Chloe chooses a real number uniformly at random from the 
+    interval $[0, 2017]$. Independently, Laurent chooses a real number uniformly 
+    at random from the interval $[0, 4034]$. What is the probability that Laurent’s 
+    number is greater than Chloe’s number? (Assume they cannot be equal)
 \end{example}
 \begin{proof}
     [Solution]
-    I have not provided a figure to motivate you to draw it.\\
-    Let's call Chloe's number as $x$ and Laurent's number as $y$, all their choices can be represented as a rectangle which is $2017$ units on the x axis and $4034$ units on the y axis. \\
-    We are looking for cases where Laurent's number is greater than Chloe's, or $y>x$\\
-    This is a line from $(0,0)$ to $(2017,2017)$. We can now find the area of the rectangle above this line divided by the total area of the rectangle which will lead to the answer:\\
-    $\frac{(2017+4034)*2017/2}{2017*4034}$\\
-    $=\frac{2017*1.5}{2017*2}$\\
+    I have not provided a figure to motivate you to draw it.\par
+    Let's call Chloe's number as $x$ and Laurent's number as $y$, all their choices can be 
+    represented as a rectangle which is $2017$ units on the x axis and $4034$ units on the y axis. \par
+    We are looking for cases where Laurent's number is greater than Chloe's, or $y>x$\par
+    This is a line from $(0,0)$ to $(2017,2017)$. We can now find the area of the 
+    rectangle above this line divided by the total area of the rectangle which will lead to the answer:\par
+    $\frac{(2017+4034)*2017/2}{2017*4034}$\par
+    $=\frac{2017*1.5}{2017*2}$\par
     $=\frac{3}{4}$
 \end{proof}
-Geometric probability can be useful when the number of possible outcomes is infinite and we can easily make a diagram to represent the outcomes.\\
-Anther common type of question is:\\
+Geometric probability can be useful when the number of possible outcomes is infinite and we can 
+easily make a diagram to represent the outcomes.\par
+Anther common type of question is:\par
 \begin{example}
-    A coin of radius $r$ is thrown randomly on a floor tiled with squares of side $l$. Two players bet that the coin will land on exactly one or more than one square respectively. What relation should $l$ and $r$ satisfy for the game to be fair? 
+    A coin of radius $r$ is thrown randomly on a floor tiled with squares of side $l$. Two 
+    players bet that the coin will land on exactly one or more than one square respectively. 
+    What relation should $l$ and $r$ satisfy for the game to be fair? 
 \end{example}
 \begin{proof}
     [Solution]
-    The coin lies inside the square if the center of the coin is at least $r$ distance away from the boundary of the square.\\
+    The coin lies inside the square if the center of the coin is at least $r$ distance away 
+    from the boundary of the square.\par
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.5\linewidth]{Photos/Cointoss onto square.png}        
     \end{figure}
-    Thus, thus the bet turns to choosing a random point inside a square. If it is at a distance $d\geq r$ then player one wins or else player two wins.\\
-    This means for the game to be fair:\\
-    $\frac{(l-2r)^2}{l^2}=\frac{1}{2}$\\
-    $\iff 2(l-2r)^2=l^2$\\
-    $\iff 2l^2-8lr+8r^2=l^2$\\
-    $ \iff l^2-8lr+8r^2=0$\\
-    This is a quadratic. If you don't know how to solve it, let this question go(or just read the quadratic part from algebra)\\
-    $\therefore l=\frac{8r\pm\sqrt{64r^2-32r^2}}{2}$\\
-    $\iff l=\frac{8r\pm4r\sqrt{2}}{2}$\\
-    $\iff l=4r\pm2r\sqrt{2}$\\
+    Thus, thus the bet turns to choosing a random point inside a square. If it is at a 
+    distance $d\geq r$ then player one wins or else player two wins.\par
+    This means for the game to be fair:\par
+    $\frac{(l-2r)^2}{l^2}=\frac{1}{2}$\par
+    $\iff 2(l-2r)^2=l^2$\par
+    $\iff 2l^2-8lr+8r^2=l^2$\par
+    $ \iff l^2-8lr+8r^2=0$\par
+    $\therefore l=\frac{8r\pm\sqrt{64r^2-32r^2}}{2}$\par
+    $\iff l=\frac{8r\pm4r\sqrt{2}}{2}$\par
+    $\iff l=4r\pm2r\sqrt{2}$\par
     We reject the minus case as then $l$ will be less than $r$ which is not possible.
-    $\therefore l=4r+2r\sqrt{2}$\\
+    $\therefore l=4r+2r\sqrt{2}$
 \end{proof}
-In conclusion, Geometric probability is the exact converse of geometric counting.There we used to covert a geometrical problem into a counting problem, here we convert a counting problem to a geometry problem. Also it was useless and unnecessary, while this is useful and beautiful.\\
+In conclusion, Geometric probability is the exact converse of geometric counting.
+There we used to covert a geometrical problem into a counting problem, 
+here we convert a counting problem to a geometry problem. Also it was useless and unnecessary, 
+while this is useful and beautiful.\par
 Solve at least questions worth \points{45}. This exercise has a total of \points{60}.
 \begin{xcb}{Exercises}
 \begin{enumerate}
