@@ -1,0 +1,241 @@
+\contentsline {chapter}{\tocchapter {Chapter}{}{Preface}}{xi}{chapter*.1}%
+\contentsline {section}{\tocsection {}{0.1}{Why does this book exist?}}{xi}{section.0.1}%
+\contentsline {section}{\tocsection {}{0.2}{Secret Sauce}}{xi}{section.0.2}%
+\contentsline {section}{\tocsection {}{0.3}{A small history}}{xiii}{section.0.3}%
+\contentsline {chapter}{\tocchapter {Chapter}{}{How to use this book}}{xv}{chapter*.2}%
+\contentsline {section}{\tocsection {}{0.4}{Prerequisites}}{xv}{section.0.4}%
+\contentsline {section}{\tocsection {}{0.5}{Structure of the book}}{xv}{section.0.5}%
+\contentsline {section}{\tocsection {}{0.6}{Approach}}{xvi}{section.0.6}%
+\contentsline {section}{\tocsection {}{0.7}{Bluntly speaking...}}{xvi}{section.0.7}%
+\contentsline {part}{\tocpart {Part}{1}{Sales Pitch}}{1}{part.1}%
+\contentsline {chapter}{\tocchapter {Chapter}{1}{Introductory Problems}}{3}{chapter.1}%
+\contentsline {section}{\tocsection {}{1.1}{Introduction}}{3}{section.1.1}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{3}{section*.3}%
+\contentsline {part}{\tocpart {Part}{2}{Combinatorics}}{7}{part.2}%
+\contentsline {chapter}{\tocchapter {Chapter}{2}{Permutations and Combinations and a pinch of Probability}}{9}{chapter.2}%
+\contentsline {section}{\tocsection {}{2.1}{Fundamental Principle of Counting}}{10}{section.2.1}%
+\contentsline {section}{\tocsection {}{2.2}{Equivalence}}{10}{section.2.2}%
+\contentsline {section}{\tocsection {}{2.3}{The special sign!}}{12}{section.2.3}%
+\contentsline {section}{\tocsection {}{2.4}{Criminal Lineups}}{13}{section.2.4}%
+\contentsline {section}{\tocsection {}{2.5}{Circles}}{14}{section.2.5}%
+\contentsline {section}{\tocsection {}{2.6}{Team selection}}{15}{section.2.6}%
+\contentsline {section}{\tocsection {}{2.7}{Subsets}}{16}{section.2.7}%
+\contentsline {section}{\tocsection {}{2.8}{Probability}}{17}{section.2.8}%
+\contentsline {section}{\tocsection {}{2.9}{Exercise}}{17}{section.2.9}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{17}{section*.4}%
+\contentsline {chapter}{\tocchapter {Chapter}{3}{Some methods of counting}}{21}{chapter.3}%
+\contentsline {section}{\tocsection {}{3.1}{Casework}}{21}{section.3.1}%
+\contentsline {section}{\tocsection {}{3.2}{Complementary Counting}}{22}{section.3.2}%
+\contentsline {section}{\tocsection {}{3.3}{Principle of Inclusion and Exclusion}}{22}{section.3.3}%
+\contentsline {section}{\tocsection {}{3.4}{Exercises}}{25}{section.3.4}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{25}{section*.5}%
+\contentsline {chapter}{\tocchapter {Chapter}{4}{A guessing game}}{29}{chapter.4}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{29}{section*.6}%
+\contentsline {chapter}{\tocchapter {Chapter}{5}{Stars, Bars and Hockey Sticks}}{33}{chapter.5}%
+\contentsline {section}{\tocsection {}{5.1}{Stars and Bars}}{33}{section.5.1}%
+\contentsline {section}{\tocsection {}{5.2}{Counting in two ways}}{34}{section.5.2}%
+\contentsline {section}{\tocsection {}{5.3}{Pascal's Triangle}}{36}{section.5.3}%
+\contentsline {section}{\tocsection {}{5.4}{Exercises}}{38}{section.5.4}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{38}{section*.7}%
+\contentsline {chapter}{\tocchapter {Chapter}{6}{Geometrical Combinatorics}}{41}{chapter.6}%
+\contentsline {section}{\tocsection {}{6.1}{Geometric Counting}}{41}{section.6.1}%
+\contentsline {section}{\tocsection {}{6.2}{Geometric Probability}}{42}{section.6.2}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{43}{section*.8}%
+\contentsline {part}{\tocpart {Part}{3}{Down the Rabbit Hole}}{47}{part.3}%
+\contentsline {chapter}{\tocchapter {Chapter}{7}{Power Up Unlocked!}}{49}{chapter.7}%
+\contentsline {section}{\tocsection {}{7.1}{Recursion}}{49}{section.7.1}%
+\contentsline {section}{\tocsection {}{7.2}{Fibonacci Sequence}}{50}{section.7.2}%
+\contentsline {section}{\tocsection {}{7.3}{Solving Liner Recursion}}{51}{section.7.3}%
+\contentsline {section}{\tocsection {}{7.4}{Binet's Formula}}{52}{section.7.4}%
+\contentsline {section}{\tocsection {}{7.5}{But Wait, what if the roots repeat?}}{53}{section.7.5}%
+\contentsline {section}{\tocsection {}{7.6}{Catalan Number's}}{54}{section.7.6}%
+\contentsline {section}{\tocsection {}{7.7}{Incidence Matrices}}{55}{section.7.7}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{57}{section*.9}%
+\contentsline {chapter}{\tocchapter {Chapter}{8}{Graph Theory}}{61}{chapter.8}%
+\contentsline {section}{\tocsection {}{8.1}{Definitions}}{61}{section.8.1}%
+\contentsline {section}{\tocsection {}{8.2}{Paths and Walks}}{63}{section.8.2}%
+\contentsline {section}{\tocsection {}{8.3}{Trees}}{64}{section.8.3}%
+\contentsline {section}{\tocsection {}{8.4}{Real life applications}}{66}{section.8.4}%
+\contentsline {subsection}{\tocsubsection {}{8.4.1}{Depth-first search}}{66}{subsection.8.4.1}%
+\contentsline {subsection}{\tocsubsection {}{8.4.2}{Breadth-first search}}{67}{subsection.8.4.2}%
+\contentsline {subsection}{\tocsubsection {}{8.4.3}{Dijkstra’s Algorithm}}{67}{subsection.8.4.3}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{67}{section*.10}%
+\contentsline {chapter}{\tocchapter {Chapter}{9}{A New Breed of Counting}}{71}{chapter.9}%
+\contentsline {section}{\tocsection {}{9.1}{Pigeon Hole Principle}}{72}{section.9.1}%
+\contentsline {section}{\tocsection {}{9.2}{Expected Value and Probabilistic Method}}{74}{section.9.2}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{76}{section*.11}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{78}{section*.12}%
+\contentsline {part}{\tocpart {Part}{4}{Algebra}}{79}{part.4}%
+\contentsline {chapter}{\tocchapter {Chapter}{10}{Algebraic Manipulations}}{81}{chapter.10}%
+\contentsline {section}{\tocsection {}{10.1}{Binomial Theorem}}{81}{section.10.1}%
+\contentsline {section}{\tocsection {}{10.2}{Common Expansions and Factorization}}{83}{section.10.2}%
+\contentsline {section}{\tocsection {}{10.3}{More Factorization Tricks}}{84}{section.10.3}%
+\contentsline {section}{\tocsection {}{10.4}{Quadratic Equations}}{86}{section.10.4}%
+\contentsline {subsection}{\tocsubsection {}{10.4.1}{Splitting the middle term}}{87}{subsection.10.4.1}%
+\contentsline {subsection}{\tocsubsection {}{10.4.2}{Completing the Square}}{87}{subsection.10.4.2}%
+\contentsline {subsection}{\tocsubsection {}{10.4.3}{Quadratic formula}}{87}{subsection.10.4.3}%
+\contentsline {section}{\tocsection {}{10.5}{Vieta's Formula}}{88}{section.10.5}%
+\contentsline {section}{\tocsection {}{10.6}{The Fundamental Theorem of Algebra}}{89}{section.10.6}%
+\contentsline {section}{\tocsection {}{10.7}{Newton's Sums}}{91}{section.10.7}%
+\contentsline {section}{\tocsection {}{10.8}{Reciprocal Relations}}{93}{section.10.8}%
+\contentsline {section}{\tocsection {}{10.9}{Some Special Polynomials}}{94}{section.10.9}%
+\contentsline {subsection}{\tocsubsection {}{10.9.1}{Symmetric Polynomial}}{94}{subsection.10.9.1}%
+\contentsline {subsection}{\tocsubsection {}{10.9.2}{Reciprocal Roots}}{94}{subsection.10.9.2}%
+\contentsline {subsection}{\tocsubsection {}{10.9.3}{Adding to all roots}}{95}{subsection.10.9.3}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{95}{section*.13}%
+\contentsline {chapter}{\tocchapter {Chapter}{11}{Inequalities}}{99}{chapter.11}%
+\contentsline {section}{\tocsection {}{11.1}{Another note on notation}}{99}{section.11.1}%
+\contentsline {section}{\tocsection {}{11.2}{AM-GM and Muirhead}}{99}{section.11.2}%
+\contentsline {section}{\tocsection {}{11.3}{Non-homogeneous equations}}{102}{section.11.3}%
+\contentsline {subsection}{\tocsubsection {}{11.3.1}{Even's Substitution}}{102}{subsection.11.3.1}%
+\contentsline {subsection}{\tocsubsection {}{11.3.2}{Ravi's Substitution}}{103}{subsection.11.3.2}%
+\contentsline {subsection}{\tocsubsection {}{11.3.3}{Schur's Inequality}}{104}{subsection.11.3.3}%
+\contentsline {section}{\tocsection {}{11.4}{Some advanced inequalities}}{104}{section.11.4}%
+\contentsline {subsection}{\tocsubsection {}{11.4.1}{Extended AM-GM}}{104}{subsection.11.4.1}%
+\contentsline {subsection}{\tocsubsection {}{11.4.2}{Cauchy-Schwarz(aka SEBACS)}}{105}{subsection.11.4.2}%
+\contentsline {section}{\tocsection {}{11.5}{A note}}{106}{section.11.5}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{106}{section*.14}%
+\contentsline {chapter}{\tocchapter {Chapter}{12}{Sequence and Series}}{109}{chapter.12}%
+\contentsline {section}{\tocsection {}{12.1}{Some notes on notation}}{110}{section.12.1}%
+\contentsline {section}{\tocsection {}{12.2}{Arithmetic Progression}}{110}{section.12.2}%
+\contentsline {section}{\tocsection {}{12.3}{Geometric Progression}}{113}{section.12.3}%
+\contentsline {section}{\tocsection {}{12.4}{Induction and Summation}}{115}{section.12.4}%
+\contentsline {section}{\tocsection {}{12.5}{Telescoping}}{116}{section.12.5}%
+\contentsline {section}{\tocsection {}{12.6}{Recurrence Series}}{121}{section.12.6}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{122}{section*.15}%
+\contentsline {part}{\tocpart {Part}{5}{The Red Pill}}{125}{part.5}%
+\contentsline {chapter}{\tocchapter {Chapter}{13}{Calculus I: Limits, Continuity and Derivative}}{127}{chapter.13}%
+\contentsline {section}{\tocsection {}{13.1}{The Rate of Change}}{128}{section.13.1}%
+\contentsline {section}{\tocsection {}{13.2}{Some functions}}{129}{section.13.2}%
+\contentsline {subsection}{\tocsubsection {}{13.2.1}{Constant Function}}{129}{subsection.13.2.1}%
+\contentsline {subsection}{\tocsubsection {}{13.2.2}{Power Function}}{130}{subsection.13.2.2}%
+\contentsline {subsection}{\tocsubsection {}{13.2.3}{Polynomials}}{130}{subsection.13.2.3}%
+\contentsline {subsection}{\tocsubsection {}{13.2.4}{Negative powers}}{130}{subsection.13.2.4}%
+\contentsline {subsection}{\tocsubsection {}{13.2.5}{Fractional Powers}}{130}{subsection.13.2.5}%
+\contentsline {subsection}{\tocsubsection {}{13.2.6}{Exponential functions}}{130}{subsection.13.2.6}%
+\contentsline {subsection}{\tocsubsection {}{13.2.7}{Trigonometric Functions}}{131}{subsection.13.2.7}%
+\contentsline {subsection}{\tocsubsection {}{13.2.8}{Composing Functions}}{132}{subsection.13.2.8}%
+\contentsline {subsection}{\tocsubsection {}{13.2.9}{Inverting Functions}}{133}{subsection.13.2.9}%
+\contentsline {section}{\tocsection {}{13.3}{Inverse Trigonometric functions}}{133}{section.13.3}%
+\contentsline {section}{\tocsection {}{13.4}{Derivative}}{134}{section.13.4}%
+\contentsline {section}{\tocsection {}{13.5}{Some more notation}}{136}{section.13.5}%
+\contentsline {section}{\tocsection {}{13.6}{Product and Quotient rules}}{136}{section.13.6}%
+\contentsline {section}{\tocsection {}{13.7}{Chain rule}}{138}{section.13.7}%
+\contentsline {section}{\tocsection {}{13.8}{Limits}}{141}{section.13.8}%
+\contentsline {section}{\tocsection {}{13.9}{Continuity}}{149}{section.13.9}%
+\contentsline {section}{\tocsection {}{13.10}{Application of Differentiation}}{150}{section.13.10}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{152}{section*.16}%
+\contentsline {chapter}{\tocchapter {Chapter}{14}{Calculus II: Indefinite Integration}}{155}{chapter.14}%
+\contentsline {section}{\tocsection {}{14.1}{The Fundamental nature of graphs}}{156}{section.14.1}%
+\contentsline {section}{\tocsection {}{14.2}{Integration}}{158}{section.14.2}%
+\contentsline {section}{\tocsection {}{14.3}{Techniques of indefinite Integration: Substitution}}{158}{section.14.3}%
+\contentsline {subsection}{\tocsubsection {}{14.3.1}{Integration by Substitution}}{163}{subsection.14.3.1}%
+\contentsline {subsection}{\tocsubsection {}{14.3.2}{Standard Interactions}}{169}{subsection.14.3.2}%
+\contentsline {subsection}{\tocsubsection {}{14.3.3}{Trigonometric Substitution}}{175}{subsection.14.3.3}%
+\contentsline {subsection}{\tocsubsection {}{14.3.4}{Integration Trigonometric Functions}}{176}{subsection.14.3.4}%
+\contentsline {subsection}{\tocsubsection {}{14.3.5}{Integration by Partial Fractions}}{180}{subsection.14.3.5}%
+\contentsline {subsection}{\tocsubsection {}{14.3.6}{Some non-intuitive substitutions}}{181}{subsection.14.3.6}%
+\contentsline {section}{\tocsection {}{14.4}{Techniques of indefinite Integration: Integration by Parts}}{185}{section.14.4}%
+\contentsline {section}{\tocsection {}{14.5}{Definite integration}}{189}{section.14.5}%
+\contentsline {section}{\tocsection {}{14.6}{King's Rule}}{190}{section.14.6}%
+\contentsline {section}{\tocsection {}{14.7}{Leibnitz Theorem}}{192}{section.14.7}%
+\contentsline {section}{\tocsection {}{14.8}{Taylor Maclaurian Series}}{193}{section.14.8}%
+\contentsline {section}{\tocsection {}{14.9}{Differential Equations}}{193}{section.14.9}%
+\contentsline {section}{\tocsection {}{14.10}{What's more?}}{195}{section.14.10}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{195}{section*.17}%
+\contentsline {chapter}{\tocchapter {Chapter}{15}{Ch-14 Linear Algebra}}{199}{chapter.15}%
+\contentsline {section}{\tocsection {}{15.1}{Determinants}}{200}{section.15.1}%
+\contentsline {section}{\tocsection {}{15.2}{Properties of Determinants}}{203}{section.15.2}%
+\contentsline {section}{\tocsection {}{15.3}{Application of Determinants}}{208}{section.15.3}%
+\contentsline {section}{\tocsection {}{15.4}{Crammer's Rule}}{210}{section.15.4}%
+\contentsline {section}{\tocsection {}{15.5}{Types Matrices}}{212}{section.15.5}%
+\contentsline {section}{\tocsection {}{15.6}{Arithmetic of Matrices}}{213}{section.15.6}%
+\contentsline {section}{\tocsection {}{15.7}{The bridge}}{216}{section.15.7}%
+\contentsline {section}{\tocsection {}{15.8}{Some more special matrices}}{217}{section.15.8}%
+\contentsline {section}{\tocsection {}{15.9}{Adjoint and Inverse of Matrices}}{218}{section.15.9}%
+\contentsline {section}{\tocsection {}{15.10}{System of linear Equations using Matrices}}{220}{section.15.10}%
+\contentsline {section}{\tocsection {}{15.11}{Characteristic Equation and Cayley Hamilton Theorem}}{221}{section.15.11}%
+\contentsline {section}{\tocsection {}{15.12}{Netflix and Spotify and Matrices...}}{222}{section.15.12}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{222}{section*.18}%
+\contentsline {chapter}{\tocchapter {Chapter}{16}{Inequalities Revisited}}{225}{chapter.16}%
+\contentsline {section}{\tocsection {}{16.1}{Rearrangement Inequalities}}{225}{section.16.1}%
+\contentsline {section}{\tocsection {}{16.2}{Inequalities in Arbitrary Functions}}{227}{section.16.2}%
+\contentsline {section}{\tocsection {}{16.3}{Tangent Line Trick}}{230}{section.16.3}%
+\contentsline {section}{\tocsection {}{16.4}{SEBACS Generalized}}{231}{section.16.4}%
+\contentsline {section}{\tocsection {}{16.5}{Lagrange Multipliers}}{232}{section.16.5}%
+\contentsline {section}{\tocsection {}{16.6}{Sum uses of Calc}}{234}{section.16.6}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{237}{section*.19}%
+\contentsline {part}{\tocpart {Part}{6}{Number Theory}}{239}{part.6}%
+\contentsline {chapter}{\tocchapter {Chapter}{17}{Wearing the Crown of Mathematics}}{241}{chapter.17}%
+\contentsline {section}{\tocsection {}{17.1}{Division}}{242}{section.17.1}%
+\contentsline {section}{\tocsection {}{17.2}{Congruence Modulo}}{246}{section.17.2}%
+\contentsline {section}{\tocsection {}{17.3}{Prime Numbers}}{248}{section.17.3}%
+\contentsline {section}{\tocsection {}{17.4}{Number Bases}}{251}{section.17.4}%
+\contentsline {section}{\tocsection {}{17.5}{Divisibility rules}}{253}{section.17.5}%
+\contentsline {section}{\tocsection {}{17.6}{Nature of Factors}}{254}{section.17.6}%
+\contentsline {section}{\tocsection {}{17.7}{Legendre’s Theorem}}{255}{section.17.7}%
+\contentsline {section}{\tocsection {}{17.8}{Irrationality}}{256}{section.17.8}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{256}{section*.20}%
+\contentsline {chapter}{\tocchapter {Chapter}{18}{Modular Arithmetic}}{261}{chapter.18}%
+\contentsline {section}{\tocsection {}{18.1}{Modulo Inverse}}{261}{section.18.1}%
+\contentsline {section}{\tocsection {}{18.2}{Fermat's Little Theorem}}{262}{section.18.2}%
+\contentsline {section}{\tocsection {}{18.3}{Euler's Totient Theorem}}{263}{section.18.3}%
+\contentsline {section}{\tocsection {}{18.4}{Wilson's Theorem}}{264}{section.18.4}%
+\contentsline {section}{\tocsection {}{18.5}{Chinese Remainder Theorem}}{266}{section.18.5}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{268}{section*.21}%
+\contentsline {chapter}{\tocchapter {Chapter}{19}{Functional Equations}}{271}{chapter.19}%
+\contentsline {section}{\tocsection {}{19.1}{Some definitions}}{271}{section.19.1}%
+\contentsline {section}{\tocsection {}{19.2}{Basic Functional Equations}}{272}{section.19.2}%
+\contentsline {section}{\tocsection {}{19.3}{Some methods of solving}}{273}{section.19.3}%
+\contentsline {subsection}{\tocsubsection {}{19.3.1}{Forced cancellations}}{273}{subsection.19.3.1}%
+\contentsline {subsection}{\tocsubsection {}{19.3.2}{The FFF trick!}}{273}{subsection.19.3.2}%
+\contentsline {subsection}{\tocsubsection {}{19.3.3}{Symmetry}}{274}{subsection.19.3.3}%
+\contentsline {section}{\tocsection {}{19.4}{Cauchy's Functional Equations}}{275}{section.19.4}%
+\contentsline {section}{\tocsection {}{19.5}{Checklist for Functional Equation Solving}}{277}{section.19.5}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{277}{section*.22}%
+\contentsline {chapter}{\tocchapter {Chapter}{20}{Diophantine Equations}}{281}{chapter.20}%
+\contentsline {section}{\tocsection {}{20.1}{Linear Diophantine Equations}}{281}{section.20.1}%
+\contentsline {section}{\tocsection {}{20.2}{Parity Arguments}}{282}{section.20.2}%
+\contentsline {section}{\tocsection {}{20.3}{Algebraic methods}}{283}{section.20.3}%
+\contentsline {section}{\tocsection {}{20.4}{Modular Contradiction Method}}{285}{section.20.4}%
+\contentsline {section}{\tocsection {}{20.5}{Pythagorean Triplets}}{286}{section.20.5}%
+\contentsline {section}{\tocsection {}{20.6}{Infinite Descent}}{289}{section.20.6}%
+\contentsline {section}{\tocsection {}{20.7}{Vieta Jumping}}{290}{section.20.7}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{291}{section*.23}%
+\contentsline {part}{\tocpart {Part}{7}{The Number's Awaken}}{293}{part.7}%
+\contentsline {chapter}{\tocchapter {Chapter}{21}{Bazooka!}}{295}{chapter.21}%
+\contentsline {section}{\tocsection {}{21.1}{Surprisingly, not complex!}}{295}{section.21.1}%
+\contentsline {section}{\tocsection {}{21.2}{Orders}}{297}{section.21.2}%
+\contentsline {section}{\tocsection {}{21.3}{Chicken Mcnugget Theorem}}{298}{section.21.3}%
+\contentsline {section}{\tocsection {}{21.4}{Pell's Equations}}{300}{section.21.4}%
+\contentsline {section}{\tocsection {}{21.5}{Floor, Ceiling and fractional function}}{302}{section.21.5}%
+\contentsline {section}{\tocsection {}{21.6}{Black Boxes}}{303}{section.21.6}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{308}{section*.24}%
+\contentsline {chapter}{\tocchapter {Chapter}{22}{Constructions}}{311}{chapter.22}%
+\contentsline {section}{\tocsection {}{22.1}{Chinese Remainder Theorem}}{311}{section.22.1}%
+\contentsline {section}{\tocsection {}{}{Exercises}}{312}{section*.25}%
+\contentsline {part}{\tocpart {Part}{8}{Geometry}}{313}{part.8}%
+\contentsline {chapter}{\tocchapter {Chapter}{23}{Angle Chasing}}{315}{chapter.23}%
+\contentsline {section}{\tocsection {}{23.1}{Triangle Centers}}{315}{section.23.1}%
+\contentsline {section}{\tocsection {}{23.2}{Cyclic Quadrilaterals}}{316}{section.23.2}%
+\contentsline {part}{\tocpart {Part}{9}{Extras}}{317}{part.9}%
+\contentsline {chapter}{\tocchapter {Chapter}{24}{Anti-problems}}{319}{chapter.24}%
+\contentsline {section}{\tocsection {}{24.1}{Anti-Problems}}{320}{section.24.1}%
+\contentsline {section}{\tocsection {}{}{Exercise}}{320}{section*.26}%
+\contentsline {chapter}{\tocchapter {Chapter}{25}{Engineering}}{321}{chapter.25}%
+\contentsline {section}{\tocsection {}{25.1}{Abuse of Degree of Freedom}}{322}{section.25.1}%
+\contentsline {part}{\tocpart {Part}{10}{Appendix}}{323}{part.10}%
+\contentsline {chapter}{\tocappendix {Appendix}{A}{Appendix A: Justifications, Ramifications and Excuses}}{325}{appendix.A}%
+\contentsline {section}{\tocsection {}{A.1}{Introductory Problems}}{325}{section.A.1}%
+\contentsline {chapter}{\tocappendix {Appendix}{B}{Appendix B: Hints}}{327}{appendix.B}%
+\contentsline {chapter}{\tocappendix {Appendix}{C}{Appendix C: Selected Solutions}}{331}{appendix.C}%
+\contentsline {chapter}{\tocappendix {Appendix}{D}{Appendix D: Borrowed Brillience}}{333}{appendix.D}%
+\contentsline {section}{\tocsection {}{D.1}{Almost every part}}{333}{section.D.1}%
+\contentsline {section}{\tocsection {}{D.2}{Introductory Problems}}{334}{section.D.2}%
+\contentsline {section}{\tocsection {}{D.3}{Permutations and Combinations}}{335}{section.D.3}%
+\contentsline {section}{\tocsection {}{D.4}{Down The Rabbit Hole}}{335}{section.D.4}%
+\contentsline {section}{\tocsection {}{D.5}{Algebra}}{336}{section.D.5}%
+\contentsline {section}{\tocsection {}{D.6}{The Red Pill}}{336}{section.D.6}%
+\contentsline {section}{\tocsection {}{D.7}{Number Theory}}{337}{section.D.7}%
+\contentsline {section}{\tocsection {}{D.8}{The Numbers Awaken}}{339}{section.D.8}%
+\contentsline {chapter}{\tocappendix {Appendix}{E}{Appendix E: Problem Sources}}{341}{appendix.E}%
