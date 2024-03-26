@@ -67,10 +67,10 @@ The probabilistic method refers to proving the existence of some element in a se
 Cutting out the jagron, let's say I have bag of candy. How do you prove that I have a Kit-Kat in the bag? You either keep on removing chocolates till you get a Kit-Kat, or through some tricks you prove that the probability of drawing a Kit-Kat is not zero.\\
 Another allegory would be thinking of it like rolling a dice. If you roll a regular six-sided dice, there's a chance of getting any number from 1 to 6. The probabilistic method is a bit like saying, "Hey, there's a chance, maybe a small one, but it's not zero, that I'll get a 6." So, you can be pretty confident that a 6 exists on that dice, even if you haven't seen it yet.\\
 This was explained thrice to provide the motivation to define the following.
-\begin{defination}
+\begin{definition}
 [Expected Value]
 For a random variable $X$,  $\E{x}=\sum {x_i \cdot P(x_i)}$ where $x_i$ are the possible values of X and $P(x_i)$ is the probability of the value being $x_i$
-\end{defination}
+\end{definition}
 For example for a dice, let $X$ be the number on the die. Then $\E{x}=\frac{1}{6}1+\frac{1}{6}2+\dots+\frac{1}{6}6 =3.5$.\\
 What this tells us is that if we roll a dice, we expect the value to be $3.5$. While $3.5$ is not a number on the dice, over a lot of throws this is the average of roll of a dice.\\
 We now define the most important theorem of the probabilistic method
@@ -95,8 +95,8 @@ We can also have questions which while can be done using the probabilistic metho
     [Solution]
 We can also do this by the definition of expected value. Without loss of generality, let's say Chris interchanged the first ball with the second ball.\\
 Silva can now interchange either the same two($\frac{1}{5}$ probability) which leaves us with $5$ balls in the original position.\\
-Silva can interchange one of the balls Chris switched with another neighbour($\frac{2}{5}$ probability) which leaves $2$ balls in the original position.\\
-Silva can interchange two entirely new balls(\frac{2}{5} probability) which leaves $1$ ball in the original position.\\
+Silva can interchange one of the balls Chris switched with another neighbour( $\frac{2}{5}$ probability) which leaves $2$ balls in the original position.\\
+Silva can interchange two entirely new balls($\frac{2}{5}$ probability) which leaves $1$ ball in the original position.\\
 This means the expected value is $\frac{1}{5}*5+\frac{2}{5}*2+\frac{2}{5}*1=1+0.8+0.4=2.2$\\
 If we want to use probabilistic method, we can define a variable $P$ for every ball which is $0$ if the ball is not on its original position and $1$ if it is.\\
 So the Expected value of $P$ is the sum of the probability of the ball never being switched and it being switched twice.\\
