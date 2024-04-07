@@ -1,16 +1,21 @@
-\chapter{Permutations and Combinations and a pinch of Probability}                                                                                                           
+\chapter{Permutations and Combinations} 
+
 I'll begin this book with what we first learnt math as, counting.
+
 \begin{example}
 Cricket t-shirts have 2-digit numbers on them using six possible digits: $0, 1, 2, 3, 4, 5$ How many 
 different t-shirts can be formed?
 \end{example}
+
 While we can write down all the possible t-shirt numbers and count them, we can do something 
 faster and more beautiful. The first digit can be any of the $6$ given digits, and so can the
  second. As they are completely independent, we can simply multiply them.\par
 So we have $6 \times 6=36$ such T-Shirts.
+
 \begin{example}
 How many $4$ digit numbers can be formed using the digits $1, 2, 3$ and $4$ (Without repetition).
 \end{example}
+
 This question is similar as while we can simply try to write all the numbers and then just count, 
 but it is smarter to do something else.\par
 This means we have $4$ choices for the thousands digit. As one number is now used, we only have
@@ -19,11 +24,14 @@ This means we have $4$ choices for the thousands digit. As one number is now use
  leaving us with only $1$ choice. As all these choices are independent, we say that we can make 
  $4 \times 3 \times 2 \times 1 = 24$\par
 Let's explore this new type of counting a bit more.
+
 \section{Fundamental Principle of Counting}
+
 \begin{example}
 A person can travel from city $A$ to city $B$ via Road (Car/Bus/Bike), Train 
 (Express/Mail) or Flight (Economy/Business). In how many ways can a person go from city A to city B?
 \end{example}
+
 Pretty standard, right? We can simply count the ways as $\text{Number of Road ways}
 +\text{Number of trains}+\text{Number of Flights}=3+2+2=7$. Note that we decided to add here.
 \begin{example}
@@ -82,10 +90,12 @@ are mathematically equivalent, we can take advantage and do the calculations on 
 There are $10$ lamps in a hall. Each one of them can be switched on independently.
 The number of ways in which the hall can be illuminated is:    
 \end{example}
+
 \begin{example}
     Ramin language is a very unique language which has 10 symbols and words are a set of more than one symbol. 
     One word has no repetitions of a symbol and the order of symbols doesn't matter. How many words are in Ramin?
 \end{example}
+
 These both questions ask us the number of way we can choose some subset of $10$ objects with the size
 (also called cardinality) of the subset is not $0$. However, 
 the first question is much easier to understand as the lamp question as 
@@ -97,10 +107,12 @@ double counting(in chapter 5) and bijections(in chapter 7). Let's now formalize 
 \section{The special sign!}
 Normally when you see a ! sign in a book, it refers to the author trying to be funny. 
 But if it comes after a number it means as follows:
+
 \begin{definition}
     [Factorial]
     $n!=$ Number of way to arrange $n$ distinct objects in a straight line.
 \end{definition}
+
 This means that by the definition of factorial the example about number of $4$ digit numbers which can be made with $1,2,3,4$ without repetition can be answered simply as $4!=24$.\par
 \begin{theorem}
     $n!=n\times (n-1)\times \dots 3\times 2 \times 1 \implies n!=n \times (n-1)!$

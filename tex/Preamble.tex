@@ -1,25 +1,33 @@
 %    If you need symbols beyond the basic set, uncomment this command.
 \usepackage{tikz}
-\usepackage{amssymb,amsthm,amssymb}
+\usepackage{amssymb, amssymb}
 \usepackage{float}
-\usepackage[]{tcolorbox}
-\usepackage{mdframed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsthm}
+\usepackage{thmtools,xpatch}
+\usepackage[framemethod=TikZ]{mdframed}
+\raggedbottom
+\usetikzlibrary{shadows}
+% https://tex.stackexchange.com/a/292090/76888
+% https://github.com/marcodaniel/mdframed/issues/12
+
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{epigraph}
 \usepackage{xargs}
 \usepackage{centernot}
+\usepackage{siunitxj}
 \usepackage{mathtools}
+
 
 \usepackage[linktoc=page]{hyperref}
 \hypersetup{
 colorlinks=true,
-linkcolor=green!70!black,
-citecolor=green,
+linkcolor=TealBlue!70!black,
+citecolor=TealBlue,
 }
 \usepackage{cleveref}
-
 
 \usepackage{natbib}
 \usepackage{forloop}
@@ -28,7 +36,11 @@ citecolor=green,
 \usepackage{ifthen}
 \usepackage{answers}
 \usepackage{cancel}
-\usepackage{mdframed}
+
+\xpatchcmd{\endmdframed}
+{\aftergroup\endmdf@trivlist\color@endgroup}
+{\endmdf@trivlist\color@endgroup\@doendpe}
+{}{}
 %\usepackage{draftwatermark}
 % Watermark
 %\SetWatermarkLightness{ 0.9 }
@@ -58,16 +70,43 @@ citecolor=green,
 \newenvironment{hint}{\footnotesize \normalfont \textbf{Hints}:}{\hspace{-0.5ex}}
 \pgfmathsetseed{65536} % or any other number: sets the random seed
 
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}[theorem]{Lemma}
 
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{xca}[theorem]{Exercise}
 
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\mdfdefinestyle{blackbox}{%
+    frametitlerulewidth=1pt,
+    frametitlerule=true,
+    roundcorner=5pt,
+    linewidth=1pt,
+    skipabove=25pt,
+    skipbelow=2pt,
+    frametitlefont=\bfseries,
+    innertopmargin=12pt,
+    innerbottommargin=8pt,
+    nobreak=true,
+    backgroundcolor=white,
+    linecolor=black,
+}
+
+\declaretheoremstyle[
+mdframed={style=blackbox},
+headpunct={},
+postheadspace=\newline,
+postheadhook={\rule[.6ex]{\linewidth}{0.4pt}\\},
+]{thmbox}
+
+\declaretheoremstyle[
+headfont=\normalfont\bfseries,
+spaceabove=25pt,
+spacebelow=25pt,
+bodyfont=\normalfont
+]{basehead}
+
+\declaretheorem[style=basehead,name=Theorem,numberwithin=section]{theorem}
+\declaretheorem[style=basehead,name=Lemma,sibling=theorem]{lemma}
+\mdtheorem[style=blackbox]{example}[subsection]{Example}
+
+\declaretheorem[style=basehead,name=Definition,sibling=theorem]{definition}
+\declaretheorem[style=basehead,name=Definition,sibling=theorem]{remark}
 
 \numberwithin{section}{chapter}
 \numberwithin{equation}{chapter}
