@@ -22,7 +22,7 @@
 % Watermark
 \SetWatermarkLightness{ 0.9 }
 \SetWatermarkText{DRAFT}
-\SetWatermarkScale{ 3 }
+\SetWatermarkScale{2}
 %Expected Value
 \newcommand{\E}[1]{\mathbb{E}({#1})}
 %LCM command
@@ -68,14 +68,73 @@
 \begin{document}
 \frontmatter
 \maketitle
+\epigraph{The study of mathematics, like the Nile, begins in minuteness but ends in magnificence.}{\textit{Charles Caleb Colton}}
+\epigraph{The essence of mathematics is not to make simple things complicated, but to make complicated things simple.}{S. Gudder}
+\pagebreak
+
+\begin{center}
+\copyright\ 2023 Arjun Agarwal \\
+Text licensed under CC-by-SA-4.0 \\
+This is (still!) an incomplete draft. \\
+Please send corrections, comments, pictures of kittens, etc. \\
+to \href{mailto:anulick0@gmail.com}{anulick0@gmail.com} \\
+Last updated \today.
+\end{center}
+\pagebreak
+
+\thispagestyle{empty}
+\vspace*{13.5pc}
+\begin{center}
+{\em To Ashu Agarwal Ma'am, Aparna Thakur Ma'am and Sylvia Marcarhanas Ma'am, who made me fall in love with mathematics.} 
+\end{center}
+\pagebreak
+
+
+\tableofcontents
+
+
+
 \mainmatter
-\input{Part 1 PnC/Ch-2 Constructive Counting.tex}
-\input{Part 1 PnC/Ch-3_ Casework and Complementary.tex}
-\input{Part 1 PnC/Ch-4_ A Guessing Game.tex}
-\input{Part 1 PnC/Ch-5_ Stars and Bars and Identities.tex}
-\input{Part 1 PnC/Ch-6_ Geometric Counting.tex}
+
+\part{Combinatorics}
+\input{1PnC/ConstCount}
+\input{1PnC/casecomp}
+\input{1PnC/guess}
+\input{1PnC/starbars}
+\input{1PnC/geocount}
+
+\part{Down the Rabbit Hole}
+\input{2rabbithole/powerup}
+\input{2rabbithole/graphtheory}
+\input{2rabbithole/countmethods}
+
+\part{Algebra}
+\input{3alg/algman.tex}
+\input{3alg/ineq.tex}
+\input{3alg/seqseries.tex}
+
+\part{The Red Pill}
+\input{4redpill/calc1.tex}
+\input{4redpill/calc2.tex}
+\input{4redpill/linalg.tex}
+\input{4redpill/ineqrev.tex}
+
+\part{Number Theory}
+\input{5nt/ntintro.tex}
+\input{5nt/modarith.tex}
+\input{5nt/funceq.tex}
+\input{5nt/dioeq.tex}
+
+\part{The Number's Awaken}
+\input{6ntadv/bazooka.tex}
+\input{6ntadv/const.tex}
+
 \backmatter
+
+\appendix
 \part{Appendix}
-%% References
+\input{Appendix/hints.tex}
+\input{Appendix/borrow.tex}
+\input{Appendix/sources.tex}
 \clearpage
 \end{document}
