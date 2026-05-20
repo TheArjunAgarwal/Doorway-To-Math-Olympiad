@@ -1,0 +1,13 @@
+Sequence Series
+
+https://cjquines.com/files/parallelsum.pdf | parallelsum.pdf
+https://davidaltizio.web.illinois.edu/Sequences%20and%20Series.pdf | Sequences and Series.pdf
+https://cdn.artofproblemsolving.com/attachments/8/4/e8c3d4693dcc7db566d7b91ddc7052dd869f1f.pdf | e8c3d4693dcc7db566d7b91ddc7052dd869f1f.pdf
+http://3.13.180.153/wp-content/uploads/2020/08/Sequences_and_Series_2020.pdf | Sequences_and_Series_2020.pdf
+https://www.math.stonybrook.edu/~rdhough/putnam_seminar/2022/sequences_series.pdf | sequences_series.pdf
+https://www.thecalt.com/static/docs/handouts/summations.pdf | summations.pdf
+https://yu-dylan.github.io/euclid-orchard/Handouts/Sequences_and_Series_in_the_AMC_and_AIME.pdf | Sequences_and_Series_in_the_AMC_and_AIME.pdf
+https://cs.stanford.edu/~rayyli/static/contest/lectures/adhocalgman.pdf | adhocalgman.pdf
+https://www.dropbox.com/scl/fo/lfko6ojc1bdmrxj89qet3/ALQvTpMQ5At-eiLV7BDHxb8/Algebra/Sequences%20and%20Recurrence%20-%20MDB.pdf?rlkey=lcftm6dyjl3vqv1ddjhxszztf&e=3&dl=0 | Dropbox - Sequences and Recurrence - MDB.pdf - Simplify your life
+https://web.evanchen.cc/handouts/Summation/Summation.pdf | Summations
+https://www.dropbox.com/scl/fo/lfko6ojc1bdmrxj89qet3/ALQvTpMQ5At-eiLV7BDHxb8/Algebra/Sequences%20and%20Recurrence%20-%20MDB.pdf?rlkey=lcftm6dyjl3vqv1ddjhxszztf&e=1&dl=0 | Dropbox
